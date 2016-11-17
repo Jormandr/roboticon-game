@@ -12,12 +12,12 @@ To set up this project:
 
 * Install Eclipse - the recommended version is 'Neon'
 * Clone the repository
-* Choose 'File -> Import -> Existing Projects into Workspace'
+* Choose 'File -> Import -> General -> Existing Projects into Workspace'
     * Select the root folder of the whole repository
     * Click 'Finish'
 * Right click on 'roboticongame-desktop' in the package explorer (close the welcome screen) and select 'Run As -> Java Application -> DesktopLauncher'
-    * This will fail. Now open 'Run As -> Run Configurations'
+    * This will fail (except maybe if you put it in '/home/mark/src/roboticon-game'). Now open 'Run As -> Run Configurations'
     * On the 'Arguments' tab, set the working directory to '${project-path}/../roboticongame-core/assets/'
-* The game should now run correctly
+* The game should now run correctly (displaying a mostly red screen with 'Bad Logic Games' in the bottom left)
 
 To commit to the repository, it is recommended to use Git by hand, not by IDE integration. The current style guide is "Press CTRL-Shift-F and let Eclipse handle it"
