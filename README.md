@@ -21,3 +21,5 @@ To set up this project:
 * The game should now run correctly (displaying a mostly red screen with 'Bad Logic Games' in the bottom left)
 
 To commit to the repository, it is recommended to use Git by hand, not by IDE integration. The current style guide is "Press CTRL-Shift-F and let Eclipse handle it"
+
+Don't stage modifications to .project unless you think it's a good idea to
