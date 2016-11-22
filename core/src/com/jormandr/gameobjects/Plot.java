@@ -1,9 +1,10 @@
 package com.jormandr.gameobjects;
 
 public class Plot extends MapTile {
-	int resources[] = new int[3];
-	int ownership;
-	boolean enabled;
+	private int resources[] = new int[3];
+	private int ownership;
+	private boolean enabled;
+	// Todo: Create accessors/mutators
 
 	public Plot(int sres[]) {
 		resources[0] = sres[0];
