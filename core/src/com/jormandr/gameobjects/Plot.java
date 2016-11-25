@@ -7,7 +7,7 @@ public class Plot extends MapTile {
 	private final int oreValue, foodValue, energyValue;
 	private float oreBuff, oreDebuff, foodBuff, foodDebuff, energyBuff, energyDebuff = 1.0f;
 	private int type;
-	// Change type to enum
+	// TODO Change type to enum
 
 	public Plot(int x, int y, int oreValue, int foodValue, int energyValue, int type) {
 		// in here, figure out what type tile I am, what resource values I have,
@@ -86,6 +86,10 @@ public class Plot extends MapTile {
 	public boolean hasRoboticon() {
 		// Test this rigorously
 		return !(oreBuff == 1.0f && foodBuff == 1.0f && energyBuff == 1.0f);
+	}
+	
+	public int getType() {
+		return type;
 	}
 
 }
