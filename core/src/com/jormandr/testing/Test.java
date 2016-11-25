@@ -21,6 +21,11 @@ public enum testfn{
 	//testfunction names
 	TEST
 }
+void intvaltest(){
+	if(999999>maxint){
+		System.out.println("fail:int error");
+	}
+}
 void looptest(testfn fn){
 	//selects function to loop
 	for(int i=0; i<100; i++){

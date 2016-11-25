@@ -8,6 +8,7 @@ public class TestRun {
 		// TODO Auto-generated method stub
 		t1.looptest(Test.testfn.TEST);
 		x=t1.errorfrequency();
+		t1.intvaltest();
 	}
 
 }
