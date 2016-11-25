@@ -14,5 +14,13 @@ public class GameConfig {
 	public static int getHeight() {
 		return 720;
 	}
+	
+	public static int getMapHeight() {
+		return 5;
+	}
+
+	public static int getMapWidth() {
+		return 5;
+	}
 
 }
