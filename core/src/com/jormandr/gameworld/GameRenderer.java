@@ -91,12 +91,11 @@ public class GameRenderer {
 		
 		for (int i = 0; i < arrayX ; i++) {
 			for (int j = 0; j < arrayY ; j++) {
-				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], 640 - 64 + convertToX(worldMap[i][j]), 190 + convertToY(worldMap[i][j]), 124, -68);
-				
-				
+				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], 640 - 64 + convertToX(worldMap[i][j]), 288 + convertToY(worldMap[i][j]), 124, -68);
 			}
 		}
 		
+		batcher.disableBlending();
 		
 		
 		
