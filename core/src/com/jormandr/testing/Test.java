@@ -2,15 +2,6 @@ package com.jormandr.testing;
 
 import java.util.EmptyStackException;
 
-class noexception extends Exception {
-	// no exception found
-	private static final long serialVersionUID = 1L;
-
-	noexception(String s) {
-		super(s);
-	}
-}
-
 public class Test {
 	// Test class, tests for individual functions denoted as test_fnname
 	// log is refreshed each time, to store permanently, add fn or save screen
@@ -25,11 +16,11 @@ public class Test {
 		TEST
 	}
 
-	void intvaltest() {
+	void intvaltest(int cstop) {
 		// tests if the machine's max integer value is greater than the counter
 		// limit
 		System.out.println("integer limit");
-		if (999999 > maxint) {
+		if (cstop > maxint) {
 			System.out.println("fail:int error");
 		} else {
 			System.out.println("pass: max value " + maxint);
@@ -54,6 +45,7 @@ public class Test {
 					} else if (i % 4 == 2) {
 						throw new ClassCastException();
 					}
+					break;
 
 				}
 				}
@@ -97,7 +89,9 @@ public class Test {
 	int mode() {
 		return 0;
 	}
-
+	void assetcheck(){
+		//test asset paths
+	}
 	void alltest() {
 		// run all tests once
 	}
