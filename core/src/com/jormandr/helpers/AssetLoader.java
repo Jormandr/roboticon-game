@@ -18,11 +18,11 @@ public class AssetLoader {
 		tilesTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		grassRegion = new TextureRegion(tilesTexture, 63, 0, 62, 34);
 		grassRegion.flip(false, false);
-		badlandsRegion = new TextureRegion(tilesTexture, 0, 35, 62, 34);
+		badlandsRegion = new TextureRegion(tilesTexture, 0, 34, 62, 34);
 		badlandsRegion.flip(false, false);
 		desertRegion = new TextureRegion(tilesTexture, 0, 0, 62, 34);
 		desertRegion.flip(false, false);
-		waterRegion = new TextureRegion(tilesTexture, 63, 35, 62, 34);
+		waterRegion = new TextureRegion(tilesTexture, 63, 34, 62, 34);
 		waterRegion.flip(false, false);
 	}
 
