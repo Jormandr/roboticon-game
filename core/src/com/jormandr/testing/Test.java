@@ -2,15 +2,6 @@ package com.jormandr.testing;
 
 import java.util.EmptyStackException;
 
-class noexception extends Exception {
-	// no exception found
-	private static final long serialVersionUID = 1L;
-
-	noexception(String s) {
-		super(s);
-	}
-}
-
 public class Test {
 	// Test class, tests for individual functions denoted as test_fnname
 	// log is refreshed each time, to store permanently, add fn or save screen
