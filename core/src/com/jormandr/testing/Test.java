@@ -45,6 +45,7 @@ public class Test {
 					} else if (i % 4 == 2) {
 						throw new ClassCastException();
 					}
+					break;
 
 				}
 				}
