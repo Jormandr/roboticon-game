@@ -95,11 +95,12 @@ public class GameRenderer {
 			}
 		}
 		
+		
+		
+		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTopMid, 640-40, 28, 0, 0, 79, -28, 4, 4, 0); //currently not working, needed to go home but we need to change how we draw the ui anyway
+		
 		batcher.disableBlending();
-		
-		
-		
-		
 		// The bird needs transparency, so we enable that again.
 		
 
