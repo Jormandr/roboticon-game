@@ -25,11 +25,11 @@ public class Test {
 		TEST
 	}
 
-	void intvaltest() {
+	void intvaltest(int cstop) {
 		// tests if the machine's max integer value is greater than the counter
 		// limit
 		System.out.println("integer limit");
-		if (999999 > maxint) {
+		if (cstop > maxint) {
 			System.out.println("fail:int error");
 		} else {
 			System.out.println("pass: max value " + maxint);
@@ -97,7 +97,9 @@ public class Test {
 	int mode() {
 		return 0;
 	}
-
+	void assetcheck(){
+		//test asset paths
+	}
 	void alltest() {
 		// run all tests once
 	}
