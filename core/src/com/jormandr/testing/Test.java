@@ -1,6 +1,22 @@
 package com.jormandr.testing;
+import com.jormandr.*;
 
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.EmptyStackException;
+// assumes libgdx is tested and working
+
+
+
+
+
+
+
+
 
 public class Test {
 	// Test class, tests for individual functions denoted as test_fnname
@@ -78,6 +94,7 @@ public class Test {
 				break;
 			}
 			System.out.println(count[i] + "      " + keys[i]);
+			printreport(count[i] + "      " + keys[i]);
 		}
 		return count;
 	}
@@ -95,4 +112,16 @@ public class Test {
 	void alltest() {
 		// run all tests once
 	}
-}
+	
+	public void printreport(String text) { 
+		try(FileWriter fw = new FileWriter("testlog.txt", true);
+			    BufferedWriter bw = new BufferedWriter(fw);
+			    PrintWriter out = new PrintWriter(bw))
+			{
+			    out.println(text);
+			} catch (IOException e) {
+				 System.out.println("logfile error");
+			}
+
+	}
+	}
