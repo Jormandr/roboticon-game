@@ -4,10 +4,12 @@ public abstract class MapTile {
 
 	// co-ordinates are top corner of diamond
 	private final int x, y;
+	private TileType type;
 
-	public MapTile(int x, int y) {
+	public MapTile(int x, int y, TileType type) {
 		this.x = x;
 		this.y = y;
+		this.type = type;
 	}
 
 	public int getX() {
@@ -16,6 +18,10 @@ public abstract class MapTile {
 
 	public int getY() {
 		return y;
+	}
+	
+	public TileType getType() {
+		return type;
 	}
 
 }
