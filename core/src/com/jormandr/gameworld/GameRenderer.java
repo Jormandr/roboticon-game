@@ -1,6 +1,7 @@
 package com.jormandr.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
@@ -82,8 +83,8 @@ public class GameRenderer {
 		
 		//batcher.draw(AssetLoader.grassRegion, 5, 5, 10, 10);
 		MapTile[][] worldMap = myWorld.getMap();
-		int arrayX = myWorld.getMapWidth();
-		int arrayY = myWorld.getMapHeight();
+		int arrayX = GameConfig.getMapWidth();
+		int arrayY = GameConfig.getMapHeight();
 		
 		batcher.enableBlending();
 		

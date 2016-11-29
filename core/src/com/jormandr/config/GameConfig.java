@@ -22,5 +22,13 @@ public class GameConfig {
 	public static int getMapWidth() {
 		return 5;
 	}
+	
+	public static int getRandomEventChance() {
+		return 10; // 1-in
+	}
+	
+	public static int getPlayerNumbers() {
+		return 2;
+	}
 
 }

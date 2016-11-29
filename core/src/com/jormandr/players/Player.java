@@ -1,9 +1,13 @@
 package com.jormandr.players;
 
+import com.jormandr.config.GameConfig;
+import com.jormandr.gameobjects.Plot;
+
 public abstract class Player {
 
 	private int score, ore, food, energy, money, roboticonsOwned;
-	// TODO Implement plotsOwned
+	private final int mapSize = GameConfig.getMapHeight()*GameConfig.getMapWidth();
+	Plot[] plotsOwned = new Plot[mapSize];
 
 	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned) {
 		this.score = score;
@@ -12,7 +16,34 @@ public abstract class Player {
 		this.energy = energy;
 		this.money = money;
 		this.roboticonsOwned = roboticonsOwned;
-		// plotsOwned = newPlotsOwned
+	}
+
+	public Plot[] getPlotsOwned() {
+		return plotsOwned;
+	}
+
+	public void setPlotsOwned(Plot[] plotsOwned) {
+		this.plotsOwned = plotsOwned;
+	}
+	
+	public void addPlot(Plot newPlot) {
+		// TODO add exception if there is no space
+		for (int i = 0; i < mapSize; i++) {
+			if (plotsOwned[i] == null) {
+				plotsOwned[i] = newPlot;
+				break;
+			}
+		}
+	}
+	
+	public void removePlot(Plot targetPlot) {
+		// TODO add exception
+		for (int i = 0; i < mapSize; i++) {
+			if (plotsOwned[i] == targetPlot) {
+				plotsOwned[i] = null;
+				break;
+			}
+		}
 	}
 
 	public int getScore() {
@@ -75,16 +106,21 @@ public abstract class Player {
 		money += difference;
 	}
 
-	public int getRoboticons() {
+	public int getRoboticonsOwned() {
 		return roboticonsOwned;
 	}
 
-	public void setRoboticons(int roboticonsOwned) {
+	public void setRoboticonsOwned(int roboticonsOwned) {
 		this.roboticonsOwned = roboticonsOwned;
 	}
 
-	public void changeRoboticons(int difference) {
+	public void changeRoboticonsOwned(int difference) {
 		roboticonsOwned += difference;
+	}
+
+	public void makeTurn() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
