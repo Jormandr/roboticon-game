@@ -1,0 +1,5 @@
+package com.jormandr.helpers;
+
+public enum GameState {
+	WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTION, RANDOMEVENT
+}

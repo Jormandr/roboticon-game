@@ -43,28 +43,27 @@ public class GameRenderer {
 	private void initAssets() {
 		// yet to have any game assets to initialise
 	}
-	
+
 	private int convertToX(MapTile plot) {
 		int convertedX = 0;
 		int i = plot.getX();
 		int j = plot.getY();
-		
-		convertedX = (i-j)*64;
-		
+
+		convertedX = (i - j) * 64;
+
 		return convertedX;
 	}
-	
+
 	private int convertToY(MapTile plot) {
 		int convertedY = 0;
 		int plotY = plot.getY();
 		int i = plot.getX();
 		int j = plot.getY();
-		
-		convertedY = (i+j)*32;
-		
+
+		convertedY = (i + j) * 32;
+
 		return convertedY;
 	}
-	
 
 	public void render(float runTime) {
 
@@ -80,30 +79,45 @@ public class GameRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
-		
-		//batcher.draw(AssetLoader.grassRegion, 5, 5, 10, 10);
+
+		// batcher.draw(AssetLoader.grassRegion, 5, 5, 10, 10);
 		MapTile[][] worldMap = myWorld.getMap();
 		int arrayX = GameConfig.getMapWidth();
 		int arrayY = GameConfig.getMapHeight();
-		
+
 		batcher.enableBlending();
-		
+
 		AssetLoader shit = new AssetLoader();
-		
-		for (int i = 0; i < arrayX ; i++) {
-			for (int j = 0; j < arrayY ; j++) {
-				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], 640 - 64 + convertToX(worldMap[i][j]), 288 + convertToY(worldMap[i][j]), 124, -68);
+
+		for (int i = 0; i < arrayX; i++) {
+			for (int j = 0; j < arrayY; j++) {
+				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], 640 - 64 + convertToX(worldMap[i][j]),
+						288 + convertToY(worldMap[i][j]), 124, -68);
 			}
 		}
-		
-		
-		
+
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTopMid, 640-40, 28, 0, 0, 79, -28, 4, 4, 0); //currently not working, needed to go home but we need to change how we draw the ui anyway
-		
+		batcher.draw(AssetLoader.uiTopMid, 640 - 40, 28, 0, 0, 79, -28, 4, 4, 0); // currently
+																					// not
+																					// working,
+																					// needed
+																					// to
+																					// go
+																					// home
+																					// but
+																					// we
+																					// need
+																					// to
+																					// change
+																					// how
+																					// we
+																					// draw
+																					// the
+																					// ui
+																					// anyway
+
 		batcher.disableBlending();
 		// The bird needs transparency, so we enable that again.
-		
 
 		// End SpriteBatch
 		batcher.end();

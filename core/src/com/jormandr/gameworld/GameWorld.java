@@ -7,6 +7,7 @@ import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.helpers.GameStateHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 
@@ -15,32 +16,41 @@ public class GameWorld {
 	private int mapWidth = GameConfig.getMapWidth();
 	private int mapHeight = GameConfig.getMapHeight();
 	private MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
-	private int state = 1;
 	private final int numberOfPlayers = GameConfig.getPlayerNumbers();
-	private Player[] allPlayers = new Player[numberOfPlayers];
+	private Player player1;
+	private Player player2;
 	private Random rand = new Random();
+	private GameStateHandler gsh;
 
 	public void update(float delta) {
-		switch (state) {
+		switch (gsh.getGameState()) {
+		case 0:
+			// Player 1 is handling this
+			break;
 		case 1:
-			for (int i = 0; i < numberOfPlayers; i++) {
-				allPlayers[i].makeTurn();
-			}
-			state++;
+			// Deal with player 1's turn
+			gsh.incrementGameState();
 			break;
 		case 2:
-			produce();
-			state++;
+			// Player 2 is handling this
 			break;
 		case 3:
-			auction();
-			state++;
+			// Deal with player 2's turn
+			gsh.incrementGameState();
 			break;
 		case 4:
+			produce();
+			gsh.incrementGameState();
+			break;
+		case 5:
+			auction();
+			gsh.incrementGameState();
+			break;
+		case 6:
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
 			}
-			state = 1;
+			gsh.incrementGameState();
 			break;
 		}
 
@@ -48,19 +58,20 @@ public class GameWorld {
 
 	private void randomEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void auction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void produce() {
 		Plot[] playersPlots;
-		int mapSize = GameConfig.getMapHeight()*GameConfig.getMapWidth();
-		for (int i = 0; i < numberOfPlayers; i++) {
-			Player currentPlayer = allPlayers[i];
+		int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
+		for (int i = 0; i < 2; i++) {
+			// TODO fix this shit
+			Player currentPlayer = i == 0 ? player1 : player2;
 			playersPlots = currentPlayer.getPlotsOwned();
 			for (int j = 0; j < mapSize; j++) {
 				Plot currentPlot = playersPlots[j];
@@ -70,14 +81,15 @@ public class GameWorld {
 				}
 			}
 		}
-		
+
 	}
 
 	public GameWorld() {
-
+		Gdx.app.log("GameWorld", "Initialising GSH");
+		gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		allPlayers[0] = new HumanPlayer(0, 0, 0, 0, 0, 0);
-		allPlayers[1] = new HumanPlayer(0, 0, 0, 0, 0, 0);
+		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh);
+		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {
