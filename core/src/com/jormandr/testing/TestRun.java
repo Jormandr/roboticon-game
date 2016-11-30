@@ -11,22 +11,22 @@ import com.jormandr.testing.Test;
 
 public class TestRun {
 	public static String getCurrentTimeStamp() {
-	    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
-	    Date now = new Date();
-	    String strDate = sdfDate.format(now);
-	    return strDate;
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// dd/MM/yyyy
+		Date now = new Date();
+		String strDate = sdfDate.format(now);
+		return strDate;
 	}
+
 	public static void main(String[] args) {
-		
-		//start log
-		try(FileWriter fw = new FileWriter("testlog.txt", true);
-			    BufferedWriter bw = new BufferedWriter(fw);
-			    PrintWriter out = new PrintWriter(bw))
-			{
-			    out.println(getCurrentTimeStamp());
-			} catch (IOException e) {
-				 System.out.println("logfile error");
-			}
+
+		// start log
+		try (FileWriter fw = new FileWriter("testlog.txt", true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			out.println(getCurrentTimeStamp());
+		} catch (IOException e) {
+			System.out.println("logfile error");
+		}
 		int x[];
 		Test t1 = new Test();
 		t1.looptest(Test.testfn.TEST);

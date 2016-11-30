@@ -13,6 +13,40 @@ public abstract class Player {
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
 	private GameStateHandler gsh;
+	private int playerState;
+
+	private void playerStateMachine() {
+		switch (playerState) {
+		case 0:
+			// buy plots of land
+			break;
+		case 1:
+			// buying roboticons and gambling
+			// timed state
+			break;
+		case 2:
+			// customising and placing roboticons
+			// timed state
+			break;
+		case 3:
+			// final state (updates gamestate Machine)
+			break;
+
+		}
+
+	}
+
+	private void buyPlots() {
+
+	}
+
+	private void buyRoboticons() {
+
+	}
+
+	private void customiseRoboticons() {
+
+	}
 
 	public int getPlayerNumber() {
 		return playerNumber;

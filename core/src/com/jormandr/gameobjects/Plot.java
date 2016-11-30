@@ -90,5 +90,4 @@ public class Plot extends MapTile {
 		return !(oreBuff == 1.0f && foodBuff == 1.0f && energyBuff == 1.0f);
 	}
 
-
 }

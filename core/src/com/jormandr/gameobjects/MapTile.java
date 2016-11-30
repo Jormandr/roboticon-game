@@ -19,7 +19,7 @@ public abstract class MapTile {
 	public int getY() {
 		return y;
 	}
-	
+
 	public TileType getType() {
 		return type;
 	}

@@ -23,6 +23,11 @@ public class GameWorld {
 	private GameStateHandler gsh;
 
 	public void update(float delta) {
+		gameStateMachine();
+	}
+
+	private void gameStateMachine() {
+
 		switch (gsh.getGameState()) {
 		case 0:
 			// Player 1 is handling this
@@ -53,7 +58,6 @@ public class GameWorld {
 			gsh.incrementGameState();
 			break;
 		}
-
 	}
 
 	private void randomEvent() {
