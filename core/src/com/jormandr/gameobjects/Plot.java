@@ -11,14 +11,14 @@ public class Plot extends MapTile {
 	private float oreBuff, oreDebuff, foodBuff, foodDebuff, energyBuff, energyDebuff = 1.0f;
 	// TODO Change type to enum
 
-	public Plot(float x, float y, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
+	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
 		// in here, figure out what type tile I am, what resource values I have,
 		// where I am located
-		super(x, y, type, verts);
+		super(i, j, type, verts);
 		this.oreValue = oreValue;
 		this.foodValue = foodValue;
 		this.energyValue = energyValue;
-		Gdx.app.log("Plot", "New tile created at " + x + ", " + y + " of type " + type);
+		Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
 	}
 
 	private int calculateValue(int value, float buff, float debuff) {

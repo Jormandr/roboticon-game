@@ -1,16 +1,21 @@
 package com.jormandr.gameworld;
 
+import java.lang.reflect.Array;
+
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Polygon;
 import com.jormandr.helpers.AssetLoader;
+import com.jormandr.helpers.InputHandler;
 
 public class GameRenderer {
 
@@ -43,14 +48,54 @@ public class GameRenderer {
 	private void initAssets() {
 		// yet to have any game assets to initialise
 	}
+	
+	private float[] getMouseVerts(float[] mousePos) {
+		float[] mouseVerts = new float[8];
+		mouseVerts[0] = mousePos[0];
+		mouseVerts[1] = mousePos[1];
+		mouseVerts[2] = mousePos[0] + 50;
+		mouseVerts[3] = mousePos[1];
+		mouseVerts[4] = mousePos[0] + 50;
+		mouseVerts[5] = mousePos[1] - 50;
+		mouseVerts[6] = mousePos[0];
+		mouseVerts[7] = mousePos[1] -50;
+
+		return mouseVerts;
+	}
 
 	public void render(float runTime) {
 
+		MapTile[][] worldMap = GameWorld.getMap();
+		int arrayX = GameConfig.getMapWidth();
+		int arrayY = GameConfig.getMapHeight();
+
+		
 		// We will move these outside of the loop for performance laters
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		float[] test = new float[8];
+		shapeRenderer.begin(ShapeType.Line);
+        shapeRenderer.setColor(Color.RED);
+//		for (int i = 0; i < 5; i++) {
+//			for (int j = 0; j < 5; j++) {
+////				Gdx.app.log("vertices check", worldMap[0][0].getVerts()[0]));
+//				Polygon dave = new Polygon();  
+//				dave.equals(test);
+//				test = worldMap[i][j].getVerts();
+//				shapeRenderer.polygon(test);
+//			}
+//		}
+        
+        shapeRenderer.polygon(getMouseVerts(InputHandler.getMousePos()));
+        
+        
+        
+        
+        
+		shapeRenderer.end();
+		
 		// Begin SpriteBatch
 		batcher.begin();
 
@@ -60,21 +105,25 @@ public class GameRenderer {
 		batcher.disableBlending();
 
 		// batcher.draw(AssetLoader.grassRegion, 5, 5, 10, 10);
-		MapTile[][] worldMap = myWorld.getMap();
-		int arrayX = GameConfig.getMapWidth();
-		int arrayY = GameConfig.getMapHeight();
-
+		
+		
+		
 		batcher.enableBlending();
-
+//		Gdx.app.log("vertices check", "before loop");
+//		Gdx.app.log("vertices check", Float.toString(worldMap[0][0].getVerts()));
+		
+		
 		AssetLoader shit = new AssetLoader();
 
 		for (int i = 0; i < arrayX; i++) {
 			for (int j = 0; j < arrayY; j++) {
 				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()],
-						640 - 64 + worldMap[i][j].convertToX(), 288 + worldMap[i][j].convertToY(), 124, -68);
+						 + worldMap[i][j].convertToX(), worldMap[i][j].convertToY()+64, 124, -68);
 			}
 		}
 
+
+		
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTopMid, 640 - 40, 28, 0, 0, 79, -28, 4, 4, 0); // currently
 																					// not
