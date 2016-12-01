@@ -1,10 +1,10 @@
 package com.jormandr.testing;
 
-import com.jormandr.*;
+// import com.jormandr.*; // Import as needed
 
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -55,7 +55,6 @@ public class Test {
 						throw new ClassCastException();
 					}
 					break;
-
 				}
 				}
 				// stores each iteration to the log array

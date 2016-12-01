@@ -2,7 +2,7 @@ package com.jormandr.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.InputHandler;
@@ -32,15 +32,15 @@ public class CollisionHandler {
 			Gdx.app.log("getnearestmaptile", "if");
 			Gdx.app.log("getnearestmaptile", Float.toString(gridPos[0]));
 			Gdx.app.log("getnearestmaptile", Float.toString(gridPos[1]));
-		}
-
-		else {
+		} else {
 			tile = map[(int) gridPos[0]][(int) gridPos[1]];
 		}
 
 		return tile;
 
 	}
+	
+	// TODO should these float[2] actually be Vector2's?
 
 	private float[] convertToGrid(float[] position) {
 
@@ -51,11 +51,12 @@ public class CollisionHandler {
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
 		gridPos[0] = (x / 128 + y / 64) / 2;
-		gridPos[1] = (y / 64 - (x / 128))/ 2;
+		gridPos[1] = (y / 64 - x / 128) / 2;
 
 		return gridPos;
 	}
 
+	/* These methods are never used (in any useful statement)
 	private float[] getMouseVerts(float[] mousePos) {
 		float[] mouseVerts = new float[8];
 		mouseVerts[0] = mousePos[0];
@@ -69,7 +70,8 @@ public class CollisionHandler {
 
 		return mouseVerts;
 	}
-	
+
+	// Should this not just be a final float[]?
 	private float[] getPoly1Verts() {
 		float[] mouseVerts = new float[8];
 		mouseVerts[0] = 0.0f;
@@ -83,7 +85,7 @@ public class CollisionHandler {
 
 		return mouseVerts;
 	}
-	
+
 	private float[] getPoly2Verts() {
 		float[] mouseVerts = new float[8];
 		mouseVerts[0] = 60.0f;
@@ -97,32 +99,33 @@ public class CollisionHandler {
 
 		return mouseVerts;
 	}
+	*/
 
 	public boolean tileMouseOver() {
+		// The commented code didn't actually do anything
+		// float[] mouseVerts = new float[2]; // Never actually used
 
-		float[] mouseVerts = new float[2];
-		
-		MapTile tile = getNearestMapTile();					
-		
+		MapTile tile = getNearestMapTile();
+
 		Gdx.app.log("tileMouseOver", tile.toString());
 		float[] mousePos = InputHandler.getMousePos();
-		mouseVerts = convertToGrid(mousePos);
-		float[] mouseV = getMouseVerts(mousePos);
+		// mouseVerts = convertToGrid(mousePos); // See above
+		// float[] mouseV = getMouseVerts(mousePos); // Never actually used
 		float[] tileV = tile.getVerts();
-		Polygon tileP = new Polygon();
-		Polygon mouseP = new Polygon();
-		mouseP.equals(mouseV);
-		tileP.equals(tileV);
-		
-		float[] poly1V = getPoly1Verts();
-		float[] poly2V = getPoly2Verts();
-		Polygon poly1P = new Polygon();
-		Polygon poly2P = new Polygon();
-		poly1P.equals(poly1V);
-		poly2P.equals(poly2V);
-		
-		
-		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1])); // this function doesnt work
+		// Polygon tileP = new Polygon(); // Never actually used
+		// Polygon mouseP = new Polygon(); // Never actually used
+		// mouseP.equals(mouseV); // These are conditions, they do not change anything by executing AFAIK
+		// tileP.equals(tileV); // See above
+
+		// float[] poly1V = getPoly1Verts(); // Never actually used
+		// float[] poly2V = getPoly2Verts(); // Never actually used
+		// Polygon poly1P = new Polygon(); // Never actually used
+		// Polygon poly2P = new Polygon(); // Never actually used
+		// poly1P.equals(poly1V); // These are conditions, they do not change anything by executing AFAIK
+		// poly2P.equals(poly2V); // See above
+
+		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
+		// this function doesn't work
 
 	}
 }

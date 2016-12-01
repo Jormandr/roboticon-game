@@ -5,11 +5,10 @@ import com.jormandr.gameobjects.TileType;
 
 public class Plot extends MapTile {
 
-	// Potential idea: Group these into 3-tuples or something - would look nicer
+	// Potential idea: Group these into vectors or something - would look nicer
 	// but this may add overhead
 	private final int oreValue, foodValue, energyValue;
 	private float oreBuff, oreDebuff, foodBuff, foodDebuff, energyBuff, energyDebuff = 1.0f;
-	// TODO Change type to enum
 
 	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
 		// in here, figure out what type tile I am, what resource values I have,

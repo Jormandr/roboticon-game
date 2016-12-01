@@ -9,7 +9,7 @@ public class RoboticonGame extends Game {
 
 	@Override
 	public void create() {
-		Gdx.app.log("Jormandr is the best!", "created");
+		Gdx.app.log("RoboticonGame", "created");
 		AssetLoader.load();
 		setScreen(new GameScreen());
 	}

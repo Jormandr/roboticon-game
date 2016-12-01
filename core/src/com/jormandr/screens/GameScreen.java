@@ -2,15 +2,15 @@ package com.jormandr.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.jormandr.config.GameConfig;
+import com.jormandr.config.GameConfig; // Will probably be needed at some point
 import com.jormandr.gameworld.GameRenderer;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.InputHandler;
 
 public class GameScreen implements Screen {
 
-	private int gameWidth = GameConfig.getWidth();
-	private int gameHeight = GameConfig.getHeight();
+	// private int gameWidth = GameConfig.getWidth();
+	// private int gameHeight = GameConfig.getHeight();
 
 	private GameWorld world;
 	private GameRenderer renderer;

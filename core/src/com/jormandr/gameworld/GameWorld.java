@@ -3,7 +3,6 @@ package com.jormandr.gameworld;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Polygon;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
@@ -84,7 +83,7 @@ public class GameWorld {
 		Plot[] playersPlots;
 		int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 		for (int i = 0; i < 2; i++) {
-			// TODO fix this shit
+			// Consider making this less 'hacky'
 			Player currentPlayer = i == 0 ? player1 : player2;
 			playersPlots = currentPlayer.getPlotsOwned();
 			for (int j = 0; j < mapSize; j++) {

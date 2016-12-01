@@ -1,7 +1,5 @@
 package com.jormandr.config;
 
-import com.badlogic.gdx.Gdx;
-
 public class GameConfig {
 
 	// float screenWidth = Gdx.graphics.getWidth();
