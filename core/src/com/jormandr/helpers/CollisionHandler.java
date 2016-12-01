@@ -38,20 +38,20 @@ public class CollisionHandler {
 			tile = map[(int) gridPos[0]][(int) gridPos[1]];
 		}
 
-		return map[0][0];
+		return tile;
 
 	}
 
 	private float[] convertToGrid(float[] position) {
 
 		float[] gridPos = new float[2];
-		float x = position[0];
-		float y = position[1];
+		float x = position[0] + 640 - 64;
+		float y = position[1] + 288;
 		// the reason this is shit is because the rendering of the tiles is
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
-		gridPos[0] = (x / 64 + y / 32) / 2;
-		gridPos[1] = (y / 32 - (x / 64))/ 2;
+		gridPos[0] = (x / 128 + y / 64) / 2;
+		gridPos[1] = (y / 64 - (x / 128))/ 2;
 
 		return gridPos;
 	}
@@ -122,7 +122,7 @@ public class CollisionHandler {
 		poly2P.equals(poly2V);
 		
 		
-		return (Intersector.overlapConvexPolygons(poly1P, poly2P)); // this function doesnt work
+		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1])); // this function doesnt work
 
 	}
 }

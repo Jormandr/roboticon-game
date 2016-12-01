@@ -9,7 +9,10 @@ public class InputHandler implements InputProcessor {
 
 	public static void update() {
 		mousePos[0] = Gdx.input.getX();
+		Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
 		mousePos[1] = Gdx.input.getY();
+
+		Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
 	}
 
 	public static float[] getMousePos() {
