@@ -9,6 +9,14 @@ public class HumanPlayer extends Player {
 		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh);
 	}
 
+	private int onClick() {
+		// handle what happens with a player if the mouse is clicked
+		// check to see if there is a plot at the coordinate which was clicked
+		// or check to see if a ui element was at the coordinate which was
+		// clicked
+		return 0;
+	}
+
 	private void buyPlots() {
 		// check if clicked on plot
 	}

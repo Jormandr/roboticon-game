@@ -11,10 +11,10 @@ public class Plot extends MapTile {
 	private float oreBuff, oreDebuff, foodBuff, foodDebuff, energyBuff, energyDebuff = 1.0f;
 	// TODO Change type to enum
 
-	public Plot(int x, int y, int oreValue, int foodValue, int energyValue, TileType type) {
+	public Plot(float x, float y, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
 		// in here, figure out what type tile I am, what resource values I have,
 		// where I am located
-		super(x, y, type);
+		super(x, y, type, verts);
 		this.oreValue = oreValue;
 		this.foodValue = foodValue;
 		this.energyValue = energyValue;

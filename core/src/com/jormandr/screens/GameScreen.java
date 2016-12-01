@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameworld.GameRenderer;
 import com.jormandr.gameworld.GameWorld;
+import com.jormandr.helpers.InputHandler;
 
 public class GameScreen implements Screen {
 
@@ -18,6 +19,8 @@ public class GameScreen implements Screen {
 	public GameScreen() {
 		world = new GameWorld();
 		renderer = new GameRenderer(world);
+
+		Gdx.input.setInputProcessor(new InputHandler());
 	}
 
 	@Override

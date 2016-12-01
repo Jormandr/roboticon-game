@@ -1,8 +1,20 @@
 package com.jormandr.helpers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 public class InputHandler implements InputProcessor {
+
+	private static float[] mousePos;
+
+	public void update() {
+		mousePos[0] = Gdx.input.getX();
+		mousePos[1] = Gdx.input.getY();
+	}
+
+	public static float[] getMousePos() {
+		return mousePos;
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {

@@ -7,6 +7,7 @@ import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
@@ -24,6 +25,11 @@ public class GameWorld {
 
 	public void update(float delta) {
 		gameStateMachine();
+		// CollisionHandler.tileMouseOver(nearestTile);
+
+		// Gdx.app.log(Float.toString(mousePos[0]),
+		// Float.toString(mousePos[1]));
+
 	}
 
 	private void gameStateMachine() {
@@ -99,7 +105,7 @@ public class GameWorld {
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {
 				mapArray[i][j] = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
-						TileType.values()[rand.nextInt(4)]);
+						TileType.values()[rand.nextInt(4)], new float[8]);
 			}
 		}
 
