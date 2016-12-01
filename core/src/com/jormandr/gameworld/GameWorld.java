@@ -9,25 +9,28 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
+import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 
 public class GameWorld {
 
-	private int mapWidth = GameConfig.getMapWidth();
-	private int mapHeight = GameConfig.getMapHeight();
-	private MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
-	private final int numberOfPlayers = GameConfig.getPlayerNumbers();
+	private static int mapWidth = GameConfig.getMapWidth();
+	private static int mapHeight = GameConfig.getMapHeight();
+	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
 	private Player player1;
 	private Player player2;
 	private Random rand = new Random();
 	private GameStateHandler gsh;
+	private CollisionHandler collideChecker = new CollisionHandler();
+	private InputHandler mouseChecker = new InputHandler();
 
 	public void update(float delta) {
 		gameStateMachine();
-		// CollisionHandler.tileMouseOver(nearestTile);
+		mouseChecker.update(); // to joni, this works now
 
-		// Gdx.app.log(Float.toString(mousePos[0]),
+		boolean ball = collideChecker.tileMouseOver();
+		Gdx.app.log("update", Boolean.toString(ball));
 		// Float.toString(mousePos[1]));
 
 	}
@@ -111,7 +114,7 @@ public class GameWorld {
 
 	}
 
-	public MapTile[][] getMap() {
+	public static MapTile[][] getMap() {
 		return mapArray;
 	}
 

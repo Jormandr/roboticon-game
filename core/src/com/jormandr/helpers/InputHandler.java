@@ -5,9 +5,9 @@ import com.badlogic.gdx.InputProcessor;
 
 public class InputHandler implements InputProcessor {
 
-	private static float[] mousePos;
+	private static float[] mousePos = new float[2];
 
-	public void update() {
+	public static void update() {
 		mousePos[0] = Gdx.input.getX();
 		mousePos[1] = Gdx.input.getY();
 	}

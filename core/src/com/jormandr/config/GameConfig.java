@@ -27,8 +27,4 @@ public class GameConfig {
 		return 10; // 1-in
 	}
 
-	public static int getPlayerNumbers() {
-		return 2;
-	}
-
 }
