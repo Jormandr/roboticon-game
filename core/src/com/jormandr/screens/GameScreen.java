@@ -1,11 +1,11 @@
 package com.jormandr.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.jormandr.config.GameConfig; // Will probably be needed at some point
 import com.jormandr.gameworld.GameRenderer;
 import com.jormandr.gameworld.GameWorld;
-import com.jormandr.helpers.InputHandler;
 
 public class GameScreen implements Screen {
 
@@ -20,11 +20,11 @@ public class GameScreen implements Screen {
 		world = new GameWorld();
 		renderer = new GameRenderer(world);
 
-		Gdx.input.setInputProcessor(new InputHandler());
 	}
 
 	@Override
 	public void render(float delta) {
+
 		runTime += delta;
 		world.update(delta);
 		renderer.render(runTime);

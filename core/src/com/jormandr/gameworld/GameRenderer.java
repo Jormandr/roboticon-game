@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
-import com.jormandr.helpers.InputHandler;
 
 public class GameRenderer {
 
@@ -82,7 +81,7 @@ public class GameRenderer {
 		// }
 		// }
 
-		shapeRenderer.polygon(getMouseVerts(InputHandler.getMousePos()));
+		shapeRenderer.polygon(getMouseVerts(CollisionHandler.getMousePos()));
 
 		shapeRenderer.end();
 

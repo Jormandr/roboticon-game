@@ -9,7 +9,6 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameState;
 import com.jormandr.helpers.GameStateHandler;
-import com.jormandr.helpers.InputHandler;
 import com.jormandr.playerstates.state0;
 
 public abstract class Player {
@@ -19,15 +18,12 @@ public abstract class Player {
 	private int playerNumber;
 	private GameStateHandler gsh;
 	private int playerState = 0;
-	InputHandler test = new InputHandler();
 	private int one, two, three, four;
 
 	public void playerStateMachine() {
 		switch (playerState) {
 		case 0:
 			// buy plots of land
-			Gdx.input.setInputProcessor(test);
-
 			state0.test();
 			break;
 		case 1:

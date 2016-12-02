@@ -9,7 +9,6 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
-import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 
@@ -23,11 +22,10 @@ public class GameWorld {
 	private Random rand = new Random();
 	private GameStateHandler gsh;
 	private CollisionHandler collideChecker = new CollisionHandler();
-	private InputHandler mouseChecker = new InputHandler();
 
 	public void update(float delta) {
 		gameStateMachine();
-		mouseChecker.update(); // to joni, this works now
+		collideChecker.update(); // to joni, this works now
 
 		boolean ball = collideChecker.tileMouseOver();
 		// Gdx.app.log("update", Boolean.toString(ball));

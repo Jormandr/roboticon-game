@@ -1,11 +1,11 @@
 package com.jormandr.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
-import com.jormandr.helpers.InputHandler;
 
 public class CollisionHandler {
 
@@ -22,7 +22,7 @@ public class CollisionHandler {
 	// probably worth it tbh, will let you guys implement it later today
 
 	public static MapTile getNearestMapTile() {
-		float[] mousePos = InputHandler.getMousePos();
+		float[] mousePos = getMousePos();
 		float[] gridPos = convertToGrid(mousePos);
 
 		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
@@ -39,6 +39,20 @@ public class CollisionHandler {
 
 		return tile;
 
+	}
+	
+	private static float[] mousePos = new float[2];
+
+	public static void update() {
+		mousePos[0] = Gdx.input.getX();
+		// Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
+		mousePos[1] = Gdx.input.getY();
+		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){ Gdx.app.log("Input Handler", Float.toString(mousePos[1]));}
+	}
+
+	public static float[] getMousePos() {
+		return mousePos;
 	}
 
 	// TODO should these float[2] actually be Vector2's?
@@ -90,7 +104,7 @@ public class CollisionHandler {
 		MapTile tile = getNearestMapTile();
 
 		// Gdx.app.log("tileMouseOver", tile.toString());
-		float[] mousePos = InputHandler.getMousePos();
+		float[] mousePos = getMousePos();
 		// mouseVerts = convertToGrid(mousePos); // See above
 		// float[] mouseV = getMouseVerts(mousePos); // Never actually used
 		float[] tileV = tile.getVerts();
