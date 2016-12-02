@@ -1,7 +1,10 @@
 package com.jormandr.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
+import com.jormandr.players.Player;
 
 public class InputHandler implements InputProcessor {
 
@@ -9,9 +12,9 @@ public class InputHandler implements InputProcessor {
 
 	public static void update() {
 		mousePos[0] = Gdx.input.getX();
-		Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
+		// Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
 		mousePos[1] = Gdx.input.getY();
-		Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
 	}
 
 	public static float[] getMousePos() {
@@ -39,7 +42,13 @@ public class InputHandler implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
-		return false;
+		if (button == Buttons.LEFT) {
+
+			Gdx.app.log("mouse collison", "plot clicked on");
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

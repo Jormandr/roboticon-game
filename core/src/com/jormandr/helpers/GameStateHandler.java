@@ -2,7 +2,7 @@ package com.jormandr.helpers;
 
 public class GameStateHandler {
 
-	private int gameState = 1;
+	private int gameState = 0;
 	private int numberOfStates = GameState.values().length;
 
 	public int getGameState() {

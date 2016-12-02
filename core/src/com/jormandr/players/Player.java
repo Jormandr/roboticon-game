@@ -1,28 +1,39 @@
 package com.jormandr.players;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.jormandr.config.GameConfig;
+import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
+import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameState;
 import com.jormandr.helpers.GameStateHandler;
+import com.jormandr.helpers.InputHandler;
+import com.jormandr.playerstates.state0;
 
 public abstract class Player {
-
 	private int score, ore, food, energy, money, roboticonsOwned;
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
 	private GameStateHandler gsh;
-	private int playerState;
+	private int playerState = 0;
+	InputHandler test = new InputHandler();
+	private int one, two, three, four;
 
-	private void playerStateMachine() {
+	public void playerStateMachine() {
 		switch (playerState) {
 		case 0:
 			// buy plots of land
+			Gdx.input.setInputProcessor(test);
+
+			state0.test();
 			break;
 		case 1:
 			// buying roboticons and gambling
 			// timed state
+
 			break;
 		case 2:
 			// customising and placing roboticons
@@ -66,6 +77,7 @@ public abstract class Player {
 		this.roboticonsOwned = roboticonsOwned;
 		this.playerNumber = playerNumber;
 		this.gsh = gsh;
+
 	}
 
 	public Plot[] getPlotsOwned() {

@@ -30,7 +30,7 @@ public class GameWorld {
 		mouseChecker.update(); // to joni, this works now
 
 		boolean ball = collideChecker.tileMouseOver();
-		Gdx.app.log("update", Boolean.toString(ball));
+		// Gdx.app.log("update", Boolean.toString(ball));
 		// Float.toString(mousePos[1]));
 
 	}
@@ -40,6 +40,7 @@ public class GameWorld {
 		switch (gsh.getGameState()) {
 		case 0:
 			// Player 1 is handling this
+			player1.playerStateMachine();
 			break;
 		case 1:
 			// Deal with player 1's turn

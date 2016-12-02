@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
+import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
 
 public class GameRenderer {
@@ -106,8 +107,14 @@ public class GameRenderer {
 		for (int i = 0; i < arrayX; i++) {
 			for (int j = 0; j < arrayY; j++) {
 				// TODO work out what the warning on the line below means
-				batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], +worldMap[i][j].convertToX(),
-						worldMap[i][j].convertToY() + 64, 124, -68);
+				if (worldMap[i][j] == CollisionHandler.getNearestMapTile()
+						&& CollisionHandler.tileMouseOver() == true) {
+					batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], +worldMap[i][j].convertToX(),
+							worldMap[i][j].convertToY() + 60, 124, -68);
+				} else {
+					batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], +worldMap[i][j].convertToX(),
+							worldMap[i][j].convertToY() + 64, 124, -68);
+				}
 			}
 		}
 

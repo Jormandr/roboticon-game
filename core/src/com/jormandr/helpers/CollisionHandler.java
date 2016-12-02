@@ -21,18 +21,18 @@ public class CollisionHandler {
 	// mouse coords
 	// probably worth it tbh, will let you guys implement it later today
 
-	public MapTile getNearestMapTile() {
+	public static MapTile getNearestMapTile() {
 		float[] mousePos = InputHandler.getMousePos();
 		float[] gridPos = convertToGrid(mousePos);
 
-		Gdx.app.log("mouse I", Float.toString(gridPos[0]));
-		Gdx.app.log("mouse J", Float.toString(gridPos[1]));
+		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
+		// Gdx.app.log("mouse J", Float.toString(gridPos[1]));
 
 		MapTile[][] map = GameWorld.getMap();
 
 		MapTile tile = map[0][0];
 		if ((gridPos[0] <= 0) || (gridPos[0] >= map.length) || (gridPos[1] <= 0) || (gridPos[1] >= map[1].length)) {
-			Gdx.app.log("grid", "out of array range");
+			// Gdx.app.log("grid", "out of array range");
 		} else {
 			tile = map[(int) gridPos[0]][(int) gridPos[1]];
 		}
@@ -43,7 +43,7 @@ public class CollisionHandler {
 
 	// TODO should these float[2] actually be Vector2's?
 
-	private float[] convertToGrid(float[] position) {
+	private static float[] convertToGrid(float[] position) {
 
 		float[] gridPos = new float[2];
 		float x = position[0] - (640);
@@ -83,13 +83,13 @@ public class CollisionHandler {
 	 * return mouseVerts; }
 	 */
 
-	public boolean tileMouseOver() {
+	public static boolean tileMouseOver() {
 		// The commented code didn't actually do anything
 		// float[] mouseVerts = new float[2]; // Never actually used
 
 		MapTile tile = getNearestMapTile();
 
-		Gdx.app.log("tileMouseOver", tile.toString());
+		// Gdx.app.log("tileMouseOver", tile.toString());
 		float[] mousePos = InputHandler.getMousePos();
 		// mouseVerts = convertToGrid(mousePos); // See above
 		// float[] mouseV = getMouseVerts(mousePos); // Never actually used
