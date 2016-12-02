@@ -71,15 +71,15 @@ public class GameRenderer {
 		// float[] test = new float[8];
 		shapeRenderer.begin(ShapeType.Line);
 		shapeRenderer.setColor(Color.RED);
-//		for (int i = 0; i < 5; i++) {
-//			for (int j = 0; j < 5; j++) {
-////				Gdx.app.log("vertices check", worldMap[0][0].getVerts()[0]));
-//				Polygon dave = new Polygon();  
-//				dave.equals(test);
-//				test = worldMap[i][j].getVerts();
-//				shapeRenderer.polygon(test);
-//			}
-//		}
+		// for (int i = 0; i < 5; i++) {
+		// for (int j = 0; j < 5; j++) {
+		//// Gdx.app.log("vertices check", worldMap[0][0].getVerts()[0]));
+		// Polygon dave = new Polygon();
+		// dave.equals(test);
+		// test = worldMap[i][j].getVerts();
+		// shapeRenderer.polygon(test);
+		// }
+		// }
 
 		shapeRenderer.polygon(getMouseVerts(InputHandler.getMousePos()));
 

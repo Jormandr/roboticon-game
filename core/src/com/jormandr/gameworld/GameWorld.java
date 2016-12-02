@@ -28,7 +28,7 @@ public class GameWorld {
 	public void update(float delta) {
 		gameStateMachine();
 		mouseChecker.update(); // to joni, this works now
-		
+
 		boolean ball = collideChecker.tileMouseOver();
 		Gdx.app.log("update", Boolean.toString(ball));
 		// Float.toString(mousePos[1]));
@@ -107,7 +107,8 @@ public class GameWorld {
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {
-				Plot Newplot=new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,TileType.values()[rand.nextInt(4)], new float[8]);
+				Plot Newplot = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
+						TileType.values()[rand.nextInt(4)], new float[8]);
 				mapArray[i][j] = Newplot;
 			}
 		}
