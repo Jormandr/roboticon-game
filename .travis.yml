@@ -1,1 +1,4 @@
 language: java
+
+notifications:
+          slack: jormandr:FCtui3ntlj4A032h6u4JtpJE
