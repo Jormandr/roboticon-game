@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
+import com.jormandr.helpers.GameStateHandler;
 
 /**
  * This is the class that deals with all rendering of sprites and any other
@@ -95,6 +96,7 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 
 		shapeRenderer.begin(ShapeType.Line);
 
@@ -114,6 +116,9 @@ public class GameRenderer {
 
 		AssetLoader shit = new AssetLoader(); // TODO remember why we called
 												// this 'shit' then fix it
+		
+		//drawing background
+		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
 
 		for (int i = 0; i < arrayX; i++) {
 			for (int j = 0; j < arrayY; j++) {
@@ -129,10 +134,22 @@ public class GameRenderer {
 			}
 		}
 
+		
+		//drawing the UI
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTopMid, 640 - 40, 28, 0, 0, 79, -28, 4, 4, 0);
-		// currently not working; needed to go home but we need to change how we
-		// draw the UI anyway
+		batcher.draw(AssetLoader.uiTopMid, 640-160, 81*4, 0, 0, 80, -81, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV, 0, 57*4, 0, 0, 42, -57, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV,1280, 57*4, 0, 0, -42, -57, 4, 4, 0);	
+		
+		for(int k = 0; k < 8; k++){
+			if ( myWorld.getGameState() == k ){
+				batcher.draw(AssetLoader.uiStateLightOn, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
+			}
+			else {batcher.draw(AssetLoader.uiStateLightOff, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
+			}
+		}
+		
+		
 
 		batcher.disableBlending();
 

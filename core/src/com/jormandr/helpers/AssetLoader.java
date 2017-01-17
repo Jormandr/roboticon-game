@@ -12,7 +12,7 @@ import com.jormandr.gameobjects.TileType;
  */
 public class AssetLoader {
 
-	public static Texture tilesTexture, roboticonsTexture, uiTexture;
+	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
 			uiStateLightOn, uiStateLightOff;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
@@ -37,9 +37,11 @@ public class AssetLoader {
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);
 		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 81);
-		uiTV = new TextureRegion(uiTexture, 83, 53, 123, 109);
-		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 132, 59);
-		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 141, 59);
+		uiTV = new TextureRegion(uiTexture, 83, 53, 124-83, 110-53);
+		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133-126, 60-53);
+		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142-135, 60-53);
+		
+		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
 
 	}
 
@@ -50,6 +52,7 @@ public class AssetLoader {
 		tilesTexture.dispose();
 		// roboticonsTexture.dispose(); //not yet used
 		uiTexture.dispose();
+		backgroundTexture.dispose();
 	}
 
 	/**

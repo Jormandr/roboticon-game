@@ -151,5 +151,14 @@ public class GameWorld {
 	public static MapTile[][] getMap() {
 		return mapArray;
 	}
+	
+	/**
+	 * returns the current game state
+	 * 
+	 * @return the current game state
+	 */
+	public int getGameState() {
+		return gsh.getGameState();
+	}
 
 }
