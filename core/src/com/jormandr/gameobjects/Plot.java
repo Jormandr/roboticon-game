@@ -8,7 +8,12 @@ public class Plot extends MapTile {
 	// Potential idea: Group these into vectors or something - would look nicer
 	// but this may add overhead
 	private final int oreValue, foodValue, energyValue;
-	private float oreBuff, oreDebuff, foodBuff, foodDebuff, energyBuff, energyDebuff = 1.0f;
+	private float oreBuff = 1.0f;
+	private float oreDebuff = 1.0f;
+	private float foodBuff = 1.0f;
+	private float foodDebuff = 1.0f;
+	private float energyBuff = 1.0f;
+	private float energyDebuff = 1.0f;
 
 	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
 		// in here, figure out what type tile I am, what resource values I have,
@@ -19,6 +24,8 @@ public class Plot extends MapTile {
 		this.energyValue = energyValue;
 		Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
 	}
+	
+	// If formulae are changed, remember to update tests
 
 	private int calculateValue(int value, float buff, float debuff) {
 		return (int) (buff * debuff * value + 0.5f);
