@@ -12,6 +12,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
 
+/**
+ * This is the class that deals with all rendering of sprites and any other
+ * graphical aspects of the game
+ *
+ */
 public class GameRenderer {
 
 	private GameWorld myWorld; // TODO check if we need this
@@ -20,6 +25,12 @@ public class GameRenderer {
 
 	private SpriteBatch batcher;
 
+	/**
+	 * sets up camera, batcher and shape renderer for further rendering
+	 * procedures
+	 * 
+	 * @param world
+	 */
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
 		cam = new OrthographicCamera();
@@ -36,28 +47,45 @@ public class GameRenderer {
 		initAssets();
 	}
 
+	/**
+	 * initialises game objects
+	 */
 	private void initGameObjects() {
 		// yet to have game objects to initialise
 	}
 
+	/**
+	 * initialises assets
+	 */
 	private void initAssets() {
 		// yet to have any game assets to initialise
 	}
 
+	/**
+	 * gets the position of the mouse and creates a polygon at that position
+	 * 
+	 * @param mousePos
+	 * @return polygon at mouse position
+	 */
 	private float[] getMouseVerts(float[] mousePos) {
 		float[] mouseVerts = new float[8];
 		mouseVerts[0] = mousePos[0];
 		mouseVerts[1] = mousePos[1];
-		mouseVerts[2] = mousePos[0] + 50;
+		mouseVerts[2] = mousePos[0] + 25;
 		mouseVerts[3] = mousePos[1];
-		mouseVerts[4] = mousePos[0] + 50;
-		mouseVerts[5] = mousePos[1] - 50;
+		mouseVerts[4] = mousePos[0] + 25;
+		mouseVerts[5] = mousePos[1] - 25;
 		mouseVerts[6] = mousePos[0];
-		mouseVerts[7] = mousePos[1] - 50;
+		mouseVerts[7] = mousePos[1] - 25;
 
 		return mouseVerts;
 	}
 
+	/**
+	 * where all assets and shapes are rendered
+	 * 
+	 * @param runTime
+	 */
 	public void render(float runTime) {
 		MapTile[][] worldMap = GameWorld.getMap();
 		int arrayX = GameConfig.getMapWidth();
@@ -68,21 +96,10 @@ public class GameRenderer {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		// float[] test = new float[8];
 		shapeRenderer.begin(ShapeType.Line);
-		shapeRenderer.setColor(Color.RED);
-		// for (int i = 0; i < 5; i++) {
-		// for (int j = 0; j < 5; j++) {
-		//// Gdx.app.log("vertices check", worldMap[0][0].getVerts()[0]));
-		// Polygon dave = new Polygon();
-		// dave.equals(test);
-		// test = worldMap[i][j].getVerts();
-		// shapeRenderer.polygon(test);
-		// }
-		// }
 
-		shapeRenderer.polygon(getMouseVerts(CollisionHandler.getMousePos()));
-
+		// no shapes currently being rendered this is being kept in for
+		// completeness of pipeline
 		shapeRenderer.end();
 
 		// Begin SpriteBatch
@@ -92,13 +109,8 @@ public class GameRenderer {
 		// This is good for performance when drawing images that do not require
 		// transparency.
 		batcher.disableBlending();
-
-		// batcher.draw(AssetLoader.grassRegion, 5, 5, 10, 10);
-
+		// again nothing not transparent but good to have in for later
 		batcher.enableBlending();
-		// Gdx.app.log("vertices check", "before loop");
-		// Gdx.app.log("vertices check",
-		// Float.toString(worldMap[0][0].getVerts()));
 
 		AssetLoader shit = new AssetLoader(); // TODO remember why we called
 												// this 'shit' then fix it
@@ -123,7 +135,6 @@ public class GameRenderer {
 		// draw the UI anyway
 
 		batcher.disableBlending();
-		// The bird needs transparency, so we enable that again.
 
 		// End SpriteBatch
 		batcher.end();

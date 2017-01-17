@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jormandr.gameobjects.TileType;
 
+/**
+ * AssetLoader loads assets from assets file in game files
+ *
+ */
 public class AssetLoader {
 
 	public static Texture tilesTexture, roboticonsTexture, uiTexture;
@@ -13,6 +17,10 @@ public class AssetLoader {
 			uiStateLightOn, uiStateLightOff;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 
+	/**
+	 * Loads files into textures and then splits textures into correct regions
+	 * for rendering in-game
+	 */
 	public static void load() {
 		tilesTexture = new Texture(Gdx.files.internal("tilesPage.png"));
 		tilesTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -35,10 +43,18 @@ public class AssetLoader {
 
 	}
 
+	/**
+	 * Ends access to assets' files
+	 */
 	public static void dispose() {
 		tilesTexture.dispose();
+		// roboticonsTexture.dispose(); //not yet used
+		uiTexture.dispose();
 	}
 
+	/**
+	 * Constructor for Assetloader initialises textureMap
+	 */
 	public AssetLoader() {
 		textureMap[TileType.GRASS.ordinal()] = grassRegion;
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;

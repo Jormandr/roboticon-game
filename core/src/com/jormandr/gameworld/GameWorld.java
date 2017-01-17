@@ -12,6 +12,11 @@ import com.jormandr.helpers.GameStateHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 
+/**
+ * The gameworld controls the main overall logic of the game, primarily the
+ * state machine of which each state in the brief is fulfilled
+ *
+ */
 public class GameWorld {
 
 	private static int mapWidth = GameConfig.getMapWidth();
@@ -23,16 +28,25 @@ public class GameWorld {
 	private GameStateHandler gsh;
 	private CollisionHandler collideChecker = new CollisionHandler();
 
+	/**
+	 * Update is run every frame, updates of all game objects put in here so
+	 * their update logic is also checked every frame
+	 * 
+	 * @param delta
+	 */
 	public void update(float delta) {
 		gameStateMachine();
-		collideChecker.update(); // to joni, this works now
+		collideChecker.update();
 
 		boolean ball = collideChecker.tileMouseOver();
 		// Gdx.app.log("update", Boolean.toString(ball));
-		// Float.toString(mousePos[1]));
 
 	}
 
+	/**
+	 * The state machine which shows the cycle of each round
+	 * <p>
+	 */
 	private void gameStateMachine() {
 
 		switch (gsh.getGameState()) {
@@ -68,16 +82,26 @@ public class GameWorld {
 		}
 	}
 
+	/**
+	 * The logic for random event state
+	 */
 	private void randomEvent() {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * The logic for the auction state
+	 * 
+	 */
 	private void auction() {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * The logic for the production state
+	 */
 	private void produce() {
 		Plot[] playersPlots;
 		int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
@@ -96,6 +120,11 @@ public class GameWorld {
 
 	}
 
+	/**
+	 * The constructor for Gameworld
+	 * <p>
+	 * Initialises GameStateHandler, Players and plot tiles.
+	 */
 	public GameWorld() {
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		gsh = new GameStateHandler();
@@ -114,6 +143,11 @@ public class GameWorld {
 
 	}
 
+	/**
+	 * returns the array of map tiles
+	 * 
+	 * @return the array of map tiles
+	 */
 	public static MapTile[][] getMap() {
 		return mapArray;
 	}

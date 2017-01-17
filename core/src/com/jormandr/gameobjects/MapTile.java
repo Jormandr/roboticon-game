@@ -3,22 +3,32 @@ package com.jormandr.gameobjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The map tile class is the constructor class for all tiles on the game board
+ * 
+ * @author Jormandr
+ *
+ */
 public abstract class MapTile {
 
-	// co-ordinates are top corner of diamond
-
-	// by corner does this mean the transparent space, or the actual corner of
-	// the diamond??
-	// TODO answer
 	private Vector2 position, coords;
 	private TileType type;
 	private float[] verts;
 
-	public MapTile(float i, float j, TileType type, float[] verts) {
+	public MapTile(float i, float j/**
+									 * @param i
+									 * @param j
+									 * @param type
+									 * @param verts
+									 */
+	,TileType type, float[] verts) {
 		position = new Vector2(i, j);
 		coords = new Vector2(convertToX(), convertToY());
 		this.type = type;
-		// setting up the polygon coordinates for intersection checks
+		/**
+		 * setting up a polygon of coordinate points for intersection checks
+		 * with player inputs such as mouse
+		 */
 		this.verts = new float[8];
 		// TODO check if the 'verts' parameter is essentially pointless due to
 		// the above line
@@ -45,28 +55,58 @@ public abstract class MapTile {
 		// for other reasons e.g. visual juice
 	}
 
+	/**
+	 * returns x position on grid
+	 * 
+	 * @return i grid coordinate
+	 */
 	public float getI() {
 		return position.x;
 	}
 
+	/**
+	 * returns y position on grid
+	 * 
+	 * @return j grid coordinate
+	 */
 	public float getJ() {
 		return position.y;
 	}
 
+	/**
+	 * returns tile type
+	 * 
+	 * @return tile type
+	 */
 	public TileType getType() {
 		return type;
 	}
 
+	/**
+	 * returns vertices
+	 * 
+	 * @return vertices
+	 */
 	public float[] getVerts() {
 		return verts;
 	}
 
+	/**
+	 * returns x coordinate on screen
+	 * 
+	 * @return x coordinate on screen
+	 */
 	public float convertToX() {
 		// TODO magic numbers
 		return 640.0f - 64.0f + 64.0f * (getI() - getJ()); // Consider
 															// factorising?
 	}
 
+	/**
+	 * returns y coordinate on screen
+	 * 
+	 * @return y coordinate on screen
+	 */
 	public float convertToY() {
 		// TODO magic numbers
 		return 288.0f - 64.0f + 32.0f * (getI() + getJ());
