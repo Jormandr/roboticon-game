@@ -129,7 +129,7 @@ public class GameRenderer {
 				float yy = tile.convertToY();
 
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
-					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
+					batcher.draw(shit.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
 
 					if (myWorld.getGameState() == 0) {
 
@@ -147,7 +147,7 @@ public class GameRenderer {
 					}
 
 				} else {
-					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 64, 124, -68);
+					batcher.draw(shit.textureMap[tile.getType().ordinal()], xx, yy + 64, 124, -68);
 				}
 			}
 		}

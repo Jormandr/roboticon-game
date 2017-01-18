@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Intersector;
 // import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
-
 /**
  * CollisionHandler handles collision logic of game objects and assets
  *
@@ -20,6 +19,10 @@ public class CollisionHandler {
 	 * 
 	 * @return returns the nearest map tile to the mouse
 	 */
+	static boolean buffer;
+	public CollisionHandler(){
+	buffer=true;	
+	}
 	public static MapTile getNearestMapTile() {
 		float[] mousePos = getMousePos();
 		float[] gridPos = convertToGrid(mousePos);
@@ -52,8 +55,13 @@ public class CollisionHandler {
 		// Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
 		mousePos[1] = Gdx.input.getY();
 		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)&&buffer) {
 			Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+			buffer=false;
+		}
+		else if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)==false&&buffer==false)
+		{
+			buffer=true;
 		}
 	}
 
