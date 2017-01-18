@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

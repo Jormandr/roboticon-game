@@ -1,15 +1,9 @@
 package com.jormandr.players;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.jormandr.config.GameConfig;
-import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
-import com.jormandr.gameworld.GameWorld;
-import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameState;
 import com.jormandr.helpers.GameStateHandler;
-import com.jormandr.playerstates.state0;
 
 /**
  * Player class contains all methods used by Players to play the game
@@ -22,7 +16,7 @@ public abstract class Player {
 	private int playerNumber;
 	private GameStateHandler gsh;
 	private int playerState = 0;
-	private int one, two, three, four;
+	// private int one, two, three, four; // TODO What are these for?
 
 	/**
 	 * Player state machine controls what player can do when it is their turn

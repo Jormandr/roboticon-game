@@ -1,9 +1,7 @@
 package com.jormandr.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.jormandr.config.GameConfig; // Will probably be needed at some point
 import com.jormandr.gameworld.GameRenderer;
 import com.jormandr.gameworld.GameWorld;
 

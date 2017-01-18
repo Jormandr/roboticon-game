@@ -3,7 +3,7 @@ package com.jormandr.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used
+// import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
 

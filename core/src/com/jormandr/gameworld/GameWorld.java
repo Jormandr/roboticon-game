@@ -38,7 +38,7 @@ public class GameWorld {
 		gameStateMachine();
 		collideChecker.update();
 
-		boolean ball = collideChecker.tileMouseOver();
+		// boolean ball = collideChecker.tileMouseOver();
 		// Gdx.app.log("update", Boolean.toString(ball));
 
 	}
