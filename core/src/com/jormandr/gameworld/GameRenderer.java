@@ -3,9 +3,11 @@ package com.jormandr.gameworld;
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.Plot;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -96,7 +98,6 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 
 		shapeRenderer.begin(ShapeType.Line);
 
@@ -117,39 +118,63 @@ public class GameRenderer {
 		AssetLoader shit = new AssetLoader(); // TODO remember why we called
 												// this 'shit' then fix it
 		
-		//drawing background
+		//doesn't work 100% of the time
+
+		// drawing background
 		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
 
+		
+		// drawing the map grid
 		for (int i = 0; i < arrayX; i++) {
 			for (int j = 0; j < arrayY; j++) {
-				// TODO work out what the warning on the line below means
-				if (worldMap[i][j] == CollisionHandler.getNearestMapTile()
+				
+				MapTile tile = worldMap[i][j];
+				float xx = tile.convertToX();
+				float yy = tile.convertToY();
+				
+				if (tile == CollisionHandler.getNearestMapTile()
 						&& CollisionHandler.tileMouseOver() == true) {
-					batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], +worldMap[i][j].convertToX(),
-							worldMap[i][j].convertToY() + 60, 124, -68);
+					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx,
+							yy + 60, 124, -68);
+					
+					if (myWorld.getGameState() == 0){
+
+						
+						batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f); 
+						batcher.draw(AssetLoader.uiTileInfo,xx+64, yy, 0, 0, 20, -28, 4, 4, 0);
+						batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f); 
+						AssetLoader.fontX.draw(batcher, tile.getType().toString(), xx+76, yy - 100);
+				
+						if (tile instanceof Plot){
+						AssetLoader.fontX.draw(batcher, "Food: " + ((Plot) tile).getFoodValue(), xx+76, yy - 80);
+						AssetLoader.fontX.draw(batcher, "Ore: " + ((Plot) tile).getOreValue(), xx+76, yy - 65);
+							AssetLoader.fontX.draw(batcher, "Energy: " + ((Plot) tile).getEnergyValue(), xx + 76,
+									yy - 50);
+						}
+					}
+					
 				} else {
-					batcher.draw(shit.textureMap[worldMap[i][j].getType().ordinal()], +worldMap[i][j].convertToX(),
-							worldMap[i][j].convertToY() + 64, 124, -68);
+					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx,
+							yy + 64, 124, -68);
 				}
 			}
 		}
+		
 
-		
-		//drawing the UI
+		// drawing the UI
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTopMid, 640-160, 81*4, 0, 0, 80, -81, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTV, 0, 57*4, 0, 0, 42, -57, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTV,1280, 57*4, 0, 0, -42, -57, 4, 4, 0);	
-		
-		for(int k = 0; k < 8; k++){
-			if ( myWorld.getGameState() == k ){
-				batcher.draw(AssetLoader.uiStateLightOn, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
-			}
-			else {batcher.draw(AssetLoader.uiStateLightOff, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTopMid, 640 - 160, 81 * 4, 0, 0, 80, -81, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
+
+		for (int k = 0; k < 8; k++) {
+			if (myWorld.getGameState() == k) {
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+			} else {
+				batcher.draw(AssetLoader.uiStateLightOff, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
 			}
 		}
-		
-		
+
 
 		batcher.disableBlending();
 
