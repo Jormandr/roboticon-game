@@ -96,7 +96,6 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 
 		shapeRenderer.begin(ShapeType.Line);
 
@@ -116,8 +115,8 @@ public class GameRenderer {
 
 		AssetLoader shit = new AssetLoader(); // TODO remember why we called
 												// this 'shit' then fix it
-		
-		//drawing background
+
+		// drawing background
 		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
 
 		for (int i = 0; i < arrayX; i++) {
@@ -134,22 +133,19 @@ public class GameRenderer {
 			}
 		}
 
-		
-		//drawing the UI
+		// drawing the UI
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTopMid, 640-160, 81*4, 0, 0, 80, -81, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTV, 0, 57*4, 0, 0, 42, -57, 4, 4, 0);
-		batcher.draw(AssetLoader.uiTV,1280, 57*4, 0, 0, -42, -57, 4, 4, 0);	
-		
-		for(int k = 0; k < 8; k++){
-			if ( myWorld.getGameState() == k ){
-				batcher.draw(AssetLoader.uiStateLightOn, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
-			}
-			else {batcher.draw(AssetLoader.uiStateLightOff, 640-128+k*32, 81+28, 0, 0, 7, -7, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTopMid, 640 - 160, 81 * 4, 0, 0, 80, -81, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
+
+		for (int k = 0; k < 8; k++) {
+			if (myWorld.getGameState() == k) {
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+			} else {
+				batcher.draw(AssetLoader.uiStateLightOff, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
 			}
 		}
-		
-		
 
 		batcher.disableBlending();
 

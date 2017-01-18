@@ -151,7 +151,7 @@ public class GameWorld {
 	public static MapTile[][] getMap() {
 		return mapArray;
 	}
-	
+
 	/**
 	 * returns the current game state
 	 * 

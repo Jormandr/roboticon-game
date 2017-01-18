@@ -37,10 +37,10 @@ public class AssetLoader {
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);
 		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 81);
-		uiTV = new TextureRegion(uiTexture, 83, 53, 124-83, 110-53);
-		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133-126, 60-53);
-		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142-135, 60-53);
-		
+		uiTV = new TextureRegion(uiTexture, 83, 53, 124 - 83, 110 - 53);
+		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
+		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
+
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
 
 	}
