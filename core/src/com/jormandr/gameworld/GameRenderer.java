@@ -116,9 +116,10 @@ public class GameRenderer {
 		batcher.enableBlending();
 
 		AssetLoader shit = new AssetLoader(); // TODO remember why we called
-												// this 'shit' then fix it
+												// this 'shit' then fix
 		
 		//doesn't work 100% of the time
+
 
 		// drawing background
 		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
@@ -159,7 +160,7 @@ public class GameRenderer {
 				}
 			}
 		}
-		
+
 
 		// drawing the UI
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);

@@ -15,13 +15,13 @@ public abstract class MapTile {
 	private TileType type;
 	private float[] verts;
 
-	public MapTile(float i, float j/**
-									 * @param i
-									 * @param j
-									 * @param type
-									 * @param verts
-									 */
-	,TileType type, float[] verts) {
+	/**
+	 * @param i
+	 * @param j
+	 * @param type
+	 * @param verts
+	 */
+	public MapTile(float i, float j, TileType type, float[] verts) {
 		position = new Vector2(i, j);
 		coords = new Vector2(convertToX(), convertToY());
 		this.type = type;

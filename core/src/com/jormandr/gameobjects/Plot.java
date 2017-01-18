@@ -33,8 +33,6 @@ public class Plot extends MapTile {
 		this.energyValue = energyValue;
 		Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
 	}
-	
-	// If formulae are changed, remember to update tests
 
 	/**
 	 * calculates new resource value dependent on random events
@@ -45,6 +43,10 @@ public class Plot extends MapTile {
 	 * @return new resource value for this round
 	 */
 	private int calculateValue(int value, float buff, float debuff) {
+		// The corresponding test class has a copy of this function as it reads
+		// now
+		// If you optimise this function, leave it be
+		// If you change the function, change the test too
 		return (int) (buff * debuff * value + 0.5f);
 	}
 

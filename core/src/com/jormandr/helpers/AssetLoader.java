@@ -45,6 +45,7 @@ public class AssetLoader {
 		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
 		uiTileInfo = new TextureRegion(uiTexture, 144, 53, 165 - 144, 82 - 53);
 
+
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
 
 	}

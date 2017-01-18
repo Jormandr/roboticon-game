@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import com.jormandr.config.GameConfig;
 
 public class GameConfigTest {
-	
+
 	@Test
 	public void positiveSizes() {
 		assertTrue(GameConfig.getWidth() > 0);
