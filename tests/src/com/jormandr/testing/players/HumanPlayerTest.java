@@ -18,7 +18,7 @@ public class HumanPlayerTest {
 	private Random rand = new Random();
 
 	private GameStateHandler gsh = new GameStateHandler();
-	private int score, ore, food, energy, money, roboticonsOwned, playerNumber;
+	private int score, ore, food, energy, money, roboticonsOwned, playerNumber, playerState;
 	private int scoreD, oreD, foodD, energyD, moneyD, roboticonsOwnedD;
 
 	@Test
@@ -32,9 +32,10 @@ public class HumanPlayerTest {
 			money = rand.nextInt(RANDOM_INT_LIMIT);
 			roboticonsOwned = rand.nextInt(RANDOM_INT_LIMIT);
 			playerNumber = 1 + rand.nextInt(1);
+			playerState = 1; // TODO ascertain the paramaters of this and how to test it
 
 			// Set them
-			HumanPlayer player = new HumanPlayer(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh);
+			HumanPlayer player = new HumanPlayer(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh, playerState);
 
 			// Test them
 			assertEquals(player.getEnergy(), energy);
