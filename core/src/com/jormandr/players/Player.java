@@ -15,7 +15,7 @@ public abstract class Player {
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
 	private GameStateHandler gsh;
-	private int playerState = 0;
+	protected int playerState = 0;
 	// private int one, two, three, four; // TODO What are these for?
 
 	/**
@@ -93,9 +93,10 @@ public abstract class Player {
 	 * @param roboticonsOwned
 	 * @param playerNumber
 	 * @param gsh
+	 * @param playerState 
 	 */
 	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			GameStateHandler gsh) {
+			GameStateHandler gsh, int playerState) {
 		this.score = score;
 		this.ore = ore;
 		this.food = food;

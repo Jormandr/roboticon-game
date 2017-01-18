@@ -19,9 +19,9 @@ public class CollisionHandler {
 	 * 
 	 * @return returns the nearest map tile to the mouse
 	 */
-	static boolean buffer;
+	static boolean clickBuffer;
 	public CollisionHandler(){
-	buffer=true;	
+	clickBuffer =true;	
 	}
 	public static MapTile getNearestMapTile() {
 		float[] mousePos = getMousePos();
@@ -30,7 +30,7 @@ public class CollisionHandler {
 		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
 		// Gdx.app.log("mouse J", Float.toString(gridPos[1]));
 
-		MapTile[][] map = GameWorld.getMap();
+		MapTile[][] map = GameWorld.getMap(); 
 
 		MapTile tile = map[0][0];
 		if ((gridPos[0] <= 0) || (gridPos[0] >= map.length) || (gridPos[1] <= 0) || (gridPos[1] >= map[1].length)) {
@@ -55,14 +55,23 @@ public class CollisionHandler {
 		// Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
 		mousePos[1] = Gdx.input.getY();
 		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)&&buffer) {
-			Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
-			buffer=false;
-		}
-		else if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)==false&&buffer==false)
-		{
-			buffer=true;
-		}
+
+	}
+	
+	public static Boolean mouseDown(){
+	if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)&&clickBuffer) {
+		Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+		//stuff that happens on click put in here
+		
+		clickBuffer=false;
+		return true;
+	}
+	else if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)==false&&clickBuffer==false)
+	{
+		clickBuffer=true;
+		return false;
+	}
+	return false;
 	}
 
 	/**

@@ -60,6 +60,7 @@ public class GameWorld {
 			break;
 		case 2:
 			// Player 2 is handling this
+			player2.playerStateMachine();
 			break;
 		case 3:
 			// Deal with player 2's turn
@@ -129,8 +130,8 @@ public class GameWorld {
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh);
-		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh);
+		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh, 0);
+		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh, 0);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {

@@ -1,5 +1,8 @@
 package com.jormandr.players;
 
+import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.Plot;
+import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
 
 /**
@@ -10,30 +13,55 @@ import com.jormandr.helpers.GameStateHandler;
 public class HumanPlayer extends Player {
 
 	public HumanPlayer(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			GameStateHandler gsh) {
-		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh);
+			GameStateHandler gsh, int playerState) {
+		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh, playerState);
 	}
+	
+	@Override
+	public void playerStateMachine() {
+		switch (playerState) {
+		case 0:
+			// buy plots of land
+			break;
+		case 1:
+			// buying roboticons and gambling
+			// timed state
+
+			break;
+		case 2:
+			// customising and placing roboticons
+			// timed state
+			break;
+		case 3:
+			// final state (updates gamestate Machine)
+			break;
+		}
+
+		}
+
 
 	/**
 	 * returns whether mouse is clicked
 	 * 
 	 * @return whether mouse is clicked
 	 */
-	public int onClick() {
-		// handle what happens with a player if the mouse is clicked
-		// check to see if there is a plot at the coordinate which was clicked
-		// or check to see if a ui element was at the coordinate which was
-		// clicked
-		return 0;
-	}
 
 	/**
 	 * buyPlots logic
+	
 	 */
+	/*
 	private void buyPlots() {
 		// check if clicked on plot
+		if (CollisionHandler.mouseDown() && CollisionHandler.tileMouseOver()){
+				MapTile tile = CollisionHandler.getNearestMapTile();
+				if (tile instanceof Plot) {
+					
+				}
+			
+		}
 	}
-
+	*/
 	/**
 	 * buyRoboticons logics
 	 */

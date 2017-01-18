@@ -153,6 +153,16 @@ public class GameRenderer {
 		}
 
 		// drawing the UI
+
+		drawUI();
+
+		batcher.disableBlending();
+
+		// End SpriteBatch
+		batcher.end();
+	}
+
+	private void drawUI() {
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTopMid, 640 - 160, 81 * 4, 0, 0, 80, -81, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
@@ -166,10 +176,6 @@ public class GameRenderer {
 			}
 		}
 
-		batcher.disableBlending();
-
-		// End SpriteBatch
-		batcher.end();
-
+		
 	}
 }
