@@ -3,6 +3,7 @@ package com.jormandr.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.jormandr.gameobjects.TileType;
 
@@ -14,8 +15,10 @@ public class AssetLoader {
 
 	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
-			uiStateLightOn, uiStateLightOff;
+			uiStateLightOn, uiStateLightOff, uiTileInfo;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
+	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
+			true);
 
 	/**
 	 * Loads files into textures and then splits textures into correct regions
@@ -37,10 +40,11 @@ public class AssetLoader {
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);
 		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 81);
-		uiTV = new TextureRegion(uiTexture, 83, 53, 124-83, 110-53);
-		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133-126, 60-53);
-		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142-135, 60-53);
-		
+		uiTV = new TextureRegion(uiTexture, 83, 53, 124 - 83, 110 - 53);
+		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
+		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
+		uiTileInfo = new TextureRegion(uiTexture, 144, 53, 165 - 144, 82 - 53);
+
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
 
 	}
