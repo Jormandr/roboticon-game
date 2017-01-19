@@ -31,7 +31,7 @@ public class Plot extends MapTile {
 		this.oreValue = oreValue;
 		this.foodValue = foodValue;
 		this.energyValue = energyValue;
-		Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
+		// Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
 	}
 
 	/**

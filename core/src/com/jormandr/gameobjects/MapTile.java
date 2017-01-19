@@ -41,9 +41,9 @@ public abstract class MapTile {
 		this.verts[6] = coords.x + 128.0f;
 		this.verts[7] = coords.y + 32.0f;
 
-		for (int x = 0; x < 8; x++) {
-			Gdx.app.log("MapTile()", "Plot coord" + Integer.toString(x) + " = " + Float.toString(verts[x]));
-		}
+		// for (int x = 0; x < 8; x++) {
+		//	 Gdx.app.log("MapTile()", "Plot coord" + Integer.toString(x) + " = " + Float.toString(verts[x]));
+		// }
 
 	}
 
