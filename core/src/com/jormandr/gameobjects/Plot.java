@@ -1,6 +1,5 @@
 package com.jormandr.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.jormandr.gameobjects.TileType;
 
 /**
@@ -31,7 +30,8 @@ public class Plot extends MapTile {
 		this.oreValue = oreValue;
 		this.foodValue = foodValue;
 		this.energyValue = energyValue;
-		// Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type " + type);
+		// Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type
+		// " + type);
 	}
 
 	/**
@@ -186,13 +186,24 @@ public class Plot extends MapTile {
 	}
 
 	/**
+	 * Compares floats for equality using a (hardcoded) margin of error
+	 * 
+	 * @param x
+	 * @param y
+	 * @return whether they are withing the margin
+	 */
+	private boolean floatEq(float x, float y) {
+		return Math.abs(x - y) < 1.0f;
+	}
+
+	/**
 	 * returns 1 if a roboticon is placed on this tile
 	 * 
 	 * @return 1 if a roboticon is placed on this tile
 	 */
 	public boolean hasRoboticon() {
 		// Test this rigorously
-		return !(oreBuff == 1.0f && foodBuff == 1.0f && energyBuff == 1.0f);
+		return !(floatEq(oreBuff, 1.0f) && floatEq(foodBuff, 1.0f) && floatEq(energyBuff, 1.0f));
 	}
 
 }
