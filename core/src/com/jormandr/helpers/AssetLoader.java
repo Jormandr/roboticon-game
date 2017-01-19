@@ -19,6 +19,17 @@ public class AssetLoader {
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
 			true);
+	
+	private static int tileWidth = 64; // I think
+	private static int tileHeight = 32;
+	
+	public static int getTileWidth() {
+		return tileWidth;
+	}
+	
+	public static int getTileHeight() {
+		return tileHeight;
+	}
 
 	/**
 	 * Loads files into textures and then splits textures into correct regions

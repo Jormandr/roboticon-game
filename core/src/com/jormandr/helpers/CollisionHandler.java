@@ -11,6 +11,8 @@ import com.jormandr.gameworld.GameWorld;
  *
  */
 public class CollisionHandler {
+	
+	// See note from MapTile about guessing
 
 	/**
 	 * returns the nearest map tile to the mouse
@@ -92,15 +94,16 @@ public class CollisionHandler {
 	 * @return map grid position
 	 */
 	private static float[] convertToGrid(float[] position) {
-
+		float w = AssetLoader.getTileWidth();
+		float h =  AssetLoader.getTileHeight();
 		float[] gridPos = new float[2];
-		float x = position[0] - (640);
-		float y = position[1] - (288 - 64);
+		float x = position[0] - 10.0f * w;
+		float y = position[1] - 7.0f * h;
 		// the reason this is shit is because the rendering of the tiles is
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
-		gridPos[0] = ((x / 64) + (y / 32)) / 2;
-		gridPos[1] = ((y / 32) - (x / 64)) / 2;
+		gridPos[0] = ((x / w) + (y / h)) / 2;
+		gridPos[1] = ((y / h) - (x / w)) / 2;
 
 		return gridPos;
 	}

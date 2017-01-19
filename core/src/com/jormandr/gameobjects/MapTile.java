@@ -1,7 +1,7 @@
 package com.jormandr.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.jormandr.helpers.AssetLoader;
 
 /**
  * The map tile class is the constructor class for all tiles on the game board
@@ -10,6 +10,12 @@ import com.badlogic.gdx.math.Vector2;
  *
  */
 public abstract class MapTile {
+
+	// OK, so we started doing this with hardcoded constants saying "we'll fix
+	// it later"
+	// It is now later, and I can't remember how we derived those constants
+	// though, hence any expression involving h or w is probably wrong \_(シ)_/
+	// Don't do magic numbers kids
 
 	private Vector2 position, coords;
 	private TileType type;
@@ -32,17 +38,21 @@ public abstract class MapTile {
 		this.verts = new float[8];
 		// TODO check if the 'verts' parameter is essentially pointless due to
 		// the above line
-		this.verts[0] = coords.x + 64.0f; // TODO magic numbers
+
+		float w = (float) AssetLoader.getTileWidth();
+		float h = (float) AssetLoader.getTileHeight();
+		this.verts[0] = coords.x + w;
 		this.verts[1] = coords.y;
 		this.verts[2] = coords.x;
-		this.verts[3] = coords.y + 32.0f;
-		this.verts[4] = coords.x + 64.0f;
-		this.verts[5] = coords.y + 64.0f;
-		this.verts[6] = coords.x + 128.0f;
-		this.verts[7] = coords.y + 32.0f;
+		this.verts[3] = coords.y + h;
+		this.verts[4] = coords.x + w;
+		this.verts[5] = coords.y + 2.0f * h;
+		this.verts[6] = coords.x + 2.0f * w;
+		this.verts[7] = coords.y + 0.5f * h;
 
 		// for (int x = 0; x < 8; x++) {
-		//	 Gdx.app.log("MapTile()", "Plot coord" + Integer.toString(x) + " = " + Float.toString(verts[x]));
+		// Gdx.app.log("MapTile()", "Plot coord" + Integer.toString(x) + " = " +
+		// Float.toString(verts[x]));
 		// }
 
 	}
@@ -97,9 +107,8 @@ public abstract class MapTile {
 	 * @return x coordinate on screen
 	 */
 	public float convertToX() {
-		// TODO magic numbers
-		return 640.0f - 64.0f + 64.0f * (getI() - getJ()); // Consider
-															// factorising?
+		float w = (float) AssetLoader.getTileWidth();
+		return w * (9.0f + getI() - getJ());
 	}
 
 	/**
@@ -108,8 +117,8 @@ public abstract class MapTile {
 	 * @return y coordinate on screen
 	 */
 	public float convertToY() {
-		// TODO magic numbers
-		return 288.0f - 64.0f + 32.0f * (getI() + getJ());
+		float h = (float) AssetLoader.getTileHeight();
+		return h * ( 7.0f + getI() + getJ());
 	}
 
 }

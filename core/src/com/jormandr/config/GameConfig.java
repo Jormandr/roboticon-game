@@ -56,7 +56,7 @@ public class GameConfig {
 	 */
 
 	public static int getRandomEventChance() {
-		return 10; // 1-in
+		return /* 1-in */ 10;
 	}
 
 }
