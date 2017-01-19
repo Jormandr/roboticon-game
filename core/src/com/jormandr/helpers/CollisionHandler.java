@@ -129,7 +129,8 @@ public class CollisionHandler {
 
 	}
 
-	// need testing
+	// some testing done
+	//return button pressed. 0=not a button
 	public static int getNearestButton(int window) {
 		UIElement temp = new UIElement();
 		float[] mousePos = getMousePos();
