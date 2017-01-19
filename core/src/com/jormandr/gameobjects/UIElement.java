@@ -4,7 +4,11 @@ import com.jormandr.config.GameConfig;
 import com.badlogic.gdx.math.Vector2;
 
 public class UIElement {
+<<<<<<< HEAD
 	//all buttons declared here
+=======
+
+>>>>>>> origin/master
 	static float[] buyPlot = new float[8];
 	static float[] orePlot = new float[8];
 	static float[] foodPlot = new float[8];
@@ -22,8 +26,14 @@ public class UIElement {
 	static float[] sellMarket = new float[8];
 	static float[] closeMarket = new float[8];
 
+<<<<<<< HEAD
 	public UIElement() {		// initializes the button polygons using proportions of screen width(see excel files in drive).
 		//PLS DO NOT CHANGE. It's a pain to find errors in here
+=======
+	public UIElement() {
+
+		// done
+>>>>>>> origin/master
 		float ww = (float) GameConfig.getWidth();
 		float hh = (float) GameConfig.getHeight();
 		close = new float[] { ww * 36 / 48, hh * 12 / 48, ww * 36 / 48, hh * 14 / 48, ww * 38 / 48, hh * 14 / 48,
@@ -82,8 +92,8 @@ public class UIElement {
 					rtn = 5;
 				}
 			}
-			if((x >= buyPlot[0] && x <= buyPlot[4]) && (y >= buyPlot[1] && y <= buyPlot[3])) { 
-				rtn=6;
+			if ((x >= buyPlot[0] && x <= buyPlot[4]) && (y >= buyPlot[1] && y <= buyPlot[3])) {
+				rtn = 6;
 			}
 		}
 		//market menu
@@ -98,8 +108,7 @@ public class UIElement {
 				} else if (x >= roboMarket[0] && x <= roboMarket[4]) {
 					rtn = 5;
 				}
-			}
-			else if(y >= smallMarket[1] && y <= smallMarket[3]){
+			} else if (y >= smallMarket[1] && y <= smallMarket[3]) {
 				if (x >= smallMarket[0] && x <= smallMarket[4]) {
 					rtn = 6;
 				} else if (x >= mediumMarket[0] && x <= mediumMarket[4]) {
@@ -108,14 +117,13 @@ public class UIElement {
 					rtn = 8;
 				}
 			}
-			if((x >= buyMarket[0] && x <= buyMarket[4]) && (y >= buyMarket[1] && y <= buyMarket[3])) { 
-				rtn=9;
-			}
-			else if((x >= sellMarket[0] && x <= sellMarket[4]) && (y >= sellMarket[1] && y <= sellMarket[3])) { 
-				rtn=10;
+			if ((x >= buyMarket[0] && x <= buyMarket[4]) && (y >= buyMarket[1] && y <= buyMarket[3])) {
+				rtn = 9;
+			} else if ((x >= sellMarket[0] && x <= sellMarket[4]) && (y >= sellMarket[1] && y <= sellMarket[3])) {
+				rtn = 10;
 			}
 		}
-	
+
 		return rtn;
 	}
 }
