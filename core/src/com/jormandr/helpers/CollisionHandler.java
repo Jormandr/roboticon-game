@@ -3,8 +3,10 @@ package com.jormandr.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Intersector;
+import com.jormandr.config.GameConfig;
 // import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.UIElement;
 import com.jormandr.gameworld.GameWorld;
 /**
  * CollisionHandler handles collision logic of game objects and assets
@@ -40,6 +42,13 @@ public class CollisionHandler {
 		}
 
 		return tile;
+
+	}
+	//need testing
+	public static int getNearestButton(int window) {
+		float[] mousePos = getMousePos();
+		int button=UIElement.isButtonOver(mousePos[0], mousePos[1], window);
+		return button;
 
 	}
 
