@@ -25,16 +25,15 @@ public class UIElement {
 	public UIElement() {
 		
 		
-		//needs to be redone
-		//work in progress
+		//done
 		float ww = (float)GameConfig.getWidth();
 		float hh = (float)GameConfig.getHeight();
-		closePlot= new float[]{ww*32/48,hh*5/48,ww*32/48,hh*6/48,ww*33/48,hh*6/48,ww*33/48,hh*5/48};
-		buyPlot=new float[]{ww*26/48,hh*14/48,ww*26/48,hh*15/48,ww*30/48,hh*15/48,ww*30/48,hh*14/48};
-		float[] orePlot= new float[]{ww*32/48,hh*7/48,ww*32/48,hh*8/48,ww*34/48,hh*8/48,ww*34/48,hh*7/48};
-		float[] foodPlot= new float[]{ww*32/48,hh*9/48,ww*32/48,hh*10/48,ww*34/48,hh*10/48,ww*34/48,hh*9/48};
-		float[] energyPlot= new float[]{ww*32/48,hh*11/48,ww*32/48,hh*12/48,ww*34/48,hh*12/48,ww*34/48,hh*11/48};
-		float[] roboPlot=new float[]{ww*32/48,hh*13/48,ww*32/48,hh*15/48,ww*34/48,hh*15/48,ww*34/48,hh*13/48}; 
+		closePlot= new float[]{ww*36/48,hh*12/48,ww*36/48,hh*14/48,ww*38/48,hh*14/48,ww*38/48,hh*12/48};
+		buyPlot=new float[]{ww*19/48,hh*32/48,ww*19/48,hh*34/48,ww*27/48,hh*34/48,ww*27/48,hh*32/48};
+		orePlot= new float[]{ww*32/48,hh*17/48,ww*32/48,hh*19/48,ww*36/48,hh*19/48,ww*36/48,hh*17/48};
+		foodPlot= new float[]{ww*32/48,hh*21/48,ww*32/48,hh*23/48,ww*36/48,hh*23/48,ww*36/48,hh*21/48};
+		energyPlot= new float[]{ww*32/48,hh*25/48,ww*32/48,hh*27/48,ww*36/48,hh*27/48,ww*36/48,hh*25/48};
+		roboPlot=new float[]{ww*32/48,hh*29/48,ww*32/48,hh*34/48,ww*36/48,hh*34/48,ww*36/48,hh*29/48}; 
 		
 		float[] foodMarket = new float[8];
 		float[] roboMarket = new float[8];
