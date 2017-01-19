@@ -18,7 +18,7 @@ import com.jormandr.helpers.CollisionHandler;
  *
  */
 public class GameRenderer {
-	
+
 	// TODO get rid of magic numbers from the whole file
 
 	private GameWorld myWorld; // TODO check if we need this
@@ -115,8 +115,9 @@ public class GameRenderer {
 		// again nothing not transparent but good to have in for later
 		batcher.enableBlending();
 
-		AssetLoader shit = new AssetLoader(); // TODO remember why we called
-												// this 'shit' then fix
+		// Due to bad programming, this supposedly useless AssetLoader must be
+		// initialised
+		AssetLoader voodoo = new AssetLoader(); // TODO fix this
 
 		// doesn't work 100% of the time
 
@@ -132,7 +133,7 @@ public class GameRenderer {
 				float yy = tile.convertToY();
 
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
-					batcher.draw(shit.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
+					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
 
 					if (myWorld.getGameState() == 0) {
 
@@ -150,7 +151,7 @@ public class GameRenderer {
 					}
 
 				} else {
-					batcher.draw(shit.textureMap[tile.getType().ordinal()], xx, yy + 64, 124, -68);
+					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 64, 124, -68);
 				}
 			}
 		}
@@ -179,6 +180,5 @@ public class GameRenderer {
 			}
 		}
 
-		
 	}
 }

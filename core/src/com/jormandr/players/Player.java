@@ -93,7 +93,7 @@ public abstract class Player {
 	 * @param roboticonsOwned
 	 * @param playerNumber
 	 * @param gsh
-	 * @param playerState 
+	 * @param playerState
 	 */
 	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
 			GameStateHandler gsh, int playerState) {

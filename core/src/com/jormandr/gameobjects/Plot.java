@@ -197,9 +197,10 @@ public class Plot extends MapTile {
 	}
 
 	/**
-	 * returns 1 if a roboticon is placed on this tile
+	 * returns 1 if a roboticon is placed on this tile. Determination is done by
+	 * checking if each buff is 0.0f < x < 2.0f
 	 * 
-	 * @return 1 if a roboticon is placed on this tile
+	 * @return 1 if a roboticon is believed to be placed on this tile
 	 */
 	public boolean hasRoboticon() {
 		// Test this rigorously

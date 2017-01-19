@@ -1,8 +1,6 @@
 package com.jormandr.players;
 
 import com.badlogic.gdx.Gdx;
-import com.jormandr.gameobjects.MapTile;
-import com.jormandr.gameobjects.Plot;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
 
@@ -17,15 +15,16 @@ public class HumanPlayer extends Player {
 			GameStateHandler gsh, int playerState) {
 		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh, playerState);
 	}
-	
+
 	@Override
 	public void playerStateMachine() {
 		switch (playerState) {
 		case 0:
 			// buy plots of land
-			//TEMP: testing clickbutton on plot menu: WORKING
-			//this is just a general menu, just fixing the position of the buttons. TBD open on plot click and custom data for each plot
-			if(CollisionHandler.mouseDown()){
+			// TEMP: testing clickbutton on plot menu: WORKING
+			// this is just a general menu, just fixing the position of the
+			// buttons. TBD open on plot click and custom data for each plot
+			if (CollisionHandler.mouseDown()) {
 				Gdx.app.log("button pressed", Integer.toString(CollisionHandler.getNearestButton(0)));
 			}
 			break;
@@ -43,8 +42,7 @@ public class HumanPlayer extends Player {
 			break;
 		}
 
-		}
-
+	}
 
 	/**
 	 * returns whether mouse is clicked
@@ -54,20 +52,18 @@ public class HumanPlayer extends Player {
 
 	/**
 	 * buyPlots logic
-	
+	 * 
 	 */
 	/*
-	private void buyPlots() {
-		// check if clicked on plot
-		if (CollisionHandler.mouseDown() && CollisionHandler.tileMouseOver()){
-				MapTile tile = CollisionHandler.getNearestMapTile();
-				if (tile instanceof Plot) {
-					
-				}
-			
-		}
-	}
-	*/
+	 * private void buyPlots() { // check if clicked on plot if
+	 * (CollisionHandler.mouseDown() && CollisionHandler.tileMouseOver()){
+	 * MapTile tile = CollisionHandler.getNearestMapTile(); if (tile instanceof
+	 * Plot) {
+	 * 
+	 * }
+	 * 
+	 * } }
+	 */
 	/**
 	 * buyRoboticons logics
 	 */

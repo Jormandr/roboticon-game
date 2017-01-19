@@ -36,7 +36,7 @@ public class GameWorld {
 	 */
 	public void update(float delta) {
 		gameStateMachine();
-		collideChecker.update();
+		CollisionHandler.update();
 
 		// boolean ball = collideChecker.tileMouseOver();
 		// Gdx.app.log("update", Boolean.toString(ball));

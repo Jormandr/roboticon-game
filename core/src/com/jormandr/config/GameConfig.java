@@ -59,10 +59,20 @@ public class GameConfig {
 		return 10; // 1-in
 	}
 
+	/**
+	 * returns width of one tile
+	 * 
+	 * @return width of one tile
+	 */
 	public static float getTileWidth() {
 		return 64;
 	}
 
+	/**
+	 * returns height of one tile
+	 * 
+	 * @return height of one tile
+	 */
 	public static float getTileHeight() {
 		return 32;
 	}

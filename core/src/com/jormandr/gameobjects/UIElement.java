@@ -1,7 +1,6 @@
 package com.jormandr.gameobjects;
 
 import com.jormandr.config.GameConfig;
-import com.badlogic.gdx.math.Vector2;
 
 public class UIElement {
 	// all buttons declared here
@@ -25,6 +24,8 @@ public class UIElement {
 	public UIElement() { // initializes the button polygons using proportions of
 							// screen width(see excel files in drive).
 		// PLS DO NOT CHANGE. It's a pain to find errors in here
+		
+		// TODO replace literals with constants where possible
 		float ww = (float) GameConfig.getWidth();
 		float hh = (float) GameConfig.getHeight();
 		close = new float[] { ww * 36 / 48, hh * 12 / 48, ww * 36 / 48, hh * 14 / 48, ww * 38 / 48, hh * 14 / 48,
@@ -65,7 +66,17 @@ public class UIElement {
 	// gets x,y coordinates and window(menu type), returns button pressed, can
 	// change int to enum if necessary.
 	// The menu window size is common for all menus coz convenience&aestethics
+	/**
+	 * Returns the button ID that the mouse is over, or 0
+	 * @param x
+	 * @param y
+	 * @param window
+	 * @return button ID or 0
+	 */
 	public static int isButtonOver(float x, float y, int window) {
+		// TODO Add unit test
+		// TODO consider using case statements
+		
 		// default no button over press
 		int rtn = 0;
 		// common close button for all windows

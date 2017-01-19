@@ -130,11 +130,14 @@ public class CollisionHandler {
 	}
 
 	// some testing done
-	//return button pressed. 0=not a button
+	/**
+	 * Return the nearest button
+	 * @param window
+	 * @return button ID or 0
+	 */
 	public static int getNearestButton(int window) {
-		UIElement temp = new UIElement();
 		float[] mousePos = getMousePos();
-		int button = temp.isButtonOver(mousePos[0], mousePos[1], window);
+		int button = UIElement.isButtonOver(mousePos[0], mousePos[1], window);
 		return button;
 
 	}

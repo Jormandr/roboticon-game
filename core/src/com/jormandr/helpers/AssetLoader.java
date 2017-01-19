@@ -62,6 +62,7 @@ public class AssetLoader {
 	/**
 	 * Constructor for Assetloader initialises textureMap
 	 */
+	// TODO it probably shouldn't
 	public AssetLoader() {
 		textureMap[TileType.GRASS.ordinal()] = grassRegion;
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;

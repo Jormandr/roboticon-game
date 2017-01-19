@@ -2,7 +2,6 @@ package com.jormandr.gameobjects;
 
 import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
-import com.jormandr.helpers.AssetLoader;
 
 /**
  * The map tile class is the constructor class for all tiles on the game board
@@ -26,7 +25,6 @@ public abstract class MapTile {
 	 * @param i
 	 * @param j
 	 * @param type
-	 * @param verts
 	 */
 	public MapTile(float i, float j, TileType type) {
 		position = new Vector2(i, j);
@@ -47,12 +45,6 @@ public abstract class MapTile {
 		this.verts[5] = coords.y + 2.0f * h;
 		this.verts[6] = coords.x + 2.0f * w;
 		this.verts[7] = coords.y + 0.5f * h;
-
-		// for (int x = 0; x < 8; x++) {
-		// Gdx.app.log("MapTile()", "Plot coord" + Integer.toString(x) + " = " +
-		// Float.toString(verts[x]));
-		// }
-
 	}
 
 	public void update() {
