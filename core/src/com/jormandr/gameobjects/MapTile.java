@@ -20,7 +20,7 @@ public abstract class MapTile {
 
 	private Vector2 position, coords;
 	private TileType type;
-	private float[] verts;
+	private float[] verts = new float[8];
 
 	/**
 	 * @param i
@@ -28,7 +28,7 @@ public abstract class MapTile {
 	 * @param type
 	 * @param verts
 	 */
-	public MapTile(float i, float j, TileType type, float[] verts) {
+	public MapTile(float i, float j, TileType type) {
 		position = new Vector2(i, j);
 		coords = new Vector2(convertToX(), convertToY());
 		this.type = type;
@@ -36,9 +36,6 @@ public abstract class MapTile {
 		 * setting up a polygon of coordinate points for intersection checks
 		 * with player inputs such as mouse
 		 */
-		this.verts = new float[8];
-		// TODO check if the 'verts' parameter is essentially pointless due to
-		// the above line
 
 		float w = (float) GameConfig.getTileWidth();
 		float h = (float) GameConfig.getTileHeight();
@@ -119,7 +116,7 @@ public abstract class MapTile {
 	 */
 	public float convertToY() {
 		float h = (float) GameConfig.getTileHeight();
-		return h * ( 7.0f + getI() + getJ());
+		return h * (7.0f + getI() + getJ());
 	}
 
 }

@@ -137,7 +137,7 @@ public class GameWorld {
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {
 				Plot Newplot = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
-						TileType.values()[rand.nextInt(4)], new float[8]);
+						TileType.values()[rand.nextInt(4)]);
 				mapArray[i][j] = Newplot;
 			}
 		}

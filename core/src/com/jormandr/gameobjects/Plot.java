@@ -21,12 +21,12 @@ public class Plot extends MapTile {
 	private float energyBuff = 1.0f;
 	private float energyDebuff = 1.0f;
 
-	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type, float[] verts) {
+	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type) {
 		/**
 		 * in here, figure out what type tile I am, what resource values I have,
 		 * where I am located
 		 */
-		super(i, j, type, verts);
+		super(i, j, type);
 		this.oreValue = oreValue;
 		this.foodValue = foodValue;
 		this.energyValue = energyValue;
