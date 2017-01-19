@@ -4,8 +4,11 @@ import com.jormandr.config.GameConfig;
 import com.badlogic.gdx.math.Vector2;
 
 public class UIElement {
-
+<<<<<<< HEAD
 	//all buttons declared here
+=======
+
+>>>>>>> origin/master
 	static float[] buyPlot = new float[8];
 	static float[] orePlot = new float[8];
 	static float[] foodPlot = new float[8];
@@ -23,8 +26,14 @@ public class UIElement {
 	static float[] sellMarket = new float[8];
 	static float[] closeMarket = new float[8];
 
+<<<<<<< HEAD
 	public UIElement() {		// initializes the button polygons using proportions of screen width(see excel files in drive).
 		//PLS DO NOT CHANGE. It's a pain to find errors in here
+=======
+	public UIElement() {
+
+		// done
+>>>>>>> origin/master
 		float ww = (float) GameConfig.getWidth();
 		float hh = (float) GameConfig.getHeight();
 		close = new float[] { ww * 36 / 48, hh * 12 / 48, ww * 36 / 48, hh * 14 / 48, ww * 38 / 48, hh * 14 / 48,
