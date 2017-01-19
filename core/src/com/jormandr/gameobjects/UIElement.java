@@ -4,11 +4,7 @@ import com.jormandr.config.GameConfig;
 import com.badlogic.gdx.math.Vector2;
 
 public class UIElement {
-<<<<<<< HEAD
-	//all buttons declared here
-=======
-
->>>>>>> origin/master
+	// all buttons declared here
 	static float[] buyPlot = new float[8];
 	static float[] orePlot = new float[8];
 	static float[] foodPlot = new float[8];
@@ -26,14 +22,9 @@ public class UIElement {
 	static float[] sellMarket = new float[8];
 	static float[] closeMarket = new float[8];
 
-<<<<<<< HEAD
-	public UIElement() {		// initializes the button polygons using proportions of screen width(see excel files in drive).
-		//PLS DO NOT CHANGE. It's a pain to find errors in here
-=======
-	public UIElement() {
-
-		// done
->>>>>>> origin/master
+	public UIElement() { // initializes the button polygons using proportions of
+							// screen width(see excel files in drive).
+		// PLS DO NOT CHANGE. It's a pain to find errors in here
 		float ww = (float) GameConfig.getWidth();
 		float hh = (float) GameConfig.getHeight();
 		close = new float[] { ww * 36 / 48, hh * 12 / 48, ww * 36 / 48, hh * 14 / 48, ww * 38 / 48, hh * 14 / 48,
@@ -70,16 +61,18 @@ public class UIElement {
 				ww * 29 / 48, hh * 29 / 48 };
 
 	}
-	//gets x,y coordinates and window(menu type), returns button pressed, can change int to enum if necessary.
-	//The menu window size is common for all menus coz convenience&aestethics
+
+	// gets x,y coordinates and window(menu type), returns button pressed, can
+	// change int to enum if necessary.
+	// The menu window size is common for all menus coz convenience&aestethics
 	public static int isButtonOver(float x, float y, int window) {
-		//default no button over press
+		// default no button over press
 		int rtn = 0;
-		//common close button for all windows
+		// common close button for all windows
 		if ((x >= close[0] && x <= close[4]) && (y >= close[1] && y <= close[3])) {
 			rtn = 1;
 		}
-		//plot menu
+		// plot menu
 		if (window == 0) {
 			if (x >= orePlot[0] && x <= orePlot[4]) {
 				if (y >= orePlot[1] && y <= orePlot[3]) {
@@ -96,7 +89,7 @@ public class UIElement {
 				rtn = 6;
 			}
 		}
-		//market menu
+		// market menu
 		if (window == 1) {
 			if (y >= oreMarket[1] && y <= oreMarket[3]) {
 				if (x >= oreMarket[0] && x <= oreMarket[4]) {
