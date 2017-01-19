@@ -115,10 +115,6 @@ public class GameRenderer {
 		// again nothing not transparent but good to have in for later
 		batcher.enableBlending();
 
-		// Due to bad programming, this supposedly useless AssetLoader must be
-		// initialised
-		AssetLoader voodoo = new AssetLoader(); // TODO fix this
-
 		// doesn't work 100% of the time
 
 		// drawing background

@@ -46,6 +46,11 @@ public class AssetLoader {
 		uiTileInfo = new TextureRegion(uiTexture, 144, 53, 165 - 144, 82 - 53);
 
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
+		
+		textureMap[TileType.GRASS.ordinal()] = grassRegion;
+		textureMap[TileType.DESERT.ordinal()] = desertRegion;
+		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
+		textureMap[TileType.WATER.ordinal()] = waterRegion;
 
 	}
 
@@ -58,16 +63,4 @@ public class AssetLoader {
 		uiTexture.dispose();
 		backgroundTexture.dispose();
 	}
-
-	/**
-	 * Constructor for Assetloader initialises textureMap
-	 */
-	// TODO it probably shouldn't
-	public AssetLoader() {
-		textureMap[TileType.GRASS.ordinal()] = grassRegion;
-		textureMap[TileType.DESERT.ordinal()] = desertRegion;
-		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
-		textureMap[TileType.WATER.ordinal()] = waterRegion;
-	}
-
 }
