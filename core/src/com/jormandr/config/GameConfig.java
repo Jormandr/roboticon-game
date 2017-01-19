@@ -59,4 +59,12 @@ public class GameConfig {
 		return 10; // 1-in
 	}
 
+	public static float getTileWidth() {
+		return 64;
+	}
+
+	public static float getTileHeight() {
+		return 32;
+	}
+
 }
