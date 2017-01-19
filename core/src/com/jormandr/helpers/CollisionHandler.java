@@ -50,13 +50,7 @@ public class CollisionHandler {
 
 	}
 
-	// TODO testing
-	public static int getNearestButton(int window) {
-		float[] mousePos = getMousePos();
-		int button = UIElement.isButtonOver(mousePos[0], mousePos[1], window);
-		return button;
 
-	}
 
 	private static float[] mousePos = new float[2];
 
@@ -136,7 +130,6 @@ public class CollisionHandler {
 		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
 
 	}
-<<<<<<< HEAD
 
 	// some testing done
 	//return button pressed. 0=not a button
@@ -147,8 +140,4 @@ public class CollisionHandler {
 		return button;
 
 	}
-
 }
-=======
-}
->>>>>>> origin/master
