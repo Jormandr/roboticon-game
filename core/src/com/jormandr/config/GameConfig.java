@@ -58,5 +58,13 @@ public class GameConfig {
 	public static int getRandomEventChance() {
 		return /* 1-in */ 10;
 	}
+	
+	public static int getTileWidth() {
+		return 64;
+	}
+	
+	public static int getTileHeight() {
+		return 32;
+	}
 
 }

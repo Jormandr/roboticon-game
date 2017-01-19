@@ -3,6 +3,7 @@ package com.jormandr.helpers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Intersector;
+import com.jormandr.config.GameConfig;
 // import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
@@ -94,8 +95,8 @@ public class CollisionHandler {
 	 * @return map grid position
 	 */
 	private static float[] convertToGrid(float[] position) {
-		float w = AssetLoader.getTileWidth();
-		float h =  AssetLoader.getTileHeight();
+		float w = GameConfig.getTileWidth();
+		float h =  GameConfig.getTileHeight();
 		float[] gridPos = new float[2];
 		float x = position[0] - 10.0f * w;
 		float y = position[1] - 7.0f * h;

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.helpers.AssetLoader;
 
 import java.util.Random;
 

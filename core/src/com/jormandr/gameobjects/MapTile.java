@@ -1,6 +1,7 @@
 package com.jormandr.gameobjects;
 
 import com.badlogic.gdx.math.Vector2;
+import com.jormandr.config.GameConfig;
 import com.jormandr.helpers.AssetLoader;
 
 /**
@@ -39,8 +40,8 @@ public abstract class MapTile {
 		// TODO check if the 'verts' parameter is essentially pointless due to
 		// the above line
 
-		float w = (float) AssetLoader.getTileWidth();
-		float h = (float) AssetLoader.getTileHeight();
+		float w = (float) GameConfig.getTileWidth();
+		float h = (float) GameConfig.getTileHeight();
 		this.verts[0] = coords.x + w;
 		this.verts[1] = coords.y;
 		this.verts[2] = coords.x;
@@ -107,7 +108,7 @@ public abstract class MapTile {
 	 * @return x coordinate on screen
 	 */
 	public float convertToX() {
-		float w = (float) AssetLoader.getTileWidth();
+		float w = (float) GameConfig.getTileWidth();
 		return w * (9.0f + getI() - getJ());
 	}
 
@@ -117,7 +118,7 @@ public abstract class MapTile {
 	 * @return y coordinate on screen
 	 */
 	public float convertToY() {
-		float h = (float) AssetLoader.getTileHeight();
+		float h = (float) GameConfig.getTileHeight();
 		return h * ( 7.0f + getI() + getJ());
 	}
 
