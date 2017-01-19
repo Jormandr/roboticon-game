@@ -6,15 +6,13 @@ import com.badlogic.gdx.math.Intersector;
 import com.jormandr.config.GameConfig;
 // import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
-import com.jormandr.gameobjects.UIElement;
 import com.jormandr.gameworld.GameWorld;
-
 /**
  * CollisionHandler handles collision logic of game objects and assets
  *
  */
 public class CollisionHandler {
-
+	
 	// See note from MapTile about guessing
 
 	/**
@@ -25,11 +23,9 @@ public class CollisionHandler {
 	 * @return returns the nearest map tile to the mouse
 	 */
 	static boolean clickBuffer;
-
-	public CollisionHandler() {
-		clickBuffer = true;
+	public CollisionHandler(){
+	clickBuffer =true;	
 	}
-
 	public static MapTile getNearestMapTile() {
 		float[] mousePos = getMousePos();
 		float[] gridPos = convertToGrid(mousePos);
@@ -37,7 +33,7 @@ public class CollisionHandler {
 		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
 		// Gdx.app.log("mouse J", Float.toString(gridPos[1]));
 
-		MapTile[][] map = GameWorld.getMap();
+		MapTile[][] map = GameWorld.getMap(); 
 
 		MapTile tile = map[0][0];
 		if ((gridPos[0] <= 0) || (gridPos[0] >= map.length) || (gridPos[1] <= 0) || (gridPos[1] >= map[1].length)) {
@@ -64,19 +60,21 @@ public class CollisionHandler {
 		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
 
 	}
-
-	public static Boolean mouseDown() {
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && clickBuffer) {
-			Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
-			// stuff that happens on click put in here
-
-			clickBuffer = false;
-			return true;
-		} else if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) == false && clickBuffer == false) {
-			clickBuffer = true;
-			return false;
-		}
+	
+	public static Boolean mouseDown(){
+	if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)&&clickBuffer) {
+		Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+		//stuff that happens on click put in here
+		
+		clickBuffer=false;
+		return true;
+	}
+	else if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)==false&&clickBuffer==false)
+	{
+		clickBuffer=true;
 		return false;
+	}
+	return false;
 	}
 
 	/**
@@ -98,7 +96,7 @@ public class CollisionHandler {
 	 */
 	private static float[] convertToGrid(float[] position) {
 		float w = GameConfig.getTileWidth();
-		float h = GameConfig.getTileHeight();
+		float h =  GameConfig.getTileHeight();
 		float[] gridPos = new float[2];
 		float x = position[0] - 10.0f * w;
 		float y = position[1] - 7.0f * h;
@@ -128,14 +126,4 @@ public class CollisionHandler {
 		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
 
 	}
-
-	// need testing
-	public static int getNearestButton(int window) {
-		UIElement temp = new UIElement();
-		float[] mousePos = getMousePos();
-		int button = temp.isButtonOver(mousePos[0], mousePos[1], window);
-		return button;
-
-	}
-
 }

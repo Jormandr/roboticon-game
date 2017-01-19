@@ -18,6 +18,8 @@ import com.jormandr.helpers.CollisionHandler;
  *
  */
 public class GameRenderer {
+	
+	// TODO get rid of magic numbers from the whole file
 
 	private GameWorld myWorld; // TODO check if we need this
 	private OrthographicCamera cam;
@@ -34,7 +36,7 @@ public class GameRenderer {
 	public GameRenderer(GameWorld world) {
 		myWorld = world;
 		cam = new OrthographicCamera();
-		cam.setToOrtho(true, 1280, 720);
+		cam.setToOrtho(true, GameConfig.getWidth(), GameConfig.getHeight());
 		batcher = new SpriteBatch();
 		// Attach batcher to camera
 		batcher.setProjectionMatrix(cam.combined);
@@ -68,6 +70,7 @@ public class GameRenderer {
 	 * @return polygon at mouse position
 	 */
 	private float[] getMouseVerts(float[] mousePos) {
+		// TODO work out the significance of 25
 		float[] mouseVerts = new float[8];
 		mouseVerts[0] = mousePos[0];
 		mouseVerts[1] = mousePos[1];
