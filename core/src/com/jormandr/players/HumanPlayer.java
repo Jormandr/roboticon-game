@@ -1,5 +1,6 @@
 package com.jormandr.players;
 
+import com.badlogic.gdx.Gdx;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.helpers.CollisionHandler;
@@ -22,6 +23,10 @@ public class HumanPlayer extends Player {
 		switch (playerState) {
 		case 0:
 			// buy plots of land
+			//TEMP: testing clickbutton on plot menu: WORKING
+			if(CollisionHandler.mouseDown()){
+				Gdx.app.log("button pressed", Integer.toString(CollisionHandler.getNearestButton(0)));
+			}
 			break;
 		case 1:
 			// buying roboticons and gambling

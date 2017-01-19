@@ -79,8 +79,8 @@ public class UIElement {
 					rtn = 5;
 				}
 			}
-			if((x >= buyPlot[0] && x <= buyPlot[4]) && (y >= buyPlot[1] && y <= buyPlot[3])) { 
-				rtn=6;
+			if ((x >= buyPlot[0] && x <= buyPlot[4]) && (y >= buyPlot[1] && y <= buyPlot[3])) {
+				rtn = 6;
 			}
 		}
 		if (window == 1) {
@@ -94,8 +94,7 @@ public class UIElement {
 				} else if (x >= roboMarket[0] && x <= roboMarket[4]) {
 					rtn = 5;
 				}
-			}
-			else if(y >= smallMarket[1] && y <= smallMarket[3]){
+			} else if (y >= smallMarket[1] && y <= smallMarket[3]) {
 				if (x >= smallMarket[0] && x <= smallMarket[4]) {
 					rtn = 6;
 				} else if (x >= mediumMarket[0] && x <= mediumMarket[4]) {
@@ -104,14 +103,13 @@ public class UIElement {
 					rtn = 8;
 				}
 			}
-			if((x >= buyMarket[0] && x <= buyMarket[4]) && (y >= buyMarket[1] && y <= buyMarket[3])) { 
-				rtn=9;
-			}
-			else if((x >= sellMarket[0] && x <= sellMarket[4]) && (y >= sellMarket[1] && y <= sellMarket[3])) { 
-				rtn=10;
+			if ((x >= buyMarket[0] && x <= buyMarket[4]) && (y >= buyMarket[1] && y <= buyMarket[3])) {
+				rtn = 9;
+			} else if ((x >= sellMarket[0] && x <= sellMarket[4]) && (y >= sellMarket[1] && y <= sellMarket[3])) {
+				rtn = 10;
 			}
 		}
-	
+
 		return rtn;
 	}
 }

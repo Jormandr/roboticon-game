@@ -56,14 +56,14 @@ public class GameConfig {
 	 */
 
 	public static int getRandomEventChance() {
-		return /* 1-in */ 10;
+		return 10; // 1-in
 	}
-	
-	public static int getTileWidth() {
+
+	public static float getTileWidth() {
 		return 64;
 	}
-	
-	public static int getTileHeight() {
+
+	public static float getTileHeight() {
 		return 32;
 	}
 
