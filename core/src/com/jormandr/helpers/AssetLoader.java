@@ -15,7 +15,9 @@ public class AssetLoader {
 
 	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
-			uiStateLightOn, uiStateLightOff, uiTileInfo;
+			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOn, uiButtonRSmallIn,
+			uiButtonRSmallOut, uiButtonSSmallIn, uiButtonSSmallOut, uiButtonRBigIn, uiButtonRBigOut, uiButtonSBigIn,
+			uiButtonSBigOut;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
 			true);
@@ -36,17 +38,35 @@ public class AssetLoader {
 		waterRegion = new TextureRegion(tilesTexture, 63, 34, 62, 34);
 		waterRegion.flip(false, false);
 
+		// main game UI stuff
+
 		uiTexture = new Texture(Gdx.files.internal("uiPage.png"));
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);
-		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 81);
+		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 82 - 53);
 		uiTV = new TextureRegion(uiTexture, 83, 53, 124 - 83, 110 - 53);
 		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
 		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
-		uiTileInfo = new TextureRegion(uiTexture, 144, 53, 165 - 144, 82 - 53);
+		uiTileInfo = new TextureRegion(uiTexture, 126, 61, 148 - 125, 89 - 60);
+
+		// Menu UI stuff
+
+		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
+		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233, 100 - 52);
+		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
+		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42, 94 - 82);
+		uiButtonRSmallOut = new TextureRegion(uiTexture, 45, 83, 74, 94 - 82);
+		uiButtonSSmallIn = new TextureRegion(uiTexture, 1, 96, 13, 107 - 95);
+		uiButtonSSmallOut = new TextureRegion(uiTexture, 16, 96, 28, 107 - 95);
+		uiButtonRBigIn = new TextureRegion(uiTexture, 236, 53, 276, 70 - 52);
+		uiButtonRBigOut = new TextureRegion(uiTexture, 236, 72, 276, 72 - 88);
+		uiButtonSBigIn = new TextureRegion(uiTexture, 299, 53, 316, 70 - 52);
+		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316, 70 - 52);
+
+		// background
 
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
-		
+
 		textureMap[TileType.GRASS.ordinal()] = grassRegion;
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;
 		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
