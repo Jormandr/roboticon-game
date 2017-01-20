@@ -26,7 +26,6 @@ public class GameWorld {
 	private Player player2;
 	private Random rand = new Random();
 	private GameStateHandler gsh;
-	private CollisionHandler collideChecker = new CollisionHandler();
 
 	/**
 	 * Update is run every frame, updates of all game objects put in here so

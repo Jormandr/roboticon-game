@@ -24,11 +24,7 @@ public class CollisionHandler {
 	 * 
 	 * @return returns the nearest map tile to the mouse
 	 */
-	static boolean clickBuffer;
-
-	public CollisionHandler() {
-		clickBuffer = true;
-	}
+	static boolean clickBuffer = true;
 
 	public static MapTile getNearestMapTile() {
 		float[] mousePos = getMousePos();
