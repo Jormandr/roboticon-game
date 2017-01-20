@@ -54,6 +54,7 @@ public class PlotTest {
 
 			// Set them
 			Plot plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
+			assertTrue(!plot.hasRoboticon());
 			plot.setEnergyBuff(energyBuff);
 			plot.setEnergyDebuff(energyDebuff);
 			plot.setFoodBuff(foodBuff);
@@ -74,9 +75,36 @@ public class PlotTest {
 			assertTrue(floatEq(plot.getFoodDebuff(), foodDebuff));
 			assertTrue(floatEq(plot.getOreBuff(), oreBuff));
 			assertTrue(floatEq(plot.getOreDebuff(), oreDebuff));
+			
+			// Test hasRoboticon()
+			// First using mutations manually
+			// Energy
+			plot.setEnergyBuff(2 + rand.nextFloat());
+			assertTrue(plot.hasRoboticon());
+			plot.setEnergyBuff(1.0f);
+			assertTrue(!plot.hasRoboticon());
+			// Food
+			plot.setFoodBuff(2 + rand.nextFloat());
+			assertTrue(plot.hasRoboticon());
+			plot.setFoodBuff(1.0f);
+			assertTrue(!plot.hasRoboticon());
+			// Ore
+			plot.setOreBuff(2 + rand.nextFloat());
+			assertTrue(plot.hasRoboticon());
+			plot.setOreBuff(1.0f);
+			assertTrue(!plot.hasRoboticon());
+			// Now test the quick reset function
+			plot.setEnergyBuff(2 + rand.nextFloat());
+			plot.setFoodBuff(2 + rand.nextFloat());
+			plot.setOreBuff(2 + rand.nextFloat());
+			assertTrue(plot.hasRoboticon());
+			plot.removeRoboticon();
+			assertTrue(!plot.hasRoboticon());
+			assertTrue(floatEq(plot.getEnergyBuff(), 1.0f));
+			assertTrue(floatEq(plot.getFoodBuff(), 1.0f));
+			assertTrue(floatEq(plot.getOreBuff(), 1.0f));
 
 			// TODO think of some invariants to test convertToX/Y() by
-			// TODO test hasRoboticon() vigorously
 		}
 	}
 

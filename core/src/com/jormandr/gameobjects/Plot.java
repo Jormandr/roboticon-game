@@ -221,6 +221,18 @@ public class Plot extends MapTile {
 		this.energyDebuff = energyDebuff;
 		updateEnergyValueCache();
 	}
+	
+	/**
+	 * Remove the Roboticon by setting all buffs to 1.0f. This is not only less
+	 * typing but is also quicker than setting the buffs with the public
+	 * interfaces
+	 */
+	public void removeRoboticon() {
+		energyBuff = 1.0f;
+		oreBuff = 1.0f;
+		foodBuff = 1.0f;
+		hasRoboticonCache = false;
+	}
 
 	/**
 	 * Compares floats for equality using a (hardcoded) margin of error
