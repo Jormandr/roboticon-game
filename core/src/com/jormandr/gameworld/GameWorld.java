@@ -11,6 +11,8 @@ import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.GameStateHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
+import com.jormandr.ui.ButtonType;
+import com.jormandr.ui.UIButton;
 
 /**
  * The gameworld controls the main overall logic of the game, primarily the
@@ -27,6 +29,7 @@ public class GameWorld {
 	private Random rand = new Random();
 	private GameStateHandler gsh;
 	private CollisionHandler collideChecker = new CollisionHandler();
+	private UIButton testButton = new UIButton(300,300,ButtonType.SSMALL);
 
 	/**
 	 * Update is run every frame, updates of all game objects put in here so
@@ -160,6 +163,12 @@ public class GameWorld {
 	 */
 	public int getGameState() {
 		return gsh.getGameState();
+	}
+	
+	
+	//test method to check it all clicks together
+	public UIButton getUIButton(){
+		return testButton;
 	}
 
 }

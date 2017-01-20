@@ -1,15 +1,38 @@
 package com.jormandr.ui;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.jormandr.helpers.AssetLoader;
 
 public class UIButton {
 	
 	private Vector2 coords;
 	private float[] verts = new float[8];
+	private float button_width,button_height;
+	private TextureRegion[] button_textures = new TextureRegion[10];
+	private int type2buttonIn, type2buttonOut;
+	private ButtonType button_type;
+	
+	private boolean isPressed = false;
 	
 	private final static float[] button_size = new float[10];
 			
 	public UIButton (float x, float y, ButtonType type){
+		
+		coords = new Vector2(x,y);
+		
+		button_textures[0] = AssetLoader.uiCloseOn;
+		button_textures[1] = AssetLoader.uiCloseOn;
+		button_textures[2] = AssetLoader.uiButtonRSmallIn;
+		button_textures[3] = AssetLoader.uiButtonRSmallOut;
+		button_textures[4] = AssetLoader.uiButtonSSmallIn;
+		button_textures[5] = AssetLoader.uiButtonSSmallOut;
+		button_textures[6] = AssetLoader.uiButtonRBigIn;
+		button_textures[7] = AssetLoader.uiButtonRBigOut;
+		button_textures[8] = AssetLoader.uiButtonSBigIn;
+		button_textures[9] = AssetLoader.uiButtonSBigOut;
+		
 		
 		//Close button width and height
 	    button_size[0] = 10.0f;
@@ -27,10 +50,15 @@ public class UIButton {
 	    button_size[8] = 18.0f;
 	    button_size[9] = 18.0f;
 	    
-	   
+	    button_type = type;
+	    
+	    type2buttonIn = button_type.ordinal()*2;
+	    type2buttonOut = type2buttonIn +1;
+	    
+	    
 	   //refactor with variables for type.ordinal()
-	   float button_width = button_size[type.ordinal()*2];
-	   float button_height = button_size[(type.ordinal()*2) +1];
+	   button_width = button_size[type2buttonIn];
+	   button_height = button_size[type2buttonOut];
 		
 		coords = new Vector2(x,y);
 		
@@ -46,5 +74,15 @@ public class UIButton {
 	}
 	
 	
+	 public void draw(SpriteBatch batcher) {
+	        if (isPressed) {
+	            batcher.draw(button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4, 0);
+	        } else {
+	            batcher.draw(button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4, 0);
+	        }
+	    }
 
+	 
+	 
+	 
 }
