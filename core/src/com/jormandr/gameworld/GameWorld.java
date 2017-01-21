@@ -34,7 +34,6 @@ public class GameWorld {
 	private Player player2;
 	private Random rand = new Random();
 	private GameStateHandler gsh;
-	private UIButton testButton = new UIButton(300,300,ButtonType.SSMALL);
 	
 	
 	/**
@@ -205,15 +204,22 @@ public class GameWorld {
 	public int getGameState() {
 		return gsh.getGameState();
 	}
-	
-	
-	//test method to check it all clicks together
-	public UIButton getUIButton(){
-		return testButton;
-	}
-	
+
 	public static float[] getMousePos() {
 		return mousePos;
+	}
+	
+	public boolean isMenu(){
+		return currentState == WorldState.MENU;
+	}
+	
+	public boolean isRunning(){
+		return currentState == WorldState.RUNNING;
+	}
+	
+	public void toMenu(){
+		currentState = WorldState.MENU;
+		// then figure out what menu we need to bring up
 	}
 
 }

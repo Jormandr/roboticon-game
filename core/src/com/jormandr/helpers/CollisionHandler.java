@@ -87,7 +87,6 @@ public class CollisionHandler {
 		float[] tileV = tile.getVerts();
 
 		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
-
 	}
 
 }

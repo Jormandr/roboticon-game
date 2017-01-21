@@ -21,6 +21,8 @@ public class AssetLoader {
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
 			true);
+	public static TextureRegion[] button_textures = new TextureRegion[10];
+	public final static float[] button_size = new float[10];
 
 	/**
 	 * Loads files into textures and then splits textures into correct regions
@@ -74,6 +76,36 @@ public class AssetLoader {
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;
 		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
 		textureMap[TileType.WATER.ordinal()] = waterRegion;
+		
+		
+		//ui button setup 
+		
+		button_textures[0] = AssetLoader.uiCloseOn;
+		button_textures[1] = AssetLoader.uiCloseOn;
+		button_textures[2] = AssetLoader.uiButtonRSmallIn;
+		button_textures[3] = AssetLoader.uiButtonRSmallOut;
+		button_textures[4] = AssetLoader.uiButtonSSmallIn;
+		button_textures[5] = AssetLoader.uiButtonSSmallOut;
+		button_textures[6] = AssetLoader.uiButtonRBigIn;
+		button_textures[7] = AssetLoader.uiButtonRBigOut;
+		button_textures[8] = AssetLoader.uiButtonSBigIn;
+		button_textures[9] = AssetLoader.uiButtonSBigOut;
+
+		// Close button width and height
+		button_size[0] = 10.0f;
+		button_size[1] = 10.0f;
+		// Small Rectangle button width and height
+		button_size[2] = 30.0f;
+		button_size[3] = 12.0f;
+		// Small Square button width and height
+		button_size[4] = 13.0f;
+		button_size[5] = 12.0f;
+		// Big Rectangle button width and height
+		button_size[6] = 41.0f;
+		button_size[7] = 18.0f;
+		// Big Square button width and height
+		button_size[8] = 18.0f;
+		button_size[9] = 18.0f;
 
 	}
 

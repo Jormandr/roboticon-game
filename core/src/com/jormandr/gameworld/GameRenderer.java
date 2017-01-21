@@ -137,7 +137,7 @@ public class GameRenderer {
 		drawUI();
 		
 		//test ui menu drawing
-		myWorld.getUIButton().draw(batcher);
+		//myWorld.getUIButton().draw(batcher);
 
 		batcher.disableBlending();
 
