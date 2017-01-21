@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
+import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 
 public class UIButton {
@@ -35,21 +36,22 @@ public class UIButton {
 		this.verts[0] = coords.x;
 		this.verts[1] = coords.y;
 		this.verts[2] = coords.x;
-		this.verts[3] = coords.y + button_height;
-		this.verts[4] = coords.x + button_width;
-		this.verts[5] = coords.y + button_height;
-		this.verts[6] = coords.x + button_width;
+		this.verts[3] = coords.y + button_height*4;
+		this.verts[4] = coords.x + button_width*4;
+		this.verts[5] = coords.y + button_height*4;
+		this.verts[6] = coords.x + button_width*4;
 		this.verts[7] = coords.y;
 
 	}
 
 	public boolean isMouseOver(int screenX, int screenY) {
 		
-		return (Intersector.isPointInPolygon(verts, 0, 8, (float)screenX, (float)screenY));
+		
+		return (Intersector.isPointInPolygon(verts, 0, 8, screenX, screenY));
 	}
 
 	public void draw(SpriteBatch batcher) {
-		Gdx.app.log("Drawing: ", String.valueOf(isPressed));
+		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
 					0);

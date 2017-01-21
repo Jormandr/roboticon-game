@@ -230,6 +230,10 @@ public class GameWorld {
 	public void toMenu(){
 		currentState = WorldState.MENU;
 		//run a method that creates all the menu buttons
+		// so 4 possible menu's that we can go to, or is it 5?
+		
+		//if gsh.getGameState() == 
+		
 	}
 	
 	public void toRunning(){

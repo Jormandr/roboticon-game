@@ -86,6 +86,8 @@ public class GameRenderer {
 		//Gdx.app.log("GameScreen FPS", (runTime) + "");
 
 		shapeRenderer.begin(ShapeType.Line);
+		
+		shapeRenderer.rect(300, 300, 40, 40);
 
 		// no shapes currently being rendered this is being kept in for
 		// completeness of pipeline

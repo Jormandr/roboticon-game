@@ -15,7 +15,7 @@ public class AssetLoader {
 
 	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
-			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOn, uiButtonRSmallIn,
+			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOff, uiCloseOn, uiButtonRSmallIn,
 			uiButtonRSmallOut, uiButtonSSmallIn, uiButtonSSmallOut, uiButtonRBigIn, uiButtonRBigOut, uiButtonSBigIn,
 			uiButtonSBigOut, uiTimerBase, uiTimerJuice, uiTimerFrame;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
@@ -60,6 +60,8 @@ public class AssetLoader {
 		uiMenu.flip(false, true);
 		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
 		uiPlotScreen.flip(false, true);
+		uiCloseOff = new TextureRegion(uiTexture, 31, 96, 40 -30, 105-95);
+		uiCloseOff.flip(false, true);
 		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
 		uiCloseOn.flip(false, true);
 		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 -12, 94 - 82);
@@ -91,7 +93,7 @@ public class AssetLoader {
 		
 		//ui button setup 
 		
-		button_textures[0] = AssetLoader.uiCloseOn;
+		button_textures[0] = AssetLoader.uiCloseOff;
 		button_textures[1] = AssetLoader.uiCloseOn;
 		button_textures[2] = AssetLoader.uiButtonRSmallIn;
 		button_textures[3] = AssetLoader.uiButtonRSmallOut;

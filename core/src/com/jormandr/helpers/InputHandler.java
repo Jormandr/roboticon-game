@@ -13,17 +13,17 @@ public class InputHandler implements InputProcessor {
 	private static ArrayList<UIButton> menuButtons;
 	private GameWorld myWorld;
 
-	private UIButton closeButton,buyPlotButton;
+	private UIButton closeButton, buyPlotButton;
 
 	public InputHandler(GameWorld myWorld) {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
 		UIButton closeButton = new UIButton(300, 300, ButtonType.CLOSE);
-		UIButton buyPlotButton = new UIButton(200,200,ButtonType.RBIG);
+		UIButton buyPlotButton = new UIButton(200, 200, ButtonType.RBIG);
 		menuButtons.add(closeButton);
 		menuButtons.add(buyPlotButton);
-		
+
 		Gdx.app.log("InputHandler: ", "On");
 	}
 
@@ -36,17 +36,18 @@ public class InputHandler implements InputProcessor {
 					// setup the plot menu
 					myWorld.toMenu();
 					return true;
-				} else if (myWorld.isMenu()) {
-					for (int i = 0; i < menuButtons.size(); i += 1) {
-						if (menuButtons.get(i).isMouseOver(screenX, screenY)) {
-							Gdx.app.log("InputHandler: ", "Button Clicked");
-							menuButtons.get(i).isTouchDown();
-							return true;
-						}
+				}
+			} else if (myWorld.isMenu()) {
+				Gdx.app.log("InputHandler: ", "In Menu");
+				for (int i = 0; i < menuButtons.size(); i += 1) {
+					if (menuButtons.get(i).isMouseOver(screenX,screenY)) {
+						Gdx.app.log("InputHandler: ", "Button Clicked");
+						menuButtons.get(i).isTouchDown();
+						return true;
 					}
 				}
-
 			}
+
 		}
 		return false;
 	}
@@ -55,9 +56,9 @@ public class InputHandler implements InputProcessor {
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
 			Gdx.app.log("InputHandler: ", "Left Up");
-        for (int i = 0; i < menuButtons.size(); i+=1) {
-        	menuButtons.get(i).isTouchUp();
-        	}
+			for (int i = 0; i < menuButtons.size(); i += 1) {
+				menuButtons.get(i).isTouchUp();
+			}
 		}
 		return false;
 	}
