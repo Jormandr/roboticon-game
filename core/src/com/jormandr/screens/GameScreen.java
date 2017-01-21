@@ -42,7 +42,9 @@ public class GameScreen implements Screen {
 	 */
 	@Override
 	public void render(float delta) {
-
+		if (delta < 0.001f) {
+			Gdx.app.log("GameScreen", "Warning: 0 delta");
+		}
 		runTime += delta;
 		world.update(delta);
 		renderer.render(runTime);
