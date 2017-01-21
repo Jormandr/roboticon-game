@@ -20,10 +20,10 @@ public class UIButtonClose extends UIButton{
 		int[] mousePos = GameWorld.getMousePos();
 		
 		if (isMouseOver(mousePos[0],mousePos[1])) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
+			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
 					0);
 		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
+			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
 					0);
 		}
 	}

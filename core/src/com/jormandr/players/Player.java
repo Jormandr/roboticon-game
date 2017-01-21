@@ -339,5 +339,10 @@ public abstract class Player {
 		}
 		*/
 	}
+	
+	public void setState(PlayerState state){
+		playerState = state;
+		
+	}
 
 }
