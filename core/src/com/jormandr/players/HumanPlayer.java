@@ -1,9 +1,5 @@
 package com.jormandr.players;
 
-import com.badlogic.gdx.Gdx;
-import com.jormandr.helpers.CollisionHandler;
-import com.jormandr.helpers.GameStateHandler;
-
 /**
  * HumanPlayer is a child of Player which can be controlled by humans to play
  * the game
