@@ -14,6 +14,7 @@ import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
 import com.jormandr.ui.UIButtonPlaceRobo;
 import com.jormandr.ui.UIButtonUpgradeRobo;
+import com.jormandr.ui.UIButtonUpgradeRoboFood;
 
 public class InputHandler implements InputProcessor {
 
@@ -31,7 +32,7 @@ public class InputHandler implements InputProcessor {
 		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
 		endTurnButton = new UIButtonEndTurn(189*4,24,ButtonType.SSMALL,myWorld);
 		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, ButtonType.RBIG, myWorld);
-		testButton = new UIButtonUpgradeRobo(796,256,ButtonType.RSMALL,myWorld);
+		testButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
 		
 		menuButtons.add(endTurnButton);
 

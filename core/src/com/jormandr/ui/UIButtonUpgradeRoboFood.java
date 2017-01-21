@@ -8,9 +8,9 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
 
-public abstract class UIButtonUpgradeRobo extends UIButton{
+public class UIButtonUpgradeRoboFood extends UIButton{
 
-	public UIButtonUpgradeRobo(float x, float y, ButtonType type, GameWorld world) {
+	public UIButtonUpgradeRoboFood(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 	}
 	
@@ -31,12 +31,12 @@ public abstract class UIButtonUpgradeRobo extends UIButton{
 			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(),830, 274);	
 		}
 		else if (((Plot) InputHandler.getTile()).hasRoboticon() == true){
-			AssetLoader.fontX.draw(batcher, "Upgrade XXX ",820, 270);
+			AssetLoader.fontX.draw(batcher, "Upgrade food ",820, 270);
 			AssetLoader.fontX.draw(batcher,"production",820, 279);
 		}
 		else{
 			AssetLoader.fontX.draw(batcher, "Place Roboticon",820, 270);
-			AssetLoader.fontX.draw(batcher, "to Upgrade XXX",820, 279);
+			AssetLoader.fontX.draw(batcher, "to Upgrade Food",820, 279);
 		}
 	}
 
@@ -50,7 +50,7 @@ public abstract class UIButtonUpgradeRobo extends UIButton{
 			Gdx.app.log("InputHandler: ", "Button Clicked");
 		if (player.getChangeMoney(-plot.getCost()) >= 0){
 		
-		plot.setEnergyBuff(2.0f); //set some buff here	
+		plot.setFoodBuff(2.0f); //set some buff here	
 		player.changeMoney(-(plot.getCost()));
 			isPressed = true;
 			return true;

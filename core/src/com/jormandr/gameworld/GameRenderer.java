@@ -51,6 +51,8 @@ public class GameRenderer {
 
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
+		
+
 
 		// Call helper methods to initialise instance variables
 		initGameObjects();
