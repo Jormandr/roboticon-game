@@ -14,12 +14,25 @@ public class Plot extends MapTile {
 	 */
 
 	private final int oreValue, foodValue, energyValue;
+	// OK, so a Roboticon isn't actually a "thing", it's basically a triple of
+	// buffs
+	// To add one you assign its triple to the plot's buffs
+	// To remove it you reset to (1, 1, 1)
+	// Therefore checking if a plot has one is done by comparing the buff values
+	// with (1, 1, 1), which is done with a margin of error because floating
+	// point
+	// Since this is expensive, this boolean result is cached into a private
+	// bool, updated upon buff mutation, which can then be returned quickly by
+	// hasRoboticon()
 	private float oreBuff = 1.0f;
 	private float oreDebuff = 1.0f;
 	private float foodBuff = 1.0f;
 	private float foodDebuff = 1.0f;
 	private float energyBuff = 1.0f;
 	private float energyDebuff = 1.0f;
+	private boolean hasRoboticonCache = false;
+	// A similar space-time tradeoff is used to cache resource value
+	private int oreValueCache, foodValueCache, energyValueCache;
 
 	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type) {
 		/**
@@ -28,8 +41,11 @@ public class Plot extends MapTile {
 		 */
 		super(i, j, type);
 		this.oreValue = oreValue;
+		updateOreValueCache();
 		this.foodValue = foodValue;
+		updateFoodValueCache();
 		this.energyValue = energyValue;
+		updateEnergyValueCache();
 		// Gdx.app.log("Plot", "New tile created at " + i + ", " + j + " of type
 		// " + type);
 	}
@@ -49,6 +65,18 @@ public class Plot extends MapTile {
 		// If you change the function, change the test too
 		return (int) (buff * debuff * value + 0.5f);
 	}
+	
+	private void updateOreValueCache() {
+		oreValueCache = calculateValue(oreValue, oreBuff, oreDebuff);
+	}
+
+	private void updateFoodValueCache() {
+		foodValueCache = calculateValue(foodValue, foodBuff, foodDebuff);
+	}
+
+	private void updateEnergyValueCache() {
+		energyValueCache = calculateValue(energyValue, energyBuff, energyDebuff);
+	}
 
 	/**
 	 * returns ore value for this round
@@ -56,7 +84,7 @@ public class Plot extends MapTile {
 	 * @return ore value for this round
 	 */
 	public int getOreValue() {
-		return calculateValue(oreValue, oreBuff, oreDebuff);
+		return oreValueCache;
 	}
 
 	/**
@@ -65,7 +93,7 @@ public class Plot extends MapTile {
 	 * @return food value for this round
 	 */
 	public int getFoodValue() {
-		return calculateValue(foodValue, foodBuff, foodDebuff);
+		return foodValueCache;
 	}
 
 	/**
@@ -74,7 +102,7 @@ public class Plot extends MapTile {
 	 * @return energy value for this round
 	 */
 	public int getEnergyValue() {
-		return calculateValue(energyValue, energyBuff, energyDebuff);
+		return energyValueCache;
 	}
 
 	/**
@@ -93,6 +121,8 @@ public class Plot extends MapTile {
 	 */
 	public void setOreBuff(float oreBuff) {
 		this.oreBuff = oreBuff;
+		updateHasRoboticonCache();
+		updateOreValueCache();
 	}
 
 	/**
@@ -111,6 +141,7 @@ public class Plot extends MapTile {
 	 */
 	public void setOreDebuff(float oreDebuff) {
 		this.oreDebuff = oreDebuff;
+		updateOreValueCache();
 	}
 
 	/**
@@ -129,6 +160,8 @@ public class Plot extends MapTile {
 	 */
 	public void setFoodBuff(float foodBuff) {
 		this.foodBuff = foodBuff;
+		updateHasRoboticonCache();
+		updateFoodValueCache();
 	}
 
 	/**
@@ -147,6 +180,7 @@ public class Plot extends MapTile {
 	 */
 	public void setFoodDebuff(float foodDebuff) {
 		this.foodDebuff = foodDebuff;
+		updateFoodValueCache();
 	}
 
 	/**
@@ -165,6 +199,8 @@ public class Plot extends MapTile {
 	 */
 	public void setEnergyBuff(float energyBuff) {
 		this.energyBuff = energyBuff;
+		updateHasRoboticonCache();
+		updateEnergyValueCache();
 	}
 
 	/**
@@ -183,6 +219,19 @@ public class Plot extends MapTile {
 	 */
 	public void setEnergyDebuff(float energyDebuff) {
 		this.energyDebuff = energyDebuff;
+		updateEnergyValueCache();
+	}
+	
+	/**
+	 * Remove the Roboticon by setting all buffs to 1.0f. This is not only less
+	 * typing but is also quicker than setting the buffs with the public
+	 * interfaces
+	 */
+	public void removeRoboticon() {
+		energyBuff = 1.0f;
+		oreBuff = 1.0f;
+		foodBuff = 1.0f;
+		hasRoboticonCache = false;
 	}
 
 	/**
@@ -195,16 +244,22 @@ public class Plot extends MapTile {
 	private boolean floatEq(float x, float y) {
 		return Math.abs(x - y) < 1.0f;
 	}
+	
+	private void updateHasRoboticonCache() {
+		hasRoboticonCache = !(floatEq(oreBuff, 1.0f) && floatEq(foodBuff, 1.0f) && floatEq(energyBuff, 1.0f));
+	}
 
 	/**
 	 * returns 1 if a roboticon is placed on this tile. Determination is done by
-	 * checking if each buff is 0.0f < x < 2.0f
+	 * checking if each buff is 0.0f < x < 2.0f. To avoid expensive floating
+	 * point calculations, the value of this function is calculated upon buff
+	 * mutation and cached
 	 * 
 	 * @return 1 if a roboticon is believed to be placed on this tile
 	 */
 	public boolean hasRoboticon() {
 		// Test this rigorously
-		return !(floatEq(oreBuff, 1.0f) && floatEq(foodBuff, 1.0f) && floatEq(energyBuff, 1.0f));
+		return hasRoboticonCache;
 	}
 
 }
