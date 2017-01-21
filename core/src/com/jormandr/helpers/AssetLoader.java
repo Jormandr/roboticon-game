@@ -45,7 +45,7 @@ public class AssetLoader {
 		uiTexture = new Texture(Gdx.files.internal("uiPage.png"));
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);
-		uiTopMid = new TextureRegion(uiTexture, 1, 53, 80, 82 - 53);
+		uiTopMid = new TextureRegion(uiTexture, 0, 53, 83, 81 - 52);
 		uiTV = new TextureRegion(uiTexture, 83, 53, 124 - 83, 110 - 53);
 		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
 		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
