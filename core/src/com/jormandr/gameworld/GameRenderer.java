@@ -187,6 +187,7 @@ public class GameRenderer {
 		
 		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
 		//InputHandler.closeButton.draw(batcher);
+		AssetLoader.fontX.draw(batcher, "Plot Manager",600, 232);		
         
         MapTile tile = InputHandler.getTile();
         Plot plot = (Plot)tile;

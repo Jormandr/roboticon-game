@@ -14,20 +14,18 @@ import com.jormandr.players.Player;
 
 	
 
-public class UIButtonBuyPlot extends UIButton{
-	private GameState gameState; // Not actually used?
+public class UIButtonPlaceRobo extends UIButton{
 	
-	public UIButtonBuyPlot(float x, float y, ButtonType type, GameWorld world){
+	public UIButtonPlaceRobo(float x, float y, ButtonType type, GameWorld world){
 		super(x,y, type, world);
-		
-		gameState = myWorld.getGameState();
 
 	}
 	
 	@Override
 	public void draw(SpriteBatch batcher) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
+		Plot plot = ((Plot) InputHandler.getTile());
+		
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
 					0);
@@ -36,11 +34,18 @@ public class UIButtonBuyPlot extends UIButton{
 					0);
 		}
 		
-		if (((Plot) InputHandler.getTile()).getOwned() == null){
-			AssetLoader.fontX.draw(batcher, "Buy",630, 498);
+		
+		
+		if (plot.getOwned() != player){
+			AssetLoader.fontX.draw(batcher, "You do not",590, 493);	
+			AssetLoader.fontX.draw(batcher, "own this tile",590, 502);	
+		}
+		else if (plot.hasRoboticon() == false){
+			AssetLoader.fontX.draw(batcher, "Place Roboticon",595, 498);
 		}
 		else{
-			AssetLoader.fontX.draw(batcher, "Owned by Player " + player.getPlayerNumber(),588, 498);	
+			AssetLoader.fontX.draw(batcher, "Already Placed ",590, 493);
+			AssetLoader.fontX.draw(batcher,"Roboticon ",590, 502);	
 		}
 	}
 
@@ -51,12 +56,11 @@ public class UIButtonBuyPlot extends UIButton{
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		//run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
-		if (plot.getOwned() == null){
-		if (player.getChangeMoney(-plot.getCost()) >= 0){
+		if (plot.hasRoboticon() == false && plot.getOwned() == player){
+			if(player.getRoboticonsOwned() >=1){
 			Gdx.app.log("InputHandler: ", "Button Clicked");
-		player.addPlot(plot);
-		plot.setOwned(player);
-		player.changeMoney(-(plot.getCost()));
+			plot.setEnergyBuff(2.0f); //set some buff here
+			player.changeRoboticonsOwned(-1);
 			isPressed = true;
 			return true;
 		}

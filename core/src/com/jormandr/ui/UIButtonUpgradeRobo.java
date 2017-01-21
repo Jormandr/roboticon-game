@@ -1,32 +1,23 @@
 package com.jormandr.ui;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
-import com.jormandr.gameworld.GameWorld.GameState;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
 
+public class UIButtonUpgradeRobo extends UIButton{
 
-
-	
-
-public class UIButtonBuyPlot extends UIButton{
-	private GameState gameState; // Not actually used?
-	
-	public UIButtonBuyPlot(float x, float y, ButtonType type, GameWorld world){
-		super(x,y, type, world);
-		
-		gameState = myWorld.getGameState();
-
+	public UIButtonUpgradeRobo(float x, float y, ButtonType type, GameWorld world) {
+		super(x, y, type, world);
 	}
 	
 	@Override
 	public void draw(SpriteBatch batcher) {
-		Player player = GameWorld.getPlayer(myWorld.getGameState());
+		Plot plot = ((Plot) InputHandler.getTile());
+		int[] mousePos = GameWorld.getMousePos();
 		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
@@ -36,26 +27,30 @@ public class UIButtonBuyPlot extends UIButton{
 					0);
 		}
 		
-		if (((Plot) InputHandler.getTile()).getOwned() == null){
-			AssetLoader.fontX.draw(batcher, "Buy",630, 498);
+		if (isMouseOver(mousePos[0],mousePos[1])){
+			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(),830, 274);	
+		}
+		else if (((Plot) InputHandler.getTile()).hasRoboticon() == true){
+			AssetLoader.fontX.draw(batcher, "Upgrade XXX ",820, 270);
+			AssetLoader.fontX.draw(batcher,"production",820, 279);
 		}
 		else{
-			AssetLoader.fontX.draw(batcher, "Owned by Player " + player.getPlayerNumber(),588, 498);	
+			AssetLoader.fontX.draw(batcher, "Place Roboticon",820, 270);
+			AssetLoader.fontX.draw(batcher, "to Upgrade XXX",820, 279);
 		}
 	}
 
-	
 	
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		//run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
-		if (plot.getOwned() == null){
-		if (player.getChangeMoney(-plot.getCost()) >= 0){
+		if (plot.hasRoboticon() == true && plot.getOwned() == player){
 			Gdx.app.log("InputHandler: ", "Button Clicked");
-		player.addPlot(plot);
-		plot.setOwned(player);
+		if (player.getChangeMoney(-plot.getCost()) >= 0){
+		
+		plot.setEnergyBuff(2.0f); //set some buff here	
 		player.changeMoney(-(plot.getCost()));
 			isPressed = true;
 			return true;

@@ -19,7 +19,7 @@ public class UIButtonEndTurn extends UIButton{
 	@Override
 	public void draw(SpriteBatch batcher) {
 		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
-		if (isPressed) {
+		if (isPressed || !myWorld.isRunning()) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
 					0);
 		} else {
@@ -35,10 +35,13 @@ public class UIButtonEndTurn extends UIButton{
 	
 	@Override
 	public boolean isTouchDown() {
+		if (myWorld.isRunning()){
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		isPressed = true;
 		player.nextState();
 		return true;
+		}
+		return false;
 
 	}
 

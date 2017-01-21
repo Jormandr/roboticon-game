@@ -5,21 +5,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
+import com.jormandr.ui.UIButtonPlaceRobo;
+import com.jormandr.ui.UIButtonUpgradeRobo;
 
 public class InputHandler implements InputProcessor {
 
 	private static ArrayList<UIButton> menuButtons;
-	private GameWorld myWorld;
+	private static GameWorld myWorld;
 
-	private static UIButton closeButton;
-	private static UIButton buyPlotButton;
-	private static UIButton endTurnButton;
+	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, testButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
@@ -29,6 +30,8 @@ public class InputHandler implements InputProcessor {
 		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
 		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
 		endTurnButton = new UIButtonEndTurn(189*4,24,ButtonType.SSMALL,myWorld);
+		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, ButtonType.RBIG, myWorld);
+		testButton = new UIButtonUpgradeRobo(796,256,ButtonType.RSMALL,myWorld);
 		
 		menuButtons.add(endTurnButton);
 
@@ -134,6 +137,10 @@ public class InputHandler implements InputProcessor {
 	public static void LoadPlotPlaceMenu(){
 		menuButtons.add(endTurnButton);
 		menuButtons.add(closeButton);
+		menuButtons.add(placeRoboticonButton);
+		if (((Plot) getTile()).getOwned() == GameWorld.getPlayer(myWorld.getGameState())){
+		menuButtons.add(testButton);
+		}
 	}
 	
 	public static MapTile getTile(){

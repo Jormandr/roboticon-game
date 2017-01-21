@@ -48,9 +48,8 @@ public class GameWorld {
 		currentState = WorldState.RUNNING;
 		gameState = GameState.WAITINGFORP1;
 		Gdx.app.log("GameWorld", "Initialising GSH");
-		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 100, 0, 1);
+		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
@@ -132,10 +131,12 @@ public class GameWorld {
 			break;
 		case WAITINGFORP2:
 			// Player 2 is handling this
-			player2.playerStateMachine();
+			player2.setState(PlayerState.PLOT);
+			setGameState(GameState.HANDLINGP2);			
 			break;
 		case HANDLINGP2:
 			// Deal with player 2's turn
+			player2.playerStateMachine();
 			break;
 		case PRODUCE:
 			produce();
@@ -273,8 +274,8 @@ public class GameWorld {
 		return currentState;
 	}
 
-	public static GameState nextGameState() {
-		return GameState.values()[gameState.ordinal() + 1];
+	public static void nextGameState() {
+		gameState = GameState.values()[(gameState.ordinal()+1) % GameState.values().length];
 	}
 	
 }
