@@ -7,14 +7,11 @@ import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
-import com.jormandr.gameworld.GameWorld.WorldState;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 import com.jormandr.players.Player.PlayerState;
-import com.jormandr.ui.ButtonType;
-import com.jormandr.ui.UIButton;
 
 /**
  * The gameworld controls the main overall logic of the game, primarily the
@@ -31,6 +28,7 @@ public class GameWorld {
 		WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTION, RANDOMEVENT
 	}
 
+	// TODO should more of this be static?
 	private WorldState currentState;
 	private GameState gameState;
 	private static int mapWidth = GameConfig.getMapWidth();

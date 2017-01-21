@@ -15,7 +15,7 @@ import com.jormandr.players.Player;
 	
 
 public class UIButtonBuyPlot extends UIButton{
-	private GameState gameState;
+	private GameState gameState; // Not actually used?
 	
 	public UIButtonBuyPlot(float x, float y, ButtonType type, GameWorld world){
 		super(x,y, type, world);

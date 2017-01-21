@@ -1,7 +1,7 @@
 package com.jormandr.gameworld;
 
 
-import java.util.List;
+// import java.util.List // See below
 
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
@@ -18,7 +18,6 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player.PlayerState;
-import com.jormandr.ui.UIButton;
 
 /**
  * This is the class that deals with all rendering of sprites and any other
@@ -29,10 +28,10 @@ public class GameRenderer {
 
 	// TODO get rid of magic numbers from the whole file
 
-	private GameWorld myWorld; // TODO check if we need this
+	private GameWorld myWorld;
 	private OrthographicCamera cam;
 	private ShapeRenderer shapeRenderer;
-    private List<UIButton> menuButtons;
+    // private List<UIButton> menuButtons; // Never used?
 
 	private SpriteBatch batcher;
 

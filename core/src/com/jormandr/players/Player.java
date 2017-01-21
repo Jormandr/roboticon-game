@@ -18,8 +18,6 @@ public abstract class Player {
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
-	//private GameStateHandler gsh;
-	// private int one, two, three, four; // TODO What are these for?
 
 	/**
 	 * Player state machine controls what player can do when it is their turn

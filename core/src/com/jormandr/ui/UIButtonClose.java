@@ -1,6 +1,5 @@
 package com.jormandr.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
@@ -15,7 +14,7 @@ public class UIButtonClose extends UIButton{
 	
 	@Override
 	public void draw(SpriteBatch batcher) {
-		int[] mousePos = myWorld.getMousePos();
+		int[] mousePos = GameWorld.getMousePos();
 		
 		if (isMouseOver(mousePos[0],mousePos[1])) {
 			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
