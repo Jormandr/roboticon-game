@@ -21,7 +21,6 @@ public class GameScreen implements Screen {
 
 	private GameWorld world;
 	private GameRenderer renderer;
-	private int debug_0deltaCount = 0;
 
 	/**
 	 * Constructor for GameScreen
@@ -44,17 +43,6 @@ public class GameScreen implements Screen {
 	 */
 	@Override
 	public void render(float delta) {
-		if (delta < 0.001f) {
-			// Wait for 10 consecutive 0d, then warn *once*
-			if (debug_0deltaCount < 10) {
-				debug_0deltaCount += 1;
-			} else if (debug_0deltaCount == 10) {
-				Gdx.app.log("GameScreen", "Warning: 0 delta");
-				debug_0deltaCount += 1;
-			}
-		} else {
-			debug_0deltaCount = 0;
-		}
 		world.update(delta); // Delta is currently only needed to prevent flooding of debug statements, TODO remove
 		renderer.render();
 	}
