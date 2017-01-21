@@ -35,7 +35,7 @@ public class HumanPlayerTest {
 			playerState = 1; // TODO ascertain the paramaters of this and how to test it
 
 			// Set them
-			HumanPlayer player = new HumanPlayer(score, ore, food, energy, money, roboticonsOwned, playerNumber, playerState);
+			HumanPlayer player = new HumanPlayer(score, ore, food, energy, money, roboticonsOwned, playerNumber);
 
 			// Test them
 			assertEquals(player.getEnergy(), energy);
