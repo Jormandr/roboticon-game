@@ -8,9 +8,12 @@ import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
+import com.jormandr.helpers.GameState;
 import com.jormandr.helpers.GameStateHandler;
+import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
+import com.jormandr.players.Player.PlayerState;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 
@@ -20,12 +23,17 @@ import com.jormandr.ui.UIButton;
  *
  */
 public class GameWorld {
-	
+
 	public enum WorldState {
 		RUNNING, MENU, START, END;
 	}
 
+	public enum GameState {
+		WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTION, RANDOMEVENT
+	}
+
 	private WorldState currentState;
+	private GameState gameState;
 	private static int mapWidth = GameConfig.getMapWidth();
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
@@ -33,9 +41,7 @@ public class GameWorld {
 	private Player player1;
 	private Player player2;
 	private Random rand = new Random();
-	private GameStateHandler gsh;
-	
-	
+
 	/**
 	 * The constructor for Gameworld
 	 * <p>
@@ -44,10 +50,10 @@ public class GameWorld {
 	public GameWorld() {
 		currentState = WorldState.RUNNING;
 		Gdx.app.log("GameWorld", "Initialising GSH");
-		gsh = new GameStateHandler();
+		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh, 0);
-		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh, 0);
+		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, 0);
+		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, 0);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {
@@ -67,49 +73,51 @@ public class GameWorld {
 	 * @param delta
 	 */
 	public void update(float delta) {
-		
+
 		worldStateMachine(delta);
 		gameStateMachine();
-		
+
 		mousePos[0] = Gdx.input.getX();
 		mousePos[1] = Gdx.input.getY();
 
 	}
-	
-	private void worldStateMachine(float delta){
-		
-        switch (currentState) {
-        case RUNNING:
-            updateRunning(delta);
-            break;
 
-        case MENU:
-        	updateMenu(delta);
-        	break;
-        case START:
-        case END:
-        default:
-            updateRunning(delta);
-            break;
-        }
+	private void worldStateMachine(float delta) {
+
+		switch (currentState) {
+		case RUNNING:
+			updateRunning(delta);
+			break;
+
+		case MENU:
+			updateMenu(delta);
+			break;
+		case START:
+		case END:
+		default:
+			updateRunning(delta);
+			break;
+		}
 	}
-	
-	private void updateRunning(float delta){
-        if (delta > .15f) {
-            delta = .15f;
-        }
-        
+
+	private void updateRunning(float delta) {
+		if (delta > .15f) {
+			delta = .15f;
+		}
+
 		CollisionHandler.update();
-		
-		/*if() if we click on a tile or market buttton, or pause button
-		to bring up a menu then go to MENU world state*/
+
+		/*
+		 * if() if we click on a tile or market buttton, or pause button to
+		 * bring up a menu then go to MENU world state
+		 */
 	}
-	
-	private void updateMenu(float delta){
-        if (delta > .15f) {
-            delta = .15f;
+
+	private void updateMenu(float delta) {
+		if (delta > .15f) {
+			delta = .15f;
 			Gdx.app.log("GameWorld: ", "InMenu");
-        }
+		}
 	}
 
 	/**
@@ -118,42 +126,36 @@ public class GameWorld {
 	 */
 	private void gameStateMachine() {
 
-		switch (gsh.getGameState()) {
-		case 0:
+		switch (gameState) {
+		case WAITINGFORP1:
 			// Player 1 is handling this
 			player1.playerStateMachine();
-			
-			if(isMenu()){
-				
-				
+
+			if (isMenu()) {
+
 			}
-			
+
 			break;
-		case 1:
+		case HANDLINGP1:
 			// Deal with player 1's turn
-			gsh.incrementGameState();
 			break;
-		case 2:
+		case WAITINGFORP2:
 			// Player 2 is handling this
 			player2.playerStateMachine();
 			break;
-		case 3:
+		case HANDLINGP2:
 			// Deal with player 2's turn
-			gsh.incrementGameState();
 			break;
-		case 4:
+		case PRODUCE:
 			produce();
-			gsh.incrementGameState();
 			break;
-		case 5:
+		case AUCTION:
 			auction();
-			gsh.incrementGameState();
 			break;
-		case 6:
+		case RANDOMEVENT:
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
 			}
-			gsh.incrementGameState();
 			break;
 		}
 	}
@@ -196,7 +198,6 @@ public class GameWorld {
 
 	}
 
-
 	/**
 	 * returns the array of map tiles
 	 * 
@@ -211,32 +212,54 @@ public class GameWorld {
 	 * 
 	 * @return the current game state
 	 */
-	public int getGameState() {
-		return gsh.getGameState();
+	public GameState getGameState() {
+		return gameState;
 	}
 
 	public static int[] getMousePos() {
 		return mousePos;
 	}
-	
-	public boolean isMenu(){
+
+	public boolean isMenu() {
 		return currentState == WorldState.MENU;
 	}
-	
-	public boolean isRunning(){
+
+	public boolean isRunning() {
 		return currentState == WorldState.RUNNING;
 	}
-	
-	public void toMenu(){
+
+	public void toMenuPlot() {
 		currentState = WorldState.MENU;
-		//run a method that creates all the menu buttons
+		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
-		
-		//if gsh.getGameState() == 
-		
+		InputHandler.clearMenuButtons();
+
+		if (gameState == GameState.HANDLINGP1) {
+			if (player1.playerState == PlayerState.PLOT) {
+				InputHandler.LoadPlotPlotMenu();
+			} else if (player1.playerState == PlayerState.BUY) {
+				InputHandler.LoadPlotBuyMenu();
+			} else if (player1.playerState == PlayerState.PLACE) {
+				InputHandler.LoadPlotPlaceMenu();
+			}
+
+		}
+
+		else if (gameState == GameState.HANDLINGP2) {
+			if (player2.playerState == PlayerState.PLOT) {
+				InputHandler.LoadPlotPlotMenu();
+			} else if (player2.playerState == PlayerState.BUY) {
+				InputHandler.LoadPlotBuyMenu();
+			} else if (player2.playerState == PlayerState.PLACE) {
+				InputHandler.LoadPlotPlaceMenu();
+			}
+		}
 	}
 	
-	public void toRunning(){
+	
+	
+
+	public void toRunning() {
 		currentState = WorldState.RUNNING;
 		// run a method that destroys all the menu buttons
 	}

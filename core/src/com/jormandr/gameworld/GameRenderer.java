@@ -1,16 +1,17 @@
 package com.jormandr.gameworld;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
+import com.jormandr.gameworld.GameWorld.GameState;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;	
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
@@ -119,7 +120,7 @@ public class GameRenderer {
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
 					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
 
-					if (myWorld.getGameState() == 0) {
+					if (myWorld.getGameState() == GameState.HANDLINGP1) {
 
 						batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
 						batcher.draw(AssetLoader.uiTileInfo, xx + 64, yy, 0, 0, 20, -28, 4, 4, 0);
@@ -173,7 +174,7 @@ public class GameRenderer {
 		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
 		for (int k = 0; k < 8; k++) {
-			if (myWorld.getGameState() == k) {
+			if (myWorld.getGameState().ordinal() == k) {
 				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
 			} else {
 				batcher.draw(AssetLoader.uiStateLightOff, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);

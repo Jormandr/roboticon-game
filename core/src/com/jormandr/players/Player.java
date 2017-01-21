@@ -10,12 +10,17 @@ import com.jormandr.helpers.GameStateHandler;
  *
  */
 public abstract class Player {
+	
+	public enum PlayerState {
+		PLOT, BUY, PLACE, END;
+	}
+	
+	public PlayerState playerState;
 	private int score, ore, food, energy, money, roboticonsOwned;
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
-	private GameStateHandler gsh;
-	protected int playerState = 0;
+	//private GameStateHandler gsh;
 	// private int one, two, three, four; // TODO What are these for?
 
 	/**
@@ -23,19 +28,19 @@ public abstract class Player {
 	 */
 	public void playerStateMachine() {
 		switch (playerState) {
-		case 0:
+		case PLOT:
 			// buy plots of land
 			break;
-		case 1:
+		case BUY:
 			// buying roboticons and gambling
 			// timed state
 
 			break;
-		case 2:
+		case PLACE:
 			// customising and placing roboticons
 			// timed state
 			break;
-		case 3:
+		case END:
 			// final state (updates gamestate Machine)
 			break;
 
@@ -96,7 +101,7 @@ public abstract class Player {
 	 * @param playerState
 	 */
 	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			GameStateHandler gsh, int playerState) {
+			 int playerState) {
 		this.score = score;
 		this.ore = ore;
 		this.food = food;
@@ -104,7 +109,6 @@ public abstract class Player {
 		this.money = money;
 		this.roboticonsOwned = roboticonsOwned;
 		this.playerNumber = playerNumber;
-		this.gsh = gsh;
 
 	}
 
@@ -327,11 +331,13 @@ public abstract class Player {
 	 * Update of player increments game state machine state
 	 */
 	public void update() {
+		/*
 		if ((playerNumber == 1 && gsh.getGameState() == GameState.WAITINGFORP1.ordinal())
 				|| (playerNumber == 2 && gsh.getGameState() == GameState.WAITINGFORP2.ordinal())) {
 			// Deal with turn
 			gsh.incrementGameState();
 		}
+		*/
 	}
 
 }

@@ -34,9 +34,11 @@ public class InputHandler implements InputProcessor {
 			if (myWorld.isRunning()) {
 				if (CollisionHandler.tileMouseOver()) {
 					// setup the plot menu
-					myWorld.toMenu();
+					myWorld.toMenuPlot();
 					return true;
 				}
+				//else if (/*click market button condition */){}
+				
 			} else if (myWorld.isMenu()) {
 				Gdx.app.log("InputHandler: ", "In Menu");
 				for (int i = 0; i < menuButtons.size(); i += 1) {
@@ -101,6 +103,22 @@ public class InputHandler implements InputProcessor {
 
 	public static ArrayList<UIButton> getMenuButtons() {
 		return menuButtons;
+	}
+
+	public static void clearMenuButtons() {
+		menuButtons.clear();
+	}
+	
+	public static void LoadPlotPlotMenu(){
+		
+	}
+	
+	public static void LoadPlotBuyMenu(){
+		
+	}
+	
+	public static void LoadPlotPlaceMenu(){
+		
 	}
 
 }
