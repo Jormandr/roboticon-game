@@ -1,5 +1,6 @@
 package com.jormandr.gameobjects;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
 

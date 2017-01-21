@@ -29,7 +29,7 @@ public class GameWorld {
 	private static int mapWidth = GameConfig.getMapWidth();
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
-	private static float[] mousePos = new float[2];
+	private static int[] mousePos = new int[2];
 	private Player player1;
 	private Player player2;
 	private Random rand = new Random();
@@ -69,6 +69,8 @@ public class GameWorld {
 	public void update(float delta) {
 		
 		worldStateMachine(delta);
+		gameStateMachine();
+		
 		mousePos[0] = Gdx.input.getX();
 		mousePos[1] = Gdx.input.getY();
 
@@ -97,7 +99,6 @@ public class GameWorld {
             delta = .15f;
         }
         
-		gameStateMachine();
 		CollisionHandler.update();
 		
 		/*if() if we click on a tile or market buttton, or pause button
@@ -105,7 +106,10 @@ public class GameWorld {
 	}
 	
 	private void updateMenu(float delta){
-		
+        if (delta > .15f) {
+            delta = .15f;
+			Gdx.app.log("GameWorld: ", "InMenu");
+        }
 	}
 
 	/**
@@ -205,7 +209,7 @@ public class GameWorld {
 		return gsh.getGameState();
 	}
 
-	public static float[] getMousePos() {
+	public static int[] getMousePos() {
 		return mousePos;
 	}
 	

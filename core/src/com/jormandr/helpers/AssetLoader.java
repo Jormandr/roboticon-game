@@ -57,6 +57,7 @@ public class AssetLoader {
 		// Menu UI stuff
 
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
+		uiMenu.flip(false, true);
 		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
 		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
 		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 -12, 94 - 82);

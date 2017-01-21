@@ -136,6 +136,10 @@ public class GameRenderer {
 
 		drawUI();
 		
+		if (myWorld.isMenu()) {
+			batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
+		}
+		
 		//test ui menu drawing
 		//myWorld.getUIButton().draw(batcher);
 

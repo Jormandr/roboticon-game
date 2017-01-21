@@ -42,8 +42,9 @@ public class UIButton {
 
 	}
 
-	public boolean isMouseOver(float screenX, float screenY) {
-		return (Intersector.isPointInPolygon(verts, 0, 8, screenX, screenY));
+	public boolean isMouseOver(int screenX, int screenY) {
+		
+		return (Intersector.isPointInPolygon(verts, 0, 8, (float)screenX, (float)screenY));
 	}
 
 	public void draw(SpriteBatch batcher) {

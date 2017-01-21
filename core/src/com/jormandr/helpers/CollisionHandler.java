@@ -12,7 +12,7 @@ import com.jormandr.gameworld.GameWorld;
  */
 public class CollisionHandler {
 	
-	private static float[] mousePos = new float[2];
+	private static int[] mousePos = new int[2];
 
 	// See note from MapTile about guessing
 
@@ -57,15 +57,15 @@ public class CollisionHandler {
 	/**
 	 * Converts a vector camera view position into a vector map grid position
 	 * 
-	 * @param position
+	 * @param mousePos
 	 * @return map grid position
 	 */
-	private static float[] convertToGrid(float[] position) {
+	private static float[] convertToGrid(int[] mousePos) {
 		float w = GameConfig.getTileWidth();
 		float h = GameConfig.getTileHeight();
 		float[] gridPos = new float[2];
-		float x = position[0] - 10.0f * w;
-		float y = position[1] - 7.0f * h;
+		float x = mousePos[0] - 10.0f * w;
+		float y = mousePos[1] - 7.0f * h;
 		// the reason this is shit is because the rendering of the tiles is
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
