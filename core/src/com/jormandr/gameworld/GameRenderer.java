@@ -64,27 +64,6 @@ public class GameRenderer {
 	}
 
 	/**
-	 * gets the position of the mouse and creates a polygon at that position
-	 * 
-	 * @param mousePos
-	 * @return polygon at mouse position
-	 */
-	private float[] getMouseVerts(float[] mousePos) {
-		// TODO work out the significance of 25
-		float[] mouseVerts = new float[8];
-		mouseVerts[0] = mousePos[0];
-		mouseVerts[1] = mousePos[1];
-		mouseVerts[2] = mousePos[0] + 25;
-		mouseVerts[3] = mousePos[1];
-		mouseVerts[4] = mousePos[0] + 25;
-		mouseVerts[5] = mousePos[1] - 25;
-		mouseVerts[6] = mousePos[0];
-		mouseVerts[7] = mousePos[1] - 25;
-
-		return mouseVerts;
-	}
-
-	/**
 	 * where all assets and shapes are rendered
 	 * 
 	 * @param runTime
@@ -98,7 +77,7 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.app.log("GameScreen FPS", (runTime) + "");
+		//Gdx.app.log("GameScreen FPS", (runTime) + "");
 
 		shapeRenderer.begin(ShapeType.Line);
 

@@ -20,13 +20,7 @@ public class HumanPlayer extends Player {
 	public void playerStateMachine() {
 		switch (playerState) {
 		case 0:
-			// buy plots of land
-			// TEMP: testing clickbutton on plot menu: WORKING
-			// this is just a general menu, just fixing the position of the
-			// buttons. TBD open on plot click and custom data for each plot
-			if (CollisionHandler.mouseDown()) {
-				Gdx.app.log("button pressed", Integer.toString(CollisionHandler.getNearestButton(0)));
-			}
+			//buy plots
 			break;
 		case 1:
 			// buying roboticons and gambling

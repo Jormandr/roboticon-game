@@ -20,16 +20,46 @@ import com.jormandr.ui.UIButton;
  *
  */
 public class GameWorld {
+	
+	public enum WorldState {
+		RUNNING, MENU, START, END;
+	}
 
+	private WorldState currentState;
 	private static int mapWidth = GameConfig.getMapWidth();
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
+	private static float[] mousePos = new float[2];
 	private Player player1;
 	private Player player2;
 	private Random rand = new Random();
 	private GameStateHandler gsh;
-	private CollisionHandler collideChecker = new CollisionHandler();
 	private UIButton testButton = new UIButton(300,300,ButtonType.SSMALL);
+	
+	
+	/**
+	 * The constructor for Gameworld
+	 * <p>
+	 * Initialises GameStateHandler, Players and plot tiles.
+	 */
+	public GameWorld() {
+		currentState = WorldState.RUNNING;
+		Gdx.app.log("GameWorld", "Initialising GSH");
+		gsh = new GameStateHandler();
+		Gdx.app.log("GameWorld", "Initialising players");
+		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh, 0);
+		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh, 0);
+
+		Gdx.app.log("GameWorld", "Initialising random tiles");
+		for (int i = 0; i < mapWidth; i++) {
+			for (int j = 0; j < mapHeight; j++) {
+				Plot Newplot = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
+						TileType.values()[rand.nextInt(4)]);
+				mapArray[i][j] = Newplot;
+			}
+		}
+
+	}
 
 	/**
 	 * Update is run every frame, updates of all game objects put in here so
@@ -38,12 +68,45 @@ public class GameWorld {
 	 * @param delta
 	 */
 	public void update(float delta) {
+		
+		worldStateMachine(delta);
+		mousePos[0] = Gdx.input.getX();
+		mousePos[1] = Gdx.input.getY();
+
+	}
+	
+	private void worldStateMachine(float delta){
+		
+        switch (currentState) {
+        case RUNNING:
+            updateRunning(delta);
+            break;
+
+        case MENU:
+        	updateMenu(delta);
+        	break;
+        case START:
+        case END:
+        default:
+            updateRunning(delta);
+            break;
+        }
+	}
+	
+	private void updateRunning(float delta){
+        if (delta > .15f) {
+            delta = .15f;
+        }
+        
 		gameStateMachine();
 		CollisionHandler.update();
-
-		// boolean ball = collideChecker.tileMouseOver();
-		// Gdx.app.log("update", Boolean.toString(ball));
-
+		
+		/*if() if we click on a tile or market buttton, or pause button
+		to bring up a menu then go to MENU world state*/
+	}
+	
+	private void updateMenu(float delta){
+		
 	}
 
 	/**
@@ -124,28 +187,6 @@ public class GameWorld {
 
 	}
 
-	/**
-	 * The constructor for Gameworld
-	 * <p>
-	 * Initialises GameStateHandler, Players and plot tiles.
-	 */
-	public GameWorld() {
-		Gdx.app.log("GameWorld", "Initialising GSH");
-		gsh = new GameStateHandler();
-		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, gsh, 0);
-		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, gsh, 0);
-
-		Gdx.app.log("GameWorld", "Initialising random tiles");
-		for (int i = 0; i < mapWidth; i++) {
-			for (int j = 0; j < mapHeight; j++) {
-				Plot Newplot = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
-						TileType.values()[rand.nextInt(4)]);
-				mapArray[i][j] = Newplot;
-			}
-		}
-
-	}
 
 	/**
 	 * returns the array of map tiles
@@ -169,6 +210,10 @@ public class GameWorld {
 	//test method to check it all clicks together
 	public UIButton getUIButton(){
 		return testButton;
+	}
+	
+	public static float[] getMousePos() {
+		return mousePos;
 	}
 
 }
