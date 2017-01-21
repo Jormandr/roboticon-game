@@ -1,5 +1,7 @@
 package com.jormandr.players;
 
+import com.jormandr.gameworld.GameWorld;
+
 /**
  * HumanPlayer is a child of Player which can be controlled by humans to play
  * the game
@@ -15,12 +17,11 @@ public class HumanPlayer extends Player {
 	public void playerStateMachine() {
 		switch (playerState) {
 		case PLOT:
-			//buy plots
+			// buy plots
 			break;
 		case BUY:
 			// buying roboticons and gambling
 			// timed state
-
 			break;
 		case PLACE:
 			// customising and placing roboticons
@@ -28,6 +29,7 @@ public class HumanPlayer extends Player {
 			break;
 		case END:
 			// final state (updates gamestate Machine)
+			GameWorld.nextGameState();
 			break;
 		}
 
@@ -44,14 +46,8 @@ public class HumanPlayer extends Player {
 	 * 
 	 */
 	/*
-	 * private void buyPlots() { // check if clicked on plot if
-	 * (CollisionHandler.mouseDown() && CollisionHandler.tileMouseOver()){
-	 * MapTile tile = CollisionHandler.getNearestMapTile(); if (tile instanceof
-	 * Plot) {
 	 * 
-	 * }
-	 * 
-	 * } }
+	
 	 */
 	/**
 	 * buyRoboticons logics
@@ -59,6 +55,7 @@ public class HumanPlayer extends Player {
 	private void buyRoboticons() {
 		// check if bought roboticons
 	}
+
 
 	/**
 	 * customiseRoboticons logic

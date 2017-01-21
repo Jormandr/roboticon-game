@@ -130,7 +130,7 @@ public class GameRenderer {
 							AssetLoader.fontX.draw(batcher, "Energy: " + ((Plot) tile).getEnergyValue(), xx + 76,
 									yy - 50);
 							AssetLoader.fontX.draw(batcher, "Cost: " + ((Plot) tile).getCost(),xx + 76,yy - 35);
-							AssetLoader.fontX.draw(batcher, "Player: " + GameWorld.getPlayer(myWorld.getGameState()).getPlayerNumber(),xx + 76,yy - 20);
+							AssetLoader.fontX.draw(batcher, "Player: " + GameWorld.getPlayer(myWorld.getGameState()).getState(),xx + 76,yy - 20);
 						}
 					}
 
@@ -147,6 +147,11 @@ public class GameRenderer {
 		if (myWorld.isMenu()) {
 			drawMenuUI();
 		}
+		
+        for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
+    		//Gdx.app.log("Drawing: ", "button");
+        	InputHandler.getMenuButtons().get(i).draw(batcher);
+        }
 		
 		//test ui menu drawing
 		//myWorld.getUIButton().draw(batcher);
@@ -179,13 +184,9 @@ public class GameRenderer {
 	
 	
 	private void drawMenuUI(){
+		
 		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
 		//InputHandler.closeButton.draw(batcher);
-		
-        for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
-    		//Gdx.app.log("Drawing: ", "button");
-        	InputHandler.getMenuButtons().get(i).draw(batcher);
-        }
         
         MapTile tile = InputHandler.getTile();
         Plot plot = (Plot)tile;

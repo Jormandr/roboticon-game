@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 
-public class UIButton {
+public abstract class UIButton {
 
 	protected Vector2 coords;
 	private float[] verts = new float[8];

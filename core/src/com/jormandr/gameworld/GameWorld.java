@@ -30,7 +30,7 @@ public class GameWorld {
 
 	// TODO should more of this be static?
 	private WorldState currentState;
-	private GameState gameState;
+	private static GameState gameState;
 	private static int mapWidth = GameConfig.getMapWidth();
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
@@ -251,8 +251,9 @@ public class GameWorld {
 	
 
 	public void toRunning() {
+		InputHandler.clearMenuButtons();
+		InputHandler.LoadGameMenu();	
 		currentState = WorldState.RUNNING;
-		// run a method that destroys all the menu buttons
 	}
 
 	public void setGameState(GameState state){
@@ -270,6 +271,10 @@ public class GameWorld {
 
 	public WorldState getWorldState() {
 		return currentState;
+	}
+
+	public static GameState nextGameState() {
+		return GameState.values()[gameState.ordinal() + 1];
 	}
 	
 }

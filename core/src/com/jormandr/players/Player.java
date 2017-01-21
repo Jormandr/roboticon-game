@@ -350,4 +350,8 @@ public abstract class Player {
 	return playerState;
 	}
 
+	public void nextState() {
+		playerState = PlayerState.values()[(playerState.ordinal()+1) % PlayerState.values().length];
+	}
+
 }
