@@ -115,13 +115,13 @@ public class GameRenderer {
 				float yy = tile.convertToY();
 
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
-					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
-
+					
+					tile.draw(batcher,xx,yy,60);
 					if (myWorld.getGameState() == GameState.HANDLINGP1) {
 
-						batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
+
 						batcher.draw(AssetLoader.uiTileInfo, xx + 64, yy, 0, 0, 20, -28, 4, 4, 0);
-						batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 						AssetLoader.fontX.draw(batcher, tile.getType().toString(), xx + 76, yy - 100);
 
 						if (tile instanceof Plot) {
@@ -133,7 +133,7 @@ public class GameRenderer {
 					}
 
 				} else {
-					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 64, 124, -68);
+					tile.draw(batcher,xx,yy,64);
 				}
 			}
 		}
@@ -148,7 +148,27 @@ public class GameRenderer {
 		
 		//test ui menu drawing
 		//myWorld.getUIButton().draw(batcher);
+		
+		
+		
+		//drawing player scores
+		
+		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getScore()), 50, 80);
+		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getFood()), 50, 90);
+		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getOre()), 50, 100);
+		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getEnergy()), 50, 110);
+		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getMoney()), 50, 120);
+		AssetLoader.fontX.draw(batcher, "Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getRoboticonsOwned()), 50, 130);
 
+		int ww = GameConfig.getWidth()-100;
+		
+		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getScore()), ww, 80);
+		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getFood()), ww, 90);
+		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getOre()), ww, 100);
+		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getEnergy()), ww, 110);
+		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getMoney()), ww, 120);
+		AssetLoader.fontX.draw(batcher, "Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getRoboticonsOwned()), ww, 130);
+		
 		batcher.disableBlending();
 
 		// End SpriteBatch
@@ -161,7 +181,7 @@ public class GameRenderer {
 		//InputHandler.closeButton.draw(batcher);
 		
         for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
-    		Gdx.app.log("Drawing: ", "button");
+    		//Gdx.app.log("Drawing: ", "button");
         	InputHandler.getMenuButtons().get(i).draw(batcher);
         }
 		

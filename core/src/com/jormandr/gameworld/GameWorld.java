@@ -8,8 +8,6 @@ import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
-import com.jormandr.helpers.GameState;
-import com.jormandr.helpers.GameStateHandler;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
@@ -38,8 +36,8 @@ public class GameWorld {
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
 	private static int[] mousePos = new int[2];
-	private Player player1;
-	private Player player2;
+	private static Player player1;
+	private static Player player2;
 	private Random rand = new Random();
 
 	/**
@@ -53,8 +51,8 @@ public class GameWorld {
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1);
-		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2);
+		player1 = new HumanPlayer(0, 0, 0, 0, 10, 0, 1);
+		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {
@@ -260,6 +258,16 @@ public class GameWorld {
 
 	public void setGameState(GameState state){
 		gameState = state;
+	}
+	
+	public static Player getPlayer(GameState state){
+		
+		if(state == GameState.HANDLINGP1){
+		
+		return player1;
+		}
+		
+		return player2;
 	}
 	
 }

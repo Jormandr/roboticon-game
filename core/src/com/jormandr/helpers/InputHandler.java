@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
+import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonClose;
 
 public class InputHandler implements InputProcessor {
@@ -16,13 +18,14 @@ public class InputHandler implements InputProcessor {
 
 	public static UIButton closeButton;
 	private static UIButton buyPlotButton;
+	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
 		closeButton = new UIButtonClose(300, 300, ButtonType.CLOSE, myWorld);
-		buyPlotButton = new UIButton(200, 200, ButtonType.RBIG);
+		buyPlotButton = new UIButtonBuyPlot(200, 200, ButtonType.RBIG, myWorld);
 
 		Gdx.app.log("InputHandler: ", "On");
 	}
@@ -33,6 +36,7 @@ public class InputHandler implements InputProcessor {
 			Gdx.app.log("InputHandler: ", "Left Click");
 			if (myWorld.isRunning()) {
 				if (CollisionHandler.tileMouseOver()) {
+					selectedTile = CollisionHandler.getNearestMapTile();
 					// setup the plot menu
 					myWorld.toMenuPlot();
 					return true;
@@ -121,6 +125,10 @@ public class InputHandler implements InputProcessor {
 	
 	public static void LoadPlotPlaceMenu(){
 		menuButtons.add(closeButton);
+	}
+	
+	public static MapTile getTile(){
+		return selectedTile;
 	}
 
 }

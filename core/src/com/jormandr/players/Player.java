@@ -2,8 +2,6 @@ package com.jormandr.players;
 
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.Plot;
-import com.jormandr.helpers.GameState;
-import com.jormandr.helpers.GameStateHandler;
 
 /**
  * Player class contains all methods used by Players to play the game
@@ -299,6 +297,11 @@ public abstract class Player {
 	public void changeMoney(int difference) {
 		money += difference;
 	}
+	
+	public int getChangeMoney(int difference) {
+		int money2 = money+difference;
+		return money2;
+	}	
 
 	/**
 	 * returns number of roboticons owned by player

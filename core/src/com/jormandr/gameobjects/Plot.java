@@ -1,6 +1,10 @@
 package com.jormandr.gameobjects;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.gameworld.GameWorld;
+import com.jormandr.helpers.AssetLoader;
+import com.jormandr.players.Player;
 
 /**
  * In this plot class, characteristics specific to plot tiles are defined such
@@ -30,9 +34,11 @@ public class Plot extends MapTile {
 	private float foodDebuff = 1.0f;
 	private float energyBuff = 1.0f;
 	private float energyDebuff = 1.0f;
+	private int cost = 10;
 	private boolean hasRoboticonCache = false;
 	// A similar space-time tradeoff is used to cache resource value
 	private int oreValueCache, foodValueCache, energyValueCache;
+	private Player owned = null;
 
 	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type) {
 		/**
@@ -260,6 +266,33 @@ public class Plot extends MapTile {
 	public boolean hasRoboticon() {
 		// Test this rigorously
 		return hasRoboticonCache;
+	}
+	
+	@Override
+	public  void draw(SpriteBatch batcher, float xx, float yy, int yOffset) {
+		
+		if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP1)){
+			batcher.setColor(1.0f, 0.7f, 0.7f, 1.0f);
+			
+		} else if (owned== GameWorld.getPlayer(GameWorld.GameState.HANDLINGP2)){
+			batcher.setColor(0.7f, 0.7f, 1.0f, 1.0f);
+		}
+		
+		
+		batcher.draw(AssetLoader.textureMap[getType().ordinal()], xx, yy + yOffset, 124, -68);
+		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	
+	public void setOwned(Player player){
+		owned = player;
+	}
+	
+	public int getCost(){
+		return cost;
+	}
+
+	public Player getOwned() {
+		return owned;
 	}
 
 }

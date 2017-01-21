@@ -13,6 +13,8 @@ public class UIButton {
 	private float[] verts = new float[8];
 	protected float button_width;
 	protected float button_height;
+	protected GameWorld myWorld;
+	
 
 	protected int type2buttonIn;
 	protected int type2buttonOut;
@@ -21,7 +23,9 @@ public class UIButton {
 	protected boolean isPressed = false;
 
 
-	public UIButton(float x, float y, ButtonType type) {
+	public UIButton(float x, float y, ButtonType type,GameWorld world) {
+		
+		myWorld = world;
 
 		coords = new Vector2(x, y);
 		button_type = type;
