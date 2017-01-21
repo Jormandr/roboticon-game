@@ -9,14 +9,16 @@ import com.jormandr.helpers.AssetLoader;
 
 public class UIButton {
 
-	private Vector2 coords;
+	protected Vector2 coords;
 	private float[] verts = new float[8];
-	private float button_width, button_height;
+	protected float button_width;
+	protected float button_height;
 
-	private int type2buttonIn, type2buttonOut;
+	protected int type2buttonIn;
+	protected int type2buttonOut;
 	private ButtonType button_type;
 
-	private boolean isPressed = false;
+	protected boolean isPressed = false;
 
 
 	public UIButton(float x, float y, ButtonType type) {

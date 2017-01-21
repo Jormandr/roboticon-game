@@ -7,22 +7,22 @@ import com.badlogic.gdx.InputProcessor;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
+import com.jormandr.ui.UIButtonClose;
 
 public class InputHandler implements InputProcessor {
 
 	private static ArrayList<UIButton> menuButtons;
 	private GameWorld myWorld;
 
-	private UIButton closeButton, buyPlotButton;
+	private static UIButton closeButton;
+	private UIButton buyPlotButton;
 
 	public InputHandler(GameWorld myWorld) {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
-		UIButton closeButton = new UIButton(300, 300, ButtonType.CLOSE);
+		UIButton closeButton = new UIButtonClose(300, 300, ButtonType.CLOSE, myWorld);
 		UIButton buyPlotButton = new UIButton(200, 200, ButtonType.RBIG);
-		menuButtons.add(closeButton);
-		menuButtons.add(buyPlotButton);
 
 		Gdx.app.log("InputHandler: ", "On");
 	}
@@ -110,15 +110,15 @@ public class InputHandler implements InputProcessor {
 	}
 	
 	public static void LoadPlotPlotMenu(){
-		
+		menuButtons.add(closeButton);
 	}
 	
 	public static void LoadPlotBuyMenu(){
-		
+		menuButtons.add(closeButton);
 	}
 	
 	public static void LoadPlotPlaceMenu(){
-		
+		menuButtons.add(closeButton);
 	}
 
 }

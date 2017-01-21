@@ -49,6 +49,7 @@ public class GameWorld {
 	 */
 	public GameWorld() {
 		currentState = WorldState.RUNNING;
+		gameState = GameState.HANDLINGP1;
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
@@ -106,11 +107,6 @@ public class GameWorld {
 		}
 
 		CollisionHandler.update();
-
-		/*
-		 * if() if we click on a tile or market buttton, or pause button to
-		 * bring up a menu then go to MENU world state
-		 */
 	}
 
 	private void updateMenu(float delta) {
