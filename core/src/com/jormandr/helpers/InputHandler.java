@@ -10,17 +10,20 @@ import com.jormandr.ui.UIButton;
 
 public class InputHandler implements InputProcessor {
 
-	private ArrayList<UIButton> menuButtons;
+	private static ArrayList<UIButton> menuButtons;
 	private GameWorld myWorld;
 
-	private UIButton testButton;
+	private UIButton closeButton,buyPlotButton;
 
 	public InputHandler(GameWorld myWorld) {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
-		UIButton testButton = new UIButton(300, 300, ButtonType.SSMALL);
-		menuButtons.add(testButton);
+		UIButton closeButton = new UIButton(300, 300, ButtonType.CLOSE);
+		UIButton buyPlotButton = new UIButton(200,200,ButtonType.RBIG);
+		menuButtons.add(closeButton);
+		menuButtons.add(buyPlotButton);
+		
 		Gdx.app.log("InputHandler: ", "On");
 	}
 
@@ -36,6 +39,7 @@ public class InputHandler implements InputProcessor {
 				} else if (myWorld.isMenu()) {
 					for (int i = 0; i < menuButtons.size(); i += 1) {
 						if (menuButtons.get(i).isMouseOver(screenX, screenY)) {
+							Gdx.app.log("InputHandler: ", "Button Clicked");
 							menuButtons.get(i).isTouchDown();
 							return true;
 						}
@@ -49,7 +53,12 @@ public class InputHandler implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		if (button == Input.Buttons.LEFT) {
+			Gdx.app.log("InputHandler: ", "Left Up");
+        for (int i = 0; i < menuButtons.size(); i+=1) {
+        	menuButtons.get(i).isTouchUp();
+        	}
+		}
 		return false;
 	}
 
@@ -87,6 +96,10 @@ public class InputHandler implements InputProcessor {
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public static ArrayList<UIButton> getMenuButtons() {
+		return menuButtons;
 	}
 
 }

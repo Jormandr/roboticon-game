@@ -122,6 +122,12 @@ public class GameWorld {
 		case 0:
 			// Player 1 is handling this
 			player1.playerStateMachine();
+			
+			if(isMenu()){
+				
+				
+			}
+			
 			break;
 		case 1:
 			// Deal with player 1's turn
@@ -223,7 +229,12 @@ public class GameWorld {
 	
 	public void toMenu(){
 		currentState = WorldState.MENU;
-		// then figure out what menu we need to bring up
+		//run a method that creates all the menu buttons
+	}
+	
+	public void toRunning(){
+		currentState = WorldState.RUNNING;
+		// run a method that destroys all the menu buttons
 	}
 
 }

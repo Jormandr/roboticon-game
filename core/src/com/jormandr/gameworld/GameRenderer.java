@@ -1,5 +1,8 @@
 package com.jormandr.gameworld;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
@@ -11,6 +14,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
+import com.jormandr.helpers.InputHandler;
+import com.jormandr.ui.UIButton;
 
 /**
  * This is the class that deals with all rendering of sprites and any other
@@ -24,6 +29,7 @@ public class GameRenderer {
 	private GameWorld myWorld; // TODO check if we need this
 	private OrthographicCamera cam;
 	private ShapeRenderer shapeRenderer;
+    private List<UIButton> menuButtons;
 
 	private SpriteBatch batcher;
 
@@ -137,7 +143,7 @@ public class GameRenderer {
 		drawUI();
 		
 		if (myWorld.isMenu()) {
-			batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
+			drawMenuUI();
 		}
 		
 		//test ui menu drawing
@@ -148,13 +154,22 @@ public class GameRenderer {
 		// End SpriteBatch
 		batcher.end();
 	}
+	
+	
+	private void drawMenuUI(){
+		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
+		
+        for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
+        	InputHandler.getMenuButtons().get(i).draw(batcher);
+        }
+		
+	}
 
 	private void drawUI() {
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTopMid, 640 - 160, (82-53) * 4, 0, 0, 80, -(82-53), 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
-
 		for (int k = 0; k < 8; k++) {
 			if (myWorld.getGameState() == k) {
 				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);

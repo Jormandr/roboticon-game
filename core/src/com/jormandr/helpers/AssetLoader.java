@@ -59,15 +59,25 @@ public class AssetLoader {
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
 		uiMenu.flip(false, true);
 		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
+		uiPlotScreen.flip(false, true);
 		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
+		uiCloseOn.flip(false, true);
 		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 -12, 94 - 82);
+		uiButtonRSmallIn.flip(false, true);
 		uiButtonRSmallOut = new TextureRegion(uiTexture, 45, 83, 74 -44, 94 - 82);
+		uiButtonRSmallOut.flip(false, true);
 		uiButtonSSmallIn = new TextureRegion(uiTexture, 1, 96, 13, 107 - 95);
+		uiButtonSSmallIn.flip(false, true);
 		uiButtonSSmallOut = new TextureRegion(uiTexture, 16, 96, 28 -15, 107 - 95);
+		uiButtonSSmallOut.flip(false, true);
 		uiButtonRBigIn = new TextureRegion(uiTexture, 236, 53, 276 -235, 70 - 52);
+		uiButtonRBigIn.flip(false, true);
 		uiButtonRBigOut = new TextureRegion(uiTexture, 236, 72, 276 -235, 89-71);
+		uiButtonRBigOut.flip(false, true);
 		uiButtonSBigIn = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
+		uiButtonSBigIn.flip(false, true);
 		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316 -298, 70 - 52);
+		uiButtonSBigOut.flip(false, true);
 
 		// background
 
