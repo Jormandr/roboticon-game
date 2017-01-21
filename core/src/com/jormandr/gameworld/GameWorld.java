@@ -7,6 +7,7 @@ import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.gameworld.GameWorld.WorldState;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
@@ -51,7 +52,7 @@ public class GameWorld {
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 10, 0, 1);
+		player1 = new HumanPlayer(0, 0, 0, 0, 100, 0, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
@@ -227,22 +228,22 @@ public class GameWorld {
 		InputHandler.clearMenuButtons();
 
 		if (gameState == GameState.HANDLINGP1) {
-			if (player1.playerState == PlayerState.PLOT) {
+			if (player1.getState() == PlayerState.PLOT) {
 				InputHandler.LoadPlotPlotMenu();
-			} else if (player1.playerState == PlayerState.BUY) {
+			} else if (player1.getState() == PlayerState.BUY) {
 				InputHandler.LoadPlotBuyMenu();
-			} else if (player1.playerState == PlayerState.PLACE) {
+			} else if (player1.getState() == PlayerState.PLACE) {
 				InputHandler.LoadPlotPlaceMenu();
 			}
 
 		}
 
 		else if (gameState == GameState.HANDLINGP2) {
-			if (player2.playerState == PlayerState.PLOT) {
+			if (player2.getState() == PlayerState.PLOT) {
 				InputHandler.LoadPlotPlotMenu();
-			} else if (player2.playerState == PlayerState.BUY) {
+			} else if (player2.getState() == PlayerState.BUY) {
 				InputHandler.LoadPlotBuyMenu();
-			} else if (player2.playerState == PlayerState.PLACE) {
+			} else if (player2.getState() == PlayerState.PLACE) {
 				InputHandler.LoadPlotPlaceMenu();
 			}
 		}
@@ -263,11 +264,14 @@ public class GameWorld {
 	public static Player getPlayer(GameState state){
 		
 		if(state == GameState.HANDLINGP1){
-		
 		return player1;
 		}
 		
 		return player2;
+	}
+
+	public WorldState getWorldState() {
+		return currentState;
 	}
 	
 }

@@ -272,10 +272,10 @@ public class Plot extends MapTile {
 	public  void draw(SpriteBatch batcher, float xx, float yy, int yOffset) {
 		
 		if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP1)){
-			batcher.setColor(1.0f, 0.7f, 0.7f, 1.0f);
+			batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
 			
 		} else if (owned== GameWorld.getPlayer(GameWorld.GameState.HANDLINGP2)){
-			batcher.setColor(0.7f, 0.7f, 1.0f, 1.0f);
+			batcher.setColor(0.5f, 0.5f, 1.0f, 1.0f);
 		}
 		
 		

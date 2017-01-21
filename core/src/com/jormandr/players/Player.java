@@ -13,7 +13,7 @@ public abstract class Player {
 		PLOT, BUY, PLACE, END;
 	}
 	
-	public PlayerState playerState;
+	protected PlayerState playerState;
 	private int score, ore, food, energy, money, roboticonsOwned;
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 	private Plot[] plotsOwned = new Plot[mapSize];
@@ -346,6 +346,10 @@ public abstract class Player {
 	public void setState(PlayerState state){
 		playerState = state;
 		
+	}
+	
+	public PlayerState getState(){
+	return playerState;
 	}
 
 }

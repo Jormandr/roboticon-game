@@ -24,8 +24,8 @@ public class InputHandler implements InputProcessor {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
-		closeButton = new UIButtonClose(300, 300, ButtonType.CLOSE, myWorld);
-		buyPlotButton = new UIButtonBuyPlot(200, 200, ButtonType.RBIG, myWorld);
+		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
+		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
 
 		Gdx.app.log("InputHandler: ", "On");
 	}

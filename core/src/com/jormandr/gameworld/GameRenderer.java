@@ -8,6 +8,7 @@ import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld.GameState;
+import com.jormandr.gameworld.GameWorld.WorldState;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
+import com.jormandr.players.Player.PlayerState;
 import com.jormandr.ui.UIButton;
 
 /**
@@ -117,9 +119,8 @@ public class GameRenderer {
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
 					
 					tile.draw(batcher,xx,yy,60);
-					if (myWorld.getGameState() == GameState.HANDLINGP1) {
-
-
+					if (myWorld.getWorldState() == WorldState.RUNNING) {
+						
 						batcher.draw(AssetLoader.uiTileInfo, xx + 64, yy, 0, 0, 20, -28, 4, 4, 0);
 
 						AssetLoader.fontX.draw(batcher, tile.getType().toString(), xx + 76, yy - 100);
@@ -129,6 +130,8 @@ public class GameRenderer {
 							AssetLoader.fontX.draw(batcher, "Ore: " + ((Plot) tile).getOreValue(), xx + 76, yy - 65);
 							AssetLoader.fontX.draw(batcher, "Energy: " + ((Plot) tile).getEnergyValue(), xx + 76,
 									yy - 50);
+							AssetLoader.fontX.draw(batcher, "Cost: " + ((Plot) tile).getCost(),xx + 76,yy - 35);
+							AssetLoader.fontX.draw(batcher, "Player: " + GameWorld.getPlayer(myWorld.getGameState()).getPlayerNumber(),xx + 76,yy - 20);
 						}
 					}
 
@@ -184,9 +187,20 @@ public class GameRenderer {
     		//Gdx.app.log("Drawing: ", "button");
         	InputHandler.getMenuButtons().get(i).draw(batcher);
         }
-		
+        
+        MapTile tile = InputHandler.getTile();
+        Plot plot = (Plot)tile;
+        
+        if (GameWorld.getPlayer(myWorld.getGameState()).getState() == PlayerState.PLOT);
+		batcher.draw(AssetLoader.uiPlotScreen, 504, 260, 0, 0, 233 -165, 100 - 52, 4, 4, 0);  
+		batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], 516, 304+(68*2), 0, 0,124, -68,2,2,0);
+		AssetLoader.fontX.draw(batcher, tile.getType().toString(),380, 265);		
+		AssetLoader.fontX.draw(batcher, "Food: " + plot.getFoodValue(),380, 280);
+		AssetLoader.fontX.draw(batcher, "Ore: " + plot.getOreValue(),  380,295);
+		AssetLoader.fontX.draw(batcher, "Energy: " + plot.getEnergyValue(),380, 310);
+		AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(),380,325);
 	}
-
+	
 	private void drawUI() {
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTopMid, 640 - 160, (82-53) * 4, 0, 0, 80, -(81-52), 4, 4, 0);

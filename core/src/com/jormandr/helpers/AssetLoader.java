@@ -53,9 +53,8 @@ public class AssetLoader {
 		uiTimerBase = new TextureRegion(uiTexture, 279, 81, 316, 88-80);
 		uiTimerJuice = new TextureRegion(uiTexture, 236,91,273-235,98-90);
 		uiTimerFrame = new TextureRegion(uiTexture, 279,72,316-278,79-71);
-
+		
 		// Menu UI stuff
-
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
 		uiMenu.flip(false, true);
 		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
