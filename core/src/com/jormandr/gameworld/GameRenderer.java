@@ -72,10 +72,8 @@ public class GameRenderer {
 
 	/**
 	 * where all assets and shapes are rendered
-	 * 
-	 * @param runTime
 	 */
-	public void render(float runTime) {
+	public void render() {
 		MapTile[][] worldMap = GameWorld.getMap();
 		int arrayX = GameConfig.getMapWidth();
 		int arrayY = GameConfig.getMapHeight();
@@ -84,7 +82,6 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//Gdx.app.log("GameScreen FPS", (runTime) + "");
 
 		shapeRenderer.begin(ShapeType.Line);
 		
