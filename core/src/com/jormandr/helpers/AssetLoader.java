@@ -15,12 +15,14 @@ public class AssetLoader {
 
 	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
-			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOn, uiButtonRSmallIn,
+			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOff, uiCloseOn, uiButtonRSmallIn,
 			uiButtonRSmallOut, uiButtonSSmallIn, uiButtonSSmallOut, uiButtonRBigIn, uiButtonRBigOut, uiButtonSBigIn,
 			uiButtonSBigOut, uiTimerBase, uiTimerJuice, uiTimerFrame;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
 			true);
+	public static TextureRegion[] button_textures = new TextureRegion[10];
+	public final static float[] button_size = new float[10];
 
 	/**
 	 * Loads files into textures and then splits textures into correct regions
@@ -55,16 +57,29 @@ public class AssetLoader {
 		// Menu UI stuff
 
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
+		uiMenu.flip(false, true);
 		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
+		uiPlotScreen.flip(false, true);
+		uiCloseOff = new TextureRegion(uiTexture, 31, 96, 40 -30, 105-95);
+		uiCloseOff.flip(false, true);
 		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
+		uiCloseOn.flip(false, true);
 		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 -12, 94 - 82);
+		uiButtonRSmallIn.flip(false, true);
 		uiButtonRSmallOut = new TextureRegion(uiTexture, 45, 83, 74 -44, 94 - 82);
+		uiButtonRSmallOut.flip(false, true);
 		uiButtonSSmallIn = new TextureRegion(uiTexture, 1, 96, 13, 107 - 95);
+		uiButtonSSmallIn.flip(false, true);
 		uiButtonSSmallOut = new TextureRegion(uiTexture, 16, 96, 28 -15, 107 - 95);
+		uiButtonSSmallOut.flip(false, true);
 		uiButtonRBigIn = new TextureRegion(uiTexture, 236, 53, 276 -235, 70 - 52);
+		uiButtonRBigIn.flip(false, true);
 		uiButtonRBigOut = new TextureRegion(uiTexture, 236, 72, 276 -235, 89-71);
+		uiButtonRBigOut.flip(false, true);
 		uiButtonSBigIn = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
+		uiButtonSBigIn.flip(false, true);
 		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316 -298, 70 - 52);
+		uiButtonSBigOut.flip(false, true);
 
 		// background
 
@@ -74,6 +89,36 @@ public class AssetLoader {
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;
 		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
 		textureMap[TileType.WATER.ordinal()] = waterRegion;
+		
+		
+		//ui button setup 
+		
+		button_textures[0] = AssetLoader.uiCloseOff;
+		button_textures[1] = AssetLoader.uiCloseOn;
+		button_textures[2] = AssetLoader.uiButtonRSmallIn;
+		button_textures[3] = AssetLoader.uiButtonRSmallOut;
+		button_textures[4] = AssetLoader.uiButtonSSmallIn;
+		button_textures[5] = AssetLoader.uiButtonSSmallOut;
+		button_textures[6] = AssetLoader.uiButtonRBigIn;
+		button_textures[7] = AssetLoader.uiButtonRBigOut;
+		button_textures[8] = AssetLoader.uiButtonSBigIn;
+		button_textures[9] = AssetLoader.uiButtonSBigOut;
+
+		// Close button width and height
+		button_size[0] = 10.0f;
+		button_size[1] = 10.0f;
+		// Small Rectangle button width and height
+		button_size[2] = 30.0f;
+		button_size[3] = 12.0f;
+		// Small Square button width and height
+		button_size[4] = 13.0f;
+		button_size[5] = 12.0f;
+		// Big Rectangle button width and height
+		button_size[6] = 41.0f;
+		button_size[7] = 18.0f;
+		// Big Square button width and height
+		button_size[8] = 18.0f;
+		button_size[9] = 18.0f;
 
 	}
 

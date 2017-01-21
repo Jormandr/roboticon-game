@@ -12,32 +12,26 @@ import com.jormandr.helpers.GameStateHandler;
 public class HumanPlayer extends Player {
 
 	public HumanPlayer(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			GameStateHandler gsh, int playerState) {
-		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, gsh, playerState);
+			int playerState) {
+		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, playerState);
 	}
 
 	@Override
 	public void playerStateMachine() {
 		switch (playerState) {
-		case 0:
-			// buy plots of land
-			// TEMP: testing clickbutton on plot menu: WORKING
-			// this is just a general menu, just fixing the position of the
-			// buttons. TBD open on plot click and custom data for each plot
-			if (CollisionHandler.mouseDown()) {
-				Gdx.app.log("button pressed", Integer.toString(CollisionHandler.getNearestButton(0)));
-			}
+		case PLOT:
+			//buy plots
 			break;
-		case 1:
+		case BUY:
 			// buying roboticons and gambling
 			// timed state
 
 			break;
-		case 2:
+		case PLACE:
 			// customising and placing roboticons
 			// timed state
 			break;
-		case 3:
+		case END:
 			// final state (updates gamestate Machine)
 			break;
 		}

@@ -1,12 +1,9 @@
 package com.jormandr.helpers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+
 import com.badlogic.gdx.math.Intersector;
 import com.jormandr.config.GameConfig;
-// import com.badlogic.gdx.math.Polygon; // Do not remove yet, will be used // Yeah but the warning was annoying me, commented
 import com.jormandr.gameobjects.MapTile;
-import com.jormandr.gameobjects.UIElement;
 import com.jormandr.gameworld.GameWorld;
 
 /**
@@ -14,6 +11,8 @@ import com.jormandr.gameworld.GameWorld;
  *
  */
 public class CollisionHandler {
+	
+	private static int[] mousePos = new int[2];
 
 	// See note from MapTile about guessing
 
@@ -24,10 +23,8 @@ public class CollisionHandler {
 	 * 
 	 * @return returns the nearest map tile to the mouse
 	 */
-	static boolean clickBuffer = true;
 
 	public static MapTile getNearestMapTile() {
-		float[] mousePos = getMousePos();
 		float[] gridPos = convertToGrid(mousePos);
 
 		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
@@ -46,58 +43,29 @@ public class CollisionHandler {
 
 	}
 
-	private static float[] mousePos = new float[2];
-
 	/**
 	 * Update is run every frame
 	 * <p>
 	 * Checks mouse for update in inputs
 	 */
 	public static void update() {
-		mousePos[0] = Gdx.input.getX();
-		// Gdx.app.log("Input Handler", Float.toString(mousePos[0]));
-		mousePos[1] = Gdx.input.getY();
-		// Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
+		
+		mousePos = GameWorld.getMousePos();
 
 	}
-
-	public static Boolean mouseDown() {
-		if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && clickBuffer) {
-			Gdx.app.log("Input Handler", Float.toString(mousePos[1]));
-			// stuff that happens on click put in here
-
-			clickBuffer = false;
-			return true;
-		} else if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) == false && clickBuffer == false) {
-			clickBuffer = true;
-			return false;
-		}
-		return false;
-	}
-
-	/**
-	 * returns the position of the mouse in camera view
-	 * 
-	 * @return the position of the mouse in camera view
-	 */
-	public static float[] getMousePos() {
-		return mousePos;
-	}
-
-	// TODO should these float[2] actually be Vector2's?
 
 	/**
 	 * Converts a vector camera view position into a vector map grid position
 	 * 
-	 * @param position
+	 * @param mousePos
 	 * @return map grid position
 	 */
-	private static float[] convertToGrid(float[] position) {
+	private static float[] convertToGrid(int[] mousePos) {
 		float w = GameConfig.getTileWidth();
 		float h = GameConfig.getTileHeight();
 		float[] gridPos = new float[2];
-		float x = position[0] - 10.0f * w;
-		float y = position[1] - 7.0f * h;
+		float x = mousePos[0] - 10.0f * w;
+		float y = mousePos[1] - 7.0f * h;
 		// the reason this is shit is because the rendering of the tiles is
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
@@ -116,26 +84,9 @@ public class CollisionHandler {
 
 		MapTile tile = getNearestMapTile();
 
-		// Gdx.app.log("tileMouseOver", tile.toString());
-		float[] mousePos = getMousePos();
-
 		float[] tileV = tile.getVerts();
 
 		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
-
-	}
-
-	// some testing done
-	/**
-	 * Return the nearest button
-	 * @param window
-	 * @return button ID or 0
-	 */
-	public static int getNearestButton(int window) {
-		float[] mousePos = getMousePos();
-		int button = UIElement.isButtonOver(mousePos[0], mousePos[1], window);
-		return button;
-
 	}
 
 }

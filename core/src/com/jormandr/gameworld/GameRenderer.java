@@ -1,16 +1,22 @@
 package com.jormandr.gameworld;
 
+
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameobjects.Plot;
+import com.jormandr.gameworld.GameWorld.GameState;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;	
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
+import com.jormandr.helpers.InputHandler;
+import com.jormandr.ui.UIButton;
 
 /**
  * This is the class that deals with all rendering of sprites and any other
@@ -24,6 +30,7 @@ public class GameRenderer {
 	private GameWorld myWorld; // TODO check if we need this
 	private OrthographicCamera cam;
 	private ShapeRenderer shapeRenderer;
+    private List<UIButton> menuButtons;
 
 	private SpriteBatch batcher;
 
@@ -64,27 +71,6 @@ public class GameRenderer {
 	}
 
 	/**
-	 * gets the position of the mouse and creates a polygon at that position
-	 * 
-	 * @param mousePos
-	 * @return polygon at mouse position
-	 */
-	private float[] getMouseVerts(float[] mousePos) {
-		// TODO work out the significance of 25
-		float[] mouseVerts = new float[8];
-		mouseVerts[0] = mousePos[0];
-		mouseVerts[1] = mousePos[1];
-		mouseVerts[2] = mousePos[0] + 25;
-		mouseVerts[3] = mousePos[1];
-		mouseVerts[4] = mousePos[0] + 25;
-		mouseVerts[5] = mousePos[1] - 25;
-		mouseVerts[6] = mousePos[0];
-		mouseVerts[7] = mousePos[1] - 25;
-
-		return mouseVerts;
-	}
-
-	/**
 	 * where all assets and shapes are rendered
 	 * 
 	 * @param runTime
@@ -98,9 +84,11 @@ public class GameRenderer {
 		// Fill the entire screen with black, to prevent potential flickering.
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		Gdx.app.log("GameScreen FPS", (runTime) + "");
+		//Gdx.app.log("GameScreen FPS", (runTime) + "");
 
 		shapeRenderer.begin(ShapeType.Line);
+		
+		shapeRenderer.rect(300, 300, 40, 40);
 
 		// no shapes currently being rendered this is being kept in for
 		// completeness of pipeline
@@ -132,7 +120,7 @@ public class GameRenderer {
 				if (tile == CollisionHandler.getNearestMapTile() && CollisionHandler.tileMouseOver() == true) {
 					batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], xx, yy + 60, 124, -68);
 
-					if (myWorld.getGameState() == 0) {
+					if (myWorld.getGameState() == GameState.HANDLINGP1) {
 
 						batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
 						batcher.draw(AssetLoader.uiTileInfo, xx + 64, yy, 0, 0, 20, -28, 4, 4, 0);
@@ -156,11 +144,28 @@ public class GameRenderer {
 		// drawing the UI
 
 		drawUI();
+		
+		if (myWorld.isMenu()) {
+			drawMenuUI();
+		}
+		
+		//test ui menu drawing
+		//myWorld.getUIButton().draw(batcher);
 
 		batcher.disableBlending();
 
 		// End SpriteBatch
 		batcher.end();
+	}
+	
+	
+	private void drawMenuUI(){
+		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
+		
+        for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
+        	InputHandler.getMenuButtons().get(i).draw(batcher);
+        }
+		
 	}
 
 	private void drawUI() {
@@ -168,9 +173,8 @@ public class GameRenderer {
 		batcher.draw(AssetLoader.uiTopMid, 640 - 160, (82-53) * 4, 0, 0, 80, -(82-53), 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
-
 		for (int k = 0; k < 8; k++) {
-			if (myWorld.getGameState() == k) {
+			if (myWorld.getGameState().ordinal() == k) {
 				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
 			} else {
 				batcher.draw(AssetLoader.uiStateLightOff, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);

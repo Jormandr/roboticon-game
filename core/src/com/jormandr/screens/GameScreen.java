@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.jormandr.gameworld.GameRenderer;
 import com.jormandr.gameworld.GameWorld;
+import com.jormandr.helpers.InputHandler;
 
 /**
  * This class is a Screen (see libgdx docs) It is the link between the game
@@ -30,6 +31,7 @@ public class GameScreen implements Screen {
 	public GameScreen() {
 		world = new GameWorld();
 		renderer = new GameRenderer(world);
+		Gdx.input.setInputProcessor(new InputHandler(world));
 
 	}
 
