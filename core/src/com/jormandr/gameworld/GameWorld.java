@@ -49,7 +49,7 @@ public class GameWorld {
 	 */
 	public GameWorld() {
 		currentState = WorldState.RUNNING;
-		gameState = GameState.HANDLINGP1;
+		gameState = GameState.WAITINGFORP1;
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
@@ -125,15 +125,13 @@ public class GameWorld {
 		switch (gameState) {
 		case WAITINGFORP1:
 			// Player 1 is handling this
-			player1.playerStateMachine();
-
-			if (isMenu()) {
-
-			}
-
+			player1.setState(PlayerState.PLOT);
+			setGameState(GameState.HANDLINGP1);
 			break;
 		case HANDLINGP1:
 			// Deal with player 1's turn
+			player1.playerStateMachine();
+
 			break;
 		case WAITINGFORP2:
 			// Player 2 is handling this
@@ -260,4 +258,8 @@ public class GameWorld {
 		// run a method that destroys all the menu buttons
 	}
 
+	public void setGameState(GameState state){
+		gameState = state;
+	}
+	
 }

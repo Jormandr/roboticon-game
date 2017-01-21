@@ -161,8 +161,10 @@ public class GameRenderer {
 	
 	private void drawMenuUI(){
 		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
+		//InputHandler.closeButton.draw(batcher);
 		
         for (int i = 0; i < InputHandler.getMenuButtons().size(); i+=1) {
+    		Gdx.app.log("Drawing: ", "button");
         	InputHandler.getMenuButtons().get(i).draw(batcher);
         }
 		

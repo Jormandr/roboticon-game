@@ -14,15 +14,15 @@ public class InputHandler implements InputProcessor {
 	private static ArrayList<UIButton> menuButtons;
 	private GameWorld myWorld;
 
-	private static UIButton closeButton;
-	private UIButton buyPlotButton;
+	public static UIButton closeButton;
+	private static UIButton buyPlotButton;
 
 	public InputHandler(GameWorld myWorld) {
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
-		UIButton closeButton = new UIButtonClose(300, 300, ButtonType.CLOSE, myWorld);
-		UIButton buyPlotButton = new UIButton(200, 200, ButtonType.RBIG);
+		closeButton = new UIButtonClose(300, 300, ButtonType.CLOSE, myWorld);
+		buyPlotButton = new UIButton(200, 200, ButtonType.RBIG);
 
 		Gdx.app.log("InputHandler: ", "On");
 	}
@@ -110,7 +110,9 @@ public class InputHandler implements InputProcessor {
 	}
 	
 	public static void LoadPlotPlotMenu(){
+		Gdx.app.log("InputHandler: ", "PlotPlotMenu");
 		menuButtons.add(closeButton);
+		menuButtons.add(buyPlotButton);
 	}
 	
 	public static void LoadPlotBuyMenu(){
