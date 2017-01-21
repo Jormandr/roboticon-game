@@ -7,9 +7,8 @@ package com.jormandr.players;
  */
 public class HumanPlayer extends Player {
 
-	public HumanPlayer(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			int playerState) {
-		super(score, ore, food, energy, money, roboticonsOwned, playerNumber, playerState);
+	public HumanPlayer(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber) {
+		super(score, ore, food, energy, money, roboticonsOwned, playerNumber);
 	}
 
 	@Override

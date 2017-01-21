@@ -53,8 +53,8 @@ public class GameWorld {
 		Gdx.app.log("GameWorld", "Initialising GSH");
 		// gsh = new GameStateHandler();
 		Gdx.app.log("GameWorld", "Initialising players");
-		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1, 0);
-		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2, 0);
+		player1 = new HumanPlayer(0, 0, 0, 0, 0, 0, 1);
+		player2 = new HumanPlayer(0, 0, 0, 0, 0, 0, 2);
 
 		Gdx.app.log("GameWorld", "Initialising random tiles");
 		for (int i = 0; i < mapWidth; i++) {

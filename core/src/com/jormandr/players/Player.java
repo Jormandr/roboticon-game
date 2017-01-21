@@ -100,8 +100,7 @@ public abstract class Player {
 	 * @param gsh
 	 * @param playerState
 	 */
-	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber,
-			 int playerState) {
+	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber) {
 		this.score = score;
 		this.ore = ore;
 		this.food = food;
@@ -109,6 +108,7 @@ public abstract class Player {
 		this.money = money;
 		this.roboticonsOwned = roboticonsOwned;
 		this.playerNumber = playerNumber;
+		this.playerState = PlayerState.END;
 
 	}
 
