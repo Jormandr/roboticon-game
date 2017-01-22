@@ -14,14 +14,16 @@ import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
 import com.jormandr.ui.UIButtonPlaceRobo;
 import com.jormandr.ui.UIButtonUpgradeRobo;
+import com.jormandr.ui.UIButtonUpgradeRoboEnergy;
 import com.jormandr.ui.UIButtonUpgradeRoboFood;
+import com.jormandr.ui.UIButtonUpgradeRoboOre;
 
 public class InputHandler implements InputProcessor {
 
 	private static ArrayList<UIButton> menuButtons;
 	private static GameWorld myWorld;
 
-	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, testButton;
+	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, upgradeFoodButton, upgradeOreButton,upgradeEnergyButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
@@ -32,7 +34,9 @@ public class InputHandler implements InputProcessor {
 		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
 		endTurnButton = new UIButtonEndTurn(189*4,24,ButtonType.SSMALL,myWorld);
 		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, ButtonType.RBIG, myWorld);
-		testButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
+		upgradeFoodButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
+		upgradeOreButton = new UIButtonUpgradeRoboOre(796,312,ButtonType.RSMALL,myWorld);
+		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796,368,ButtonType.RSMALL,myWorld);
 		
 		menuButtons.add(endTurnButton);
 
@@ -140,7 +144,9 @@ public class InputHandler implements InputProcessor {
 		menuButtons.add(closeButton);
 		menuButtons.add(placeRoboticonButton);
 		if (((Plot) getTile()).getOwned() == GameWorld.getPlayer(myWorld.getGameState())){
-		menuButtons.add(testButton);
+		menuButtons.add(upgradeFoodButton);
+		menuButtons.add(upgradeOreButton);
+		menuButtons.add(upgradeEnergyButton);
 		}
 	}
 	
