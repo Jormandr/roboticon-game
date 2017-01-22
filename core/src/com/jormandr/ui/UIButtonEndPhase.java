@@ -5,9 +5,9 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
 
-public class UIButtonEndTurn extends UIButton {
+public class UIButtonEndPhase extends UIButton {
 
-	public UIButtonEndTurn(float x, float y, ButtonType type, GameWorld world) {
+	public UIButtonEndPhase(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 
 	}
@@ -24,7 +24,7 @@ public class UIButtonEndTurn extends UIButton {
 		}
 
 		AssetLoader.fontX.draw(batcher, "End", 766, 40);
-		AssetLoader.fontX.draw(batcher, "Turn", 766, 50);
+		AssetLoader.fontX.draw(batcher, "Phase", 766, 50);
 	}
 
 	@Override
