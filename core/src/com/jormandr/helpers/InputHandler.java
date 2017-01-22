@@ -150,6 +150,17 @@ public class InputHandler implements InputProcessor {
 		}
 	}
 	
+	public static void LoadMarketRoboMenu(){
+		menuButtons.add(endTurnButton);
+		menuButtons.add(closeButton);
+		
+	}
+	
+	public static void LoadMarketAuctionMenu(){
+		menuButtons.add(endTurnButton);
+		menuButtons.add(closeButton);
+	}
+	
 	public static MapTile getTile(){
 		return selectedTile;
 	}
