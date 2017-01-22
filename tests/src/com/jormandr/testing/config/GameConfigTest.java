@@ -14,6 +14,11 @@ public class GameConfigTest {
 		assertTrue(GameConfig.getMapHeight() > 0);
 		assertTrue(GameConfig.getMapWidth() > 0);
 		assertTrue(GameConfig.getRandomEventChance() >= 0);
+		assertTrue(GameConfig.getEnergyValueRandomLimit() >= 0);
+		assertTrue(GameConfig.getOreValueRandomLimit() >= 0);
+		assertTrue(GameConfig.getFoodValueRandomLimit() >= 0);
+		assertTrue(GameConfig.getTileHeight() > 0.0f);
+		assertTrue(GameConfig.getTileWidth() > 0.0f);
 	}
 
 }

@@ -5,6 +5,7 @@ import com.jormandr.gameobjects.TileType;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
+import static com.jormandr.misctypes.UtilityFunctions.floatEq;
 
 /**
  * In this plot class, characteristics specific to plot tiles are defined such
@@ -83,10 +84,20 @@ public class Plot extends MapTile {
 	/**
 	 * sets the ore resource buff multiplier
 	 * 
-	 * @param oreBuff
+	 * @param buff
 	 */
 	public void setOreBuff(float buff) {
-		ore.setBuff(buff);;
+		ore.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the ore resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeOreBuff(float buff) {
+		ore.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -102,10 +113,19 @@ public class Plot extends MapTile {
 	/**
 	 * sets the ore resource debuff multiplier
 	 * 
-	 * @param oreDebuff
+	 * @param debuff
 	 */
 	public void setOreDebuff(float debuff) {
 		ore.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the ore resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeOreDebuff(float debuff) {
+		ore.changeDebuff(debuff);
 	}
 
 	/**
@@ -114,16 +134,26 @@ public class Plot extends MapTile {
 	 * @return the food resource buff multiplier
 	 */
 	public float getFoodBuff() {
-		return food.getDebuff();
+		return food.getBuff();
 	}
 
 	/**
 	 * sets the food resource buff multiplier
 	 * 
-	 * @param foodBuff
+	 * @param buff
 	 */
 	public void setFoodBuff(float buff) {
 		food.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the food resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeFoodBuff(float buff) {
+		food.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -133,16 +163,25 @@ public class Plot extends MapTile {
 	 * @return the food resource debuff multiplier
 	 */
 	public float getFoodDebuff() {
-		return food.getBuff();
+		return food.getDebuff();
 	}
 
 	/**
 	 * sets the food resource debuff multiplier
 	 * 
-	 * @param foodDebuff
+	 * @param debuff
 	 */
 	public void setFoodDebuff(float debuff) {
 		food.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the food resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeFoodDebuff(float debuff) {
+		food.changeDebuff(debuff);
 	}
 
 	/**
@@ -157,10 +196,20 @@ public class Plot extends MapTile {
 	/**
 	 * sets the energy resource buff multiplier
 	 * 
-	 * @param energyBuff
+	 * @param buff
 	 */
 	public void setEnergyBuff(float buff) {
 		energy.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the energy resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeEnergyBuff(float buff) {
+		energy.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -176,10 +225,19 @@ public class Plot extends MapTile {
 	/**
 	 * sets the energy resource debuff multiplier
 	 * 
-	 * @param energyDebuff
+	 * @param debuff
 	 */
 	public void setEnergyDebuff(float debuff) {
 		energy.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the energy resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeEnergyDebuff(float debuff) {
+		energy.changeDebuff(debuff);
 	}
 
 	/**
@@ -194,24 +252,13 @@ public class Plot extends MapTile {
 		hasRoboticonCache = false;
 	}
 
-	/**
-	 * Compares floats for equality using a (hardcoded) margin of error
-	 * 
-	 * @param x
-	 * @param y
-	 * @return whether they are withing the margin
-	 */
-	private boolean floatEq(float x, float y) {
-		return Math.abs(x - y) < 1.0f;
-	}
-
 	private void updateHasRoboticonCache() {
 		hasRoboticonCache = !(floatEq(ore.getBuff(), 1.0f) && floatEq(food.getBuff(), 1.0f) && floatEq(energy.getBuff(), 1.0f));
 	}
 
 	/**
 	 * returns 1 if a roboticon is placed on this tile. Determination is done by
-	 * checking if each buff is 0.0f < x < 2.0f. To avoid expensive floating
+	 * checking if each buff is 0.9f < x < 0.1f. To avoid expensive floating
 	 * point calculations, the value of this function is calculated upon buff
 	 * mutation and cached
 	 * 

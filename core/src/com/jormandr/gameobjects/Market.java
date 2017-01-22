@@ -4,8 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.helpers.AssetLoader;
 
 public class Market {
-	
+
 	private int[] value = new int[4];
+<<<<<<< HEAD
 	private float[] buyValue = new float [3];
 	private float[] sellValue = new float [3];
 	
@@ -25,84 +26,92 @@ public class Market {
 	}
 
 	public void setFood(int value){
+
+	private float[] buyValue = new float[3];
+	private float[] sellValue = new float[3];
+
+	public Market(int food, int ore, int energy, int roboticons, float foodBuyValue, float oreBuyValue,
+			float energyBuyValue, float roboticonsSellValue) {
+
+		value = new int[] { food, ore, energy, roboticons };
+		buyValue = new float[] { foodBuyValue, oreBuyValue, energyBuyValue };
+		sellValue = new float[] { foodBuyValue * 1.5f, oreBuyValue * 1.5f, energyBuyValue * 1.5f, roboticonsSellValue };
+
+	}
+
+	public void setFood(int value) {
 		this.value[0] = value;
 	}
-	
-	public void setOre(int value){
+
+	public void setOre(int value) {
 		this.value[1] = value;
 	}
-	
-	public void setEnergy(int value){
+
+	public void setEnergy(int value) {
 		this.value[2] = value;
 	}
-	
-	public void setRoboticons(int value){
-		this.value[3]	 = value;
+
+	public void setRoboticons(int value) {
+		this.value[3] = value;
 	}
-	
-	public int getFood(){
+
+	public int getFood() {
 		return value[0];
 	}
-	
-	public int getOre(){
+
+	public int getOre() {
 		return value[1];
 	}
-	
-	public int getEnergy(){
+
+	public int getEnergy() {
 		return value[2];
 	}
-	
-	public int getRoboticons(){
+
+	public int getRoboticons() {
 		return value[3];
 	}
-	
-	public int getFoodBuyValue(){
+
+	public int getFoodBuyValue() {
 		return (int) buyValue[0];
 	}
-	
-	public int getOreBuyValue(){
+
+	public int getOreBuyValue() {
 		return (int) buyValue[1];
 	}
-	
-	public int getEnergyBuyValue(){
+
+	public int getEnergyBuyValue() {
 		return (int) buyValue[2];
 	}
-	
-	public int getFoodSellValue(){
+
+	public int getFoodSellValue() {
 		return (int) sellValue[0];
 	}
-	
-	public int getOreSellValue(){
+
+	public int getOreSellValue() {
 		return (int) sellValue[1];
 	}
-	
-	public int getEnergySellValue(){
+
+	public int getEnergySellValue() {
 		return (int) sellValue[2];
 	}
-	
-	public int getRoboticonSellValue(){
+
+	public int getRoboticonSellValue() {
 		return (int) sellValue[3];
 	}
-	
-	public void draw(SpriteBatch batcher){
-		
+
+	public void draw(SpriteBatch batcher) {
+
 		AssetLoader.fontX.draw(batcher, "BUY: RESOURCE: SELL", 380, 265);
 		AssetLoader.fontX.draw(batcher, getFoodBuyValue() + "    :Food:     " + getFoodSellValue(), 380, 280);
 		AssetLoader.fontX.draw(batcher, getOreBuyValue() + "    :Ore:      " + getOreSellValue(), 380, 295);
 		AssetLoader.fontX.draw(batcher, getEnergyBuyValue() + "    :Energy:   " + getEnergySellValue(), 380, 310);
-		AssetLoader.fontX.draw(batcher, "Roboticons in stock: " + getRoboticons(), 380, 340);		
-		AssetLoader.fontX.draw(batcher, "Cost: " + getRoboticonSellValue(), 380, 350);			
+		AssetLoader.fontX.draw(batcher, "Roboticons in stock: " + getRoboticons(), 380, 340);
+		AssetLoader.fontX.draw(batcher, "Cost: " + getRoboticonSellValue(), 380, 350);
 	}
 
 	public void changeRoboticons(int difference) {
-		value[3] +=difference;
-		
+		value[3] += difference;
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }

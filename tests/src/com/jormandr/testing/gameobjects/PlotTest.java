@@ -8,31 +8,28 @@ import static org.junit.Assert.assertTrue;
 
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import static com.jormandr.misctypes.UtilityFunctions.floatEq;
 
 import java.util.Random;
 
 @RunWith(GdxTestRunner.class)
 public class PlotTest {
 
-	private final int ITERATIONS = 5;
+	private final int ITERATIONS = 50;
 	private final int RANDOM_INT_LIMIT = 255;
-	private final float FLOAT_ERROR_TOLERANCE = 1.0f;
 
 	private Random rand = new Random();
 
+	private Plot plot;
 	private int i, j, oreValue, foodValue, energyValue;
 	private TileType tileType;
 	private float energyBuff, energyDebuff, oreBuff, oreDebuff, foodBuff, foodDebuff;
+	private float energyBuffDelta, energyDebuffDelta, oreBuffDelta, oreDebuffDelta, foodBuffDelta, foodDebuffDelta;
 
 	// The justification for having this here is in case the original function
 	// is optimised, it can be tested against this 'safe' copy
 	private int calculateValue(int value, float buff, float debuff) {
 		return (int) (buff * debuff * value + 0.5f);
-	}
-
-	// Allow margin of error for rounding
-	private boolean floatEq(float x, float y) {
-		return Math.abs(x - y) < FLOAT_ERROR_TOLERANCE;
 	}
 
 	@Test
@@ -53,7 +50,7 @@ public class PlotTest {
 			foodDebuff = rand.nextFloat();
 
 			// Set them
-			Plot plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
+			plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
 			assertTrue(!plot.hasRoboticon());
 			plot.setEnergyBuff(energyBuff);
 			plot.setEnergyDebuff(energyDebuff);
@@ -76,7 +73,43 @@ public class PlotTest {
 			assertTrue(floatEq(plot.getOreBuff(), oreBuff));
 			assertTrue(floatEq(plot.getOreDebuff(), oreDebuff));
 			
+			// Test buff modifiers
+			// Generate deltas
+			energyBuffDelta = rand.nextFloat();
+			energyDebuffDelta = rand.nextFloat();
+			foodBuffDelta = rand.nextFloat();
+			foodDebuffDelta = rand.nextFloat();
+			oreBuffDelta = rand.nextFloat();
+			oreDebuffDelta = rand.nextFloat();
+			// Apply here
+			energyBuff += energyBuffDelta;
+			energyDebuff += energyDebuffDelta;
+			foodBuff += foodBuffDelta;
+			foodDebuff += foodDebuffDelta;
+			oreBuff += oreBuffDelta;
+			oreDebuff += oreDebuffDelta;
+			// Apply to plot
+			plot.changeEnergyBuff(energyBuffDelta);
+			plot.changeEnergyDebuff(energyDebuffDelta);
+			plot.changeFoodBuff(foodBuffDelta);
+			plot.changeFoodDebuff(foodDebuffDelta);
+			plot.changeOreBuff(oreBuffDelta);
+			plot.changeOreDebuff(oreDebuffDelta);
+			// Test
+			assertTrue(floatEq(plot.getOreValue(), calculateValue(oreValue, oreBuff, oreDebuff)));
+			assertTrue(floatEq(plot.getEnergyValue(), calculateValue(energyValue, energyBuff, energyDebuff)));
+			assertTrue(floatEq(plot.getFoodValue(), calculateValue(foodValue, foodBuff, foodDebuff)));
+			assertTrue(floatEq(plot.getEnergyBuff(), energyBuff));
+			assertTrue(floatEq(plot.getEnergyDebuff(), energyDebuff));
+			assertTrue(floatEq(plot.getFoodBuff(), foodBuff));
+			assertTrue(floatEq(plot.getFoodDebuff(), foodDebuff));
+			assertTrue(floatEq(plot.getOreBuff(), oreBuff));
+			assertTrue(floatEq(plot.getOreDebuff(), oreDebuff));
+			
 			// Test hasRoboticon()
+			// Reset to no roboticon
+			plot.removeRoboticon();
+			assertTrue(!plot.hasRoboticon());
 			// First using mutations manually
 			// Energy
 			plot.setEnergyBuff(2 + rand.nextFloat());

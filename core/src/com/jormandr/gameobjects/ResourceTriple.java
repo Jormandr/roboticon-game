@@ -41,6 +41,16 @@ public class ResourceTriple {
 		this.buff = buff;
 		updateValueCache();
 	}
+	
+	/**
+	 * Add to the buff, a floating point multiplier of value, intended to be >=1.0f
+	 * 
+	 * @param buff
+	 */
+	public void changeBuff(float buff) {
+		this.buff += buff;
+		updateValueCache();
+	}
 
 	/**
 	 * Get the debuff, a floating point multiplier of value, intended to be
@@ -60,6 +70,16 @@ public class ResourceTriple {
 	 */
 	public void setDebuff(float debuff) {
 		this.debuff = debuff;
+		updateValueCache();
+	}
+	
+	/**
+	 * Add to the debuff, a floating point multiplier of value, intended to be >=1.0f
+	 * 
+	 * @param debuff
+	 */
+	public void changeDebuff(float debuff) {
+		this.debuff += debuff;
 		updateValueCache();
 	}
 
