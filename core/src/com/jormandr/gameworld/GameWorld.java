@@ -12,6 +12,7 @@ import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 import com.jormandr.players.Player.PlayerState;
+import com.jormandr.misctypes.Pair;
 
 /**
  * The gameworld controls the main overall logic of the game, primarily the
@@ -34,7 +35,7 @@ public class GameWorld {
 	private static int mapWidth = GameConfig.getMapWidth();
 	private static int mapHeight = GameConfig.getMapHeight();
 	private static MapTile[][] mapArray = new MapTile[mapWidth][mapHeight];
-	private static int[] mousePos = new int[2];
+	private static Pair<Integer, Integer> mousePos = new Pair<Integer, Integer>(0, 0);
 	private static Player player1;
 	private static Player player2;
 	private Random rand = new Random();
@@ -47,16 +48,20 @@ public class GameWorld {
 	public GameWorld() {
 		currentState = WorldState.RUNNING;
 		gameState = GameState.WAITINGFORP1;
-		Gdx.app.log("GameWorld", "Initialising GSH");
-		Gdx.app.log("GameWorld", "Initialising players");
+		// Here we realistically emulate socioeconomic issues such as
+		// inheritance
+		// disparity
 		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
 
-		Gdx.app.log("GameWorld", "Initialising random tiles");
+		int oreMaxValue = GameConfig.getOreValueRandomLimit();
+		int foodMaxValue = GameConfig.getFoodValueRandomLimit();
+		int energyMaxValue = GameConfig.getEnergyValueRandomLimit();
+
 		for (int i = 0; i < mapWidth; i++) {
 			for (int j = 0; j < mapHeight; j++) {
-				Plot Newplot = new Plot(i, j, rand.nextInt(50) + 1, rand.nextInt(50) + 1, rand.nextInt(50) + 1,
-						TileType.values()[rand.nextInt(4)]);
+				Plot Newplot = new Plot(i, j, rand.nextInt(oreMaxValue) + 1, rand.nextInt(foodMaxValue) + 1,
+						rand.nextInt(energyMaxValue) + 1, TileType.values()[rand.nextInt(TileType.values().length)]);
 				mapArray[i][j] = Newplot;
 			}
 		}
@@ -69,47 +74,41 @@ public class GameWorld {
 	 * 
 	 * @param delta
 	 */
-	public void update(float delta) {
+	public void update() {
 
-		worldStateMachine(delta);
+		worldStateMachine();
 		gameStateMachine();
 
-		mousePos[0] = Gdx.input.getX();
-		mousePos[1] = Gdx.input.getY();
+		mousePos.x = Gdx.input.getX();
+		mousePos.y = Gdx.input.getY();
 
 	}
 
-	private void worldStateMachine(float delta) {
+	private void worldStateMachine() {
 
 		switch (currentState) {
 		case RUNNING:
-			updateRunning(delta);
+			updateRunning();
 			break;
-
 		case MENU:
-			updateMenu(delta);
+			updateMenu();
 			break;
 		case START:
+			break;
 		case END:
+			break;
 		default:
-			updateRunning(delta);
+			updateRunning();
 			break;
 		}
 	}
 
-	private void updateRunning(float delta) {
-		if (delta > .15f) {
-			delta = .15f;
-		}
-
+	private void updateRunning() {
 		CollisionHandler.update();
 	}
 
-	private void updateMenu(float delta) {
-		if (delta > .15f) {
-			delta = .15f;
-			Gdx.app.log("GameWorld: ", "InMenu");
-		}
+	private void updateMenu() {
+
 	}
 
 	/**
@@ -127,12 +126,11 @@ public class GameWorld {
 		case HANDLINGP1:
 			// Deal with player 1's turn
 			player1.playerStateMachine();
-
 			break;
 		case WAITINGFORP2:
 			// Player 2 is handling this
 			player2.setState(PlayerState.PLOT);
-			setGameState(GameState.HANDLINGP2);			
+			setGameState(GameState.HANDLINGP2);
 			break;
 		case HANDLINGP2:
 			// Deal with player 2's turn
@@ -208,74 +206,105 @@ public class GameWorld {
 		return gameState;
 	}
 
-	public static int[] getMousePos() {
+	/**
+	 * returns the mouse position as a pair of integers
+	 * 
+	 * @return the mouse position
+	 */
+	public static Pair<Integer, Integer> getMousePos() {
 		return mousePos;
 	}
 
+	/**
+	 * returns true if the game is in the menu
+	 * 
+	 * @return true if the game is in the menu
+	 */
 	public boolean isMenu() {
 		return currentState == WorldState.MENU;
 	}
 
+	/**
+	 * returns true if the game is running
+	 * 
+	 * @return true if the game is running
+	 */
 	public boolean isRunning() {
 		return currentState == WorldState.RUNNING;
 	}
 
+	@SuppressWarnings("incomplete-switch")
 	public void toMenuPlot() {
 		currentState = WorldState.MENU;
 		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
 		InputHandler.clearMenuButtons();
-
-		if (gameState == GameState.HANDLINGP1) {
-			if (player1.getState() == PlayerState.PLOT) {
+		Player currentPlayer = getPlayer(gameState);
+		if (currentPlayer != null) {
+			switch (currentPlayer.getState()) {
+			case PLOT:
 				InputHandler.LoadPlotPlotMenu();
-			} else if (player1.getState() == PlayerState.BUY) {
+				break;
+			case BUY:
 				InputHandler.LoadPlotBuyMenu();
-			} else if (player1.getState() == PlayerState.PLACE) {
+				break;
+			case PLACE:
 				InputHandler.LoadPlotPlaceMenu();
-			}
-
-		}
-
-		else if (gameState == GameState.HANDLINGP2) {
-			if (player2.getState() == PlayerState.PLOT) {
-				InputHandler.LoadPlotPlotMenu();
-			} else if (player2.getState() == PlayerState.BUY) {
-				InputHandler.LoadPlotBuyMenu();
-			} else if (player2.getState() == PlayerState.PLACE) {
-				InputHandler.LoadPlotPlaceMenu();
+				break;
 			}
 		}
 	}
-	
-	
-	
 
+	/**
+	 * Sets the game running
+	 */
 	public void toRunning() {
 		InputHandler.clearMenuButtons();
-		InputHandler.LoadGameMenu();	
+		InputHandler.LoadGameMenu();
 		currentState = WorldState.RUNNING;
 	}
 
-	public void setGameState(GameState state){
+	/**
+	 * Sets the game state
+	 * 
+	 * @param state
+	 */
+	public void setGameState(GameState state) {
 		gameState = state;
 	}
-	
-	public static Player getPlayer(GameState state){
-		
-		if(state == GameState.HANDLINGP1){
-		return player1;
+
+	/**
+	 * Currently returns the player iff the game is in a "handling" state, null
+	 * otherwise This is probably not intended behaviour
+	 * 
+	 * @param state
+	 * @return the player or null
+	 */
+	public static Player getPlayer(GameState state) {
+		switch (state) {
+		case HANDLINGP1:
+			return player1;
+		case HANDLINGP2:
+			return player2;
+		default:
+			return null;
 		}
-		
-		return player2;
 	}
 
+	/**
+	 * returns the current world state
+	 * 
+	 * @return
+	 */
 	public WorldState getWorldState() {
 		return currentState;
 	}
 
+	/**
+	 * Increments the game state
+	 */
 	public static void nextGameState() {
-		gameState = GameState.values()[(gameState.ordinal()+1) % GameState.values().length];
+		gameState = GameState.values()[(gameState.ordinal() + 1) % GameState.values().length];
 	}
-	
+
 }

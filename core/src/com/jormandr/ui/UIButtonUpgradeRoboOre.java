@@ -6,59 +6,56 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
+import com.jormandr.misctypes.Pair;
 import com.jormandr.players.Player;
 
-public class UIButtonUpgradeRoboOre extends UIButton{
+public class UIButtonUpgradeRoboOre extends UIButton {
 
 	public UIButtonUpgradeRoboOre(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 	}
-	
+
 	@Override
 	public void draw(SpriteBatch batcher) {
 		Plot plot = ((Plot) InputHandler.getTile());
-		int[] mousePos = GameWorld.getMousePos();
-		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
+		Pair<Integer, Integer> mousePos = GameWorld.getMousePos();
+		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
-					0);
+			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
+					buttonHeight, 4, 4, 0);
 		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
-					0);
+			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, buttonWidth,
+					buttonHeight, 4, 4, 0);
 		}
-		
-		if (isMouseOver(mousePos[0],mousePos[1])){
-			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(),830, 274);	
-		}
-		else if (((Plot) InputHandler.getTile()).hasRoboticon() == true){
-			AssetLoader.fontX.draw(batcher, "Upgrade ore ",820, 270);
-			AssetLoader.fontX.draw(batcher,"production",820, 279);
-		}
-		else{
-			AssetLoader.fontX.draw(batcher, "Place Roboticon",820, 270);
-			AssetLoader.fontX.draw(batcher, "to Upgrade Ore",820, 279);
+
+		if (isMouseOver(mousePos.x, mousePos.y)) {
+			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), 830, 274);
+		} else if (((Plot) InputHandler.getTile()).hasRoboticon() == true) {
+			AssetLoader.fontX.draw(batcher, "Upgrade ore ", 820, 270);
+			AssetLoader.fontX.draw(batcher, "production", 820, 279);
+		} else {
+			AssetLoader.fontX.draw(batcher, "Place Roboticon", 820, 270);
+			AssetLoader.fontX.draw(batcher, "to Upgrade Ore", 820, 279);
 		}
 	}
 
-	
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		//run logic for the button being pressed
+		// run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
-		if (plot.hasRoboticon() == true && plot.getOwned() == player){
+		if (plot.hasRoboticon() == true && plot.getOwned() == player) {
 			Gdx.app.log("InputHandler: ", "Button Clicked");
-		if (player.getChangeMoney(-plot.getCost()) >= 0){
-		
-		plot.setOreBuff(2.0f); //set some buff here	
-		player.changeMoney(-(plot.getCost()));
-			isPressed = true;
-			return true;
+			if (player.getChangeMoney(-plot.getCost()) >= 0) {
+
+				plot.setOreBuff(2.0f); // set some buff here
+				player.changeMoney(-(plot.getCost()));
+				isPressed = true;
+				return true;
+			}
 		}
-		}
-		
+
 		return false;
 	}
 
 }
-

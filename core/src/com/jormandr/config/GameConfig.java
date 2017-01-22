@@ -6,8 +6,8 @@ package com.jormandr.config;
  */
 public class GameConfig {
 
-	// float screenWidth = Gdx.graphics.getWidth();
-	// float screenHeight = Gdx.graphics.getHeight();
+	// The use of methods for constants here is future-proofing for if they ever
+	// need to be dynamically calculated. They are not finals
 
 	/**
 	 * returns view width
@@ -57,6 +57,33 @@ public class GameConfig {
 
 	public static int getRandomEventChance() {
 		return 10; // 1-in
+	}
+
+	/**
+	 * This is the maximum value of ore a tile can randomly start with
+	 * 
+	 * @return
+	 */
+	public static int getOreValueRandomLimit() {
+		return 50;
+	}
+
+	/**
+	 * This is the maximum value of food a tile can randomly start with
+	 * 
+	 * @return
+	 */
+	public static int getFoodValueRandomLimit() {
+		return 50;
+	}
+
+	/**
+	 * This is the maximum value of energy a tile can randomly start with
+	 * 
+	 * @return
+	 */
+	public static int getEnergyValueRandomLimit() {
+		return 50;
 	}
 
 	/**

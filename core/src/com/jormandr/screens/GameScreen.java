@@ -16,9 +16,6 @@ import com.jormandr.helpers.InputHandler;
 
 public class GameScreen implements Screen {
 
-	// private int gameWidth = GameConfig.getWidth();
-	// private int gameHeight = GameConfig.getHeight();
-
 	private GameWorld world;
 	private GameRenderer renderer;
 
@@ -31,7 +28,7 @@ public class GameScreen implements Screen {
 		world = new GameWorld();
 		renderer = new GameRenderer(world);
 		Gdx.input.setInputProcessor(new InputHandler(world));
-		
+
 		Gdx.graphics.getDeltaTime();
 
 	}
@@ -43,7 +40,7 @@ public class GameScreen implements Screen {
 	 */
 	@Override
 	public void render(float delta) {
-		world.update(delta); // Delta is currently only needed to prevent flooding of debug statements, TODO remove
+		world.update();
 		renderer.render();
 	}
 

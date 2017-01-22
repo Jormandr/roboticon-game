@@ -21,10 +21,11 @@ public class UIElement {
 	static float[] sellMarket = new float[8];
 	static float[] closeMarket = new float[8];
 
-	public UIElement() { // initializes the button polygons using proportions of
-							// screen width(see excel files in drive).
+	public UIElement() {
+		// initializes the button polygons using proportions of screen width(see
+		// excel files in drive).
 		// PLS DO NOT CHANGE. It's a pain to find errors in here
-		
+
 		// TODO replace literals with constants where possible
 		float ww = (float) GameConfig.getWidth();
 		float hh = (float) GameConfig.getHeight();
@@ -68,6 +69,7 @@ public class UIElement {
 	// The menu window size is common for all menus coz convenience&aestethics
 	/**
 	 * Returns the button ID that the mouse is over, or 0
+	 * 
 	 * @param x
 	 * @param y
 	 * @param window
@@ -76,7 +78,7 @@ public class UIElement {
 	public static int isButtonOver(float x, float y, int window) {
 		// TODO Add unit test
 		// TODO consider using case statements
-		
+
 		// default no button over press
 		int rtn = 0;
 		// common close button for all windows

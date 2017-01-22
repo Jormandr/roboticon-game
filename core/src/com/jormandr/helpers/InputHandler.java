@@ -13,7 +13,6 @@ import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
 import com.jormandr.ui.UIButtonPlaceRobo;
-import com.jormandr.ui.UIButtonUpgradeRobo;
 import com.jormandr.ui.UIButtonUpgradeRoboFood;
 
 public class InputHandler implements InputProcessor {
@@ -21,28 +20,25 @@ public class InputHandler implements InputProcessor {
 	private static ArrayList<UIButton> menuButtons;
 	private static GameWorld myWorld;
 
-	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, testButton;
+	private static UIButton closeButton, buyPlotButton, endTurnButton, placeRoboticonButton, testButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
-		this.myWorld = myWorld;
+		InputHandler.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
 		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
 		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
-		endTurnButton = new UIButtonEndTurn(189*4,24,ButtonType.SSMALL,myWorld);
+		endTurnButton = new UIButtonEndTurn(189 * 4, 24, ButtonType.SSMALL, myWorld);
 		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, ButtonType.RBIG, myWorld);
-		testButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
-		
+		testButton = new UIButtonUpgradeRoboFood(796, 256, ButtonType.RSMALL, myWorld);
 		menuButtons.add(endTurnButton);
 
-		Gdx.app.log("InputHandler: ", "On");
 	}
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
-			Gdx.app.log("InputHandler: ", "Left Click");
 			if (myWorld.isRunning()) {
 				if (CollisionHandler.tileMouseOver()) {
 					selectedTile = CollisionHandler.getNearestMapTile();
@@ -51,12 +47,10 @@ public class InputHandler implements InputProcessor {
 					return true;
 				}
 			}
-				
-				for (int i = 0; i < menuButtons.size(); i += 1) {
-					if (menuButtons.get(i).isMouseOver(screenX,screenY)) {
-						Gdx.app.log("InputHandler: ", "Button Clicked");
-						menuButtons.get(i).isTouchDown();
-						return true;
+			for (int i = 0; i < menuButtons.size(); i += 1) {
+				if (menuButtons.get(i).isMouseOver(screenX, screenY)) {
+					menuButtons.get(i).isTouchDown();
+					return true;
 				}
 			}
 
@@ -67,7 +61,6 @@ public class InputHandler implements InputProcessor {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
-			Gdx.app.log("InputHandler: ", "Left Up");
 			for (int i = 0; i < menuButtons.size(); i += 1) {
 				menuButtons.get(i).isTouchUp();
 			}
@@ -118,33 +111,33 @@ public class InputHandler implements InputProcessor {
 	public static void clearMenuButtons() {
 		menuButtons.clear();
 	}
-	
-	public static void LoadGameMenu(){
+
+	public static void LoadGameMenu() {
 		menuButtons.add(endTurnButton);
 	}
-	
-	public static void LoadPlotPlotMenu(){
+
+	public static void LoadPlotPlotMenu() {
 		Gdx.app.log("InputHandler: ", "PlotPlotMenu");
 		menuButtons.add(closeButton);
 		menuButtons.add(buyPlotButton);
 		menuButtons.add(endTurnButton);
 	}
-	
-	public static void LoadPlotBuyMenu(){
+
+	public static void LoadPlotBuyMenu() {
 		menuButtons.add(endTurnButton);
 		menuButtons.add(closeButton);
 	}
-	
-	public static void LoadPlotPlaceMenu(){
+
+	public static void LoadPlotPlaceMenu() {
 		menuButtons.add(endTurnButton);
 		menuButtons.add(closeButton);
 		menuButtons.add(placeRoboticonButton);
-		if (((Plot) getTile()).getOwned() == GameWorld.getPlayer(myWorld.getGameState())){
-		menuButtons.add(testButton);
+		if (((Plot) getTile()).getOwned() == GameWorld.getPlayer(myWorld.getGameState())) {
+			menuButtons.add(testButton);
 		}
 	}
-	
-	public static MapTile getTile(){
+
+	public static MapTile getTile() {
 		return selectedTile;
 	}
 

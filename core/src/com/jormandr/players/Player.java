@@ -8,11 +8,11 @@ import com.jormandr.gameobjects.Plot;
  *
  */
 public abstract class Player {
-	
+
 	public enum PlayerState {
 		PLOT, BUY, PLACE, END;
 	}
-	
+
 	protected PlayerState playerState;
 	private int score, ore, food, energy, money, roboticonsOwned;
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
@@ -93,8 +93,6 @@ public abstract class Player {
 	 * @param money
 	 * @param roboticonsOwned
 	 * @param playerNumber
-	 * @param gsh
-	 * @param playerState
 	 */
 	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber) {
 		this.score = score;
@@ -295,11 +293,10 @@ public abstract class Player {
 	public void changeMoney(int difference) {
 		money += difference;
 	}
-	
+
 	public int getChangeMoney(int difference) {
-		int money2 = money+difference;
-		return money2;
-	}	
+		return money + difference;
+	}
 
 	/**
 	 * returns number of roboticons owned by player
@@ -333,25 +330,24 @@ public abstract class Player {
 	 */
 	public void update() {
 		/*
-		if ((playerNumber == 1 && gsh.getGameState() == GameState.WAITINGFORP1.ordinal())
-				|| (playerNumber == 2 && gsh.getGameState() == GameState.WAITINGFORP2.ordinal())) {
-			// Deal with turn
-			gsh.incrementGameState();
-		}
-		*/
+		 * if ((playerNumber == 1 && gsh.getGameState() ==
+		 * GameState.WAITINGFORP1.ordinal()) || (playerNumber == 2 &&
+		 * gsh.getGameState() == GameState.WAITINGFORP2.ordinal())) { // Deal
+		 * with turn gsh.incrementGameState(); }
+		 */
 	}
-	
-	public void setState(PlayerState state){
+
+	public void setState(PlayerState state) {
 		playerState = state;
-		
+
 	}
-	
-	public PlayerState getState(){
-	return playerState;
+
+	public PlayerState getState() {
+		return playerState;
 	}
 
 	public void nextState() {
-		playerState = PlayerState.values()[(playerState.ordinal()+1) % PlayerState.values().length];
+		playerState = PlayerState.values()[(playerState.ordinal() + 1) % PlayerState.values().length];
 	}
 
 }
