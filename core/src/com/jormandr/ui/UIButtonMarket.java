@@ -3,11 +3,12 @@ package com.jormandr.ui;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
-import com.jormandr.players.Player;
+import com.jormandr.helpers.InputHandler;
+import com.jormandr.helpers.InputHandler.MenuUI;
 
-public class UIButtonEndTurn extends UIButton {
+public class UIButtonMarket extends UIButton {
 
-	public UIButtonEndTurn(float x, float y, ButtonType type, GameWorld world) {
+	public UIButtonMarket(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 
 	}
@@ -23,16 +24,15 @@ public class UIButtonEndTurn extends UIButton {
 					buttonHeight, 4, 4, 0);
 		}
 
-		AssetLoader.fontX.draw(batcher, "End", 766, 40);
-		AssetLoader.fontX.draw(batcher, "Turn", 766, 50);
+		AssetLoader.fontX.draw(batcher, "Market", 118*4 +6, 45);
 	}
 
 	@Override
 	public boolean isTouchDown() {
 		if (myWorld.isRunning()) {
-			Player player = GameWorld.getPlayer(myWorld.getGameState());
 			isPressed = true;
-			player.nextState();
+			InputHandler.setMenu(MenuUI.MARKET);
+			myWorld.toMenuMarket();
 			return true;
 		}
 		return false;

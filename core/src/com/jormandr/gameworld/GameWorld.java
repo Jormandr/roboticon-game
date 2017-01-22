@@ -5,6 +5,7 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.Market;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
@@ -38,6 +39,7 @@ public class GameWorld {
 	private static Pair<Integer, Integer> mousePos = new Pair<Integer, Integer>(0, 0);
 	private static Player player1;
 	private static Player player2;
+	private static Market market;
 	private Random rand = new Random();
 
 	/**
@@ -53,6 +55,7 @@ public class GameWorld {
 		// disparity
 		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
+		market = new Market(100,100,100,10,10.0f,10.0f,10.0f,10.0f);
 
 		int oreMaxValue = GameConfig.getOreValueRandomLimit();
 		int foodMaxValue = GameConfig.getFoodValueRandomLimit();
@@ -246,10 +249,34 @@ public class GameWorld {
 				InputHandler.LoadPlotPlotMenu();
 				break;
 			case BUY:
+			case END:
 				InputHandler.LoadPlotBuyMenu();
 				break;
 			case PLACE:
 				InputHandler.LoadPlotPlaceMenu();
+				break;
+			}
+		}
+	}
+	
+	@SuppressWarnings("incomplete-switch")
+	public void toMenuMarket() {
+		currentState = WorldState.MENU;
+		// run a method that creates all the menu buttons
+		// so 4 possible menu's that we can go to, or is it 5?
+		InputHandler.clearMenuButtons();
+		Player currentPlayer = getPlayer(gameState);
+		if (currentPlayer != null) {
+			switch (currentPlayer.getState()) {
+			case PLOT:
+			case PLACE:
+				InputHandler.LoadMarketVoidMenu();
+				break;
+			case BUY:
+				InputHandler.LoadMarketRoboMenu();
+				break;
+			case END:
+				InputHandler.LoadMarketAuctionMenu();
 				break;
 			}
 		}
@@ -307,4 +334,9 @@ public class GameWorld {
 		gameState = GameState.values()[(gameState.ordinal() + 1) % GameState.values().length];
 	}
 
+	public Market getMarket(){
+		return market;
+	}
+	
+	
 }

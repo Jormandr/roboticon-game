@@ -3,6 +3,7 @@ package com.jormandr.gameworld;
 import com.badlogic.gdx.Gdx;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
+import com.jormandr.gameobjects.Market;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld.GameState;
 import com.jormandr.gameworld.GameWorld.WorldState;
@@ -26,6 +27,7 @@ public class GameRenderer {
 	// TODO get rid of magic numbers from the whole file
 
 	private GameWorld myWorld;
+	private Market myMarket;
 	private OrthographicCamera cam;
 	private ShapeRenderer shapeRenderer;
 
@@ -58,6 +60,7 @@ public class GameRenderer {
 	 */
 	private void initGameObjects() {
 		// yet to have game objects to initialise
+		myMarket = myWorld.getMarket();
 	}
 
 	/**
@@ -183,13 +186,22 @@ public class GameRenderer {
 	private void drawMenuUI() {
 
 		batcher.draw(AssetLoader.uiMenu, 320, 208, 0, 0, 160, 86, 4, 4, 0);
-		// InputHandler.closeButton.draw(batcher);
+		
+		if (InputHandler.menuIsPlot()){
+			drawPlotUI();
+		}
+		else{
+			drawMarketUI();
+		}
+		
+	}
+	
+	private void drawPlotUI(){
 		AssetLoader.fontX.draw(batcher, "Plot Manager", 600, 232);
 
 		MapTile tile = InputHandler.getTile();
 		Plot plot = (Plot) tile;
 
-		if (GameWorld.getPlayer(myWorld.getGameState()).getState() == PlayerState.PLOT) {
 			batcher.draw(AssetLoader.uiPlotScreen, 504, 260, 0, 0, 233 - 165, 100 - 52, 4, 4, 0);
 			batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], 516, 304 + (68 * 2), 0, 0, 124, -68, 2, 2,
 					0);
@@ -199,6 +211,9 @@ public class GameRenderer {
 			AssetLoader.fontX.draw(batcher, "Energy: " + plot.getEnergyValue(), 380, 310);
 			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), 380, 325);
 		}
+	
+	private void drawMarketUI(){
+		myMarket.draw(batcher);
 	}
 
 	private void drawUI() {

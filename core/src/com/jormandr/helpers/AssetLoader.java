@@ -77,7 +77,7 @@ public class AssetLoader {
 		uiButtonRBigOut.flip(false, true);
 		uiButtonSBigIn = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
 		uiButtonSBigIn.flip(false, true);
-		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
+		uiButtonSBigOut = new TextureRegion(uiTexture, 279, 53, 296 - 278, 70 - 52);
 		uiButtonSBigOut.flip(false, true);
 
 		// background

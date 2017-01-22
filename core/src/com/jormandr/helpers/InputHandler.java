@@ -10,23 +10,32 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 import com.jormandr.ui.UIButtonBuyPlot;
+import com.jormandr.ui.UIButtonBuyRobo;
 import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
+import com.jormandr.ui.UIButtonMarket;
 import com.jormandr.ui.UIButtonPlaceRobo;
-import com.jormandr.ui.UIButtonUpgradeRobo;
 import com.jormandr.ui.UIButtonUpgradeRoboEnergy;
 import com.jormandr.ui.UIButtonUpgradeRoboFood;
 import com.jormandr.ui.UIButtonUpgradeRoboOre;
 
 public class InputHandler implements InputProcessor {
+	
+	public enum MenuUI{
+		PLOT,MARKET;
+	}
 
 	private static ArrayList<UIButton> menuButtons;
 	private static GameWorld myWorld;
+	private static MenuUI currentMenu;
 
-	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, upgradeFoodButton, upgradeOreButton,upgradeEnergyButton;
+	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, upgradeFoodButton, upgradeOreButton,upgradeEnergyButton,
+	marketButton, buyRoboticonButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
+		
+		currentMenu = MenuUI.PLOT;
 		this.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
@@ -37,8 +46,11 @@ public class InputHandler implements InputProcessor {
 		upgradeFoodButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
 		upgradeOreButton = new UIButtonUpgradeRoboOre(796,312,ButtonType.RSMALL,myWorld);
 		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796,368,ButtonType.RSMALL,myWorld);
+		marketButton = new UIButtonMarket(118*4,24,ButtonType.SSMALL,myWorld);
+		buyRoboticonButton = new UIButtonBuyRobo(94*4,102*4,ButtonType.SBIG,myWorld);
 		
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 
 		Gdx.app.log("InputHandler: ", "On");
 	}
@@ -51,6 +63,7 @@ public class InputHandler implements InputProcessor {
 				if (CollisionHandler.tileMouseOver()) {
 					selectedTile = CollisionHandler.getNearestMapTile();
 					// setup the plot menu
+					currentMenu = MenuUI.PLOT;
 					myWorld.toMenuPlot();
 					return true;
 				}
@@ -125,22 +138,26 @@ public class InputHandler implements InputProcessor {
 	
 	public static void LoadGameMenu(){
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 	}
 	
 	public static void LoadPlotPlotMenu(){
 		Gdx.app.log("InputHandler: ", "PlotPlotMenu");
 		menuButtons.add(closeButton);
+		menuButtons.add(marketButton);
 		menuButtons.add(buyPlotButton);
 		menuButtons.add(endTurnButton);
 	}
 	
 	public static void LoadPlotBuyMenu(){
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 		menuButtons.add(closeButton);
 	}
 	
 	public static void LoadPlotPlaceMenu(){
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 		menuButtons.add(closeButton);
 		menuButtons.add(placeRoboticonButton);
 		if (((Plot) getTile()).getOwned() == GameWorld.getPlayer(myWorld.getGameState())){
@@ -150,19 +167,47 @@ public class InputHandler implements InputProcessor {
 		}
 	}
 	
+	public static void LoadMarketVoidMenu(){
+		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
+		menuButtons.add(closeButton);
+	}
+	
 	public static void LoadMarketRoboMenu(){
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 		menuButtons.add(closeButton);
+		menuButtons.add(buyRoboticonButton);
 		
 	}
 	
 	public static void LoadMarketAuctionMenu(){
 		menuButtons.add(endTurnButton);
+		menuButtons.add(marketButton);
 		menuButtons.add(closeButton);
 	}
 	
 	public static MapTile getTile(){
 		return selectedTile;
 	}
+	
+	public static boolean menuIsPlot(){
+		if(currentMenu == MenuUI.PLOT){
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean menuIsMarket(){
+		if(currentMenu == MenuUI.MARKET){
+			return true;
+		}
+		return false;
+	}
+	
+	public static void setMenu(MenuUI menu){
+		currentMenu = menu;
+	}
+
 
 }
