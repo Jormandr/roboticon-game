@@ -6,7 +6,6 @@ import com.jormandr.helpers.AssetLoader;
 public class Market {
 
 	private int[] value = new int[4];
-<<<<<<< HEAD
 	private float[] buyValue = new float [3];
 	private float[] sellValue = new float [3];
 	
@@ -25,19 +24,7 @@ public class Market {
 		value[1] = 0;
 	}
 
-	public void setFood(int value){
 
-	private float[] buyValue = new float[3];
-	private float[] sellValue = new float[3];
-
-	public Market(int food, int ore, int energy, int roboticons, float foodBuyValue, float oreBuyValue,
-			float energyBuyValue, float roboticonsSellValue) {
-
-		value = new int[] { food, ore, energy, roboticons };
-		buyValue = new float[] { foodBuyValue, oreBuyValue, energyBuyValue };
-		sellValue = new float[] { foodBuyValue * 1.5f, oreBuyValue * 1.5f, energyBuyValue * 1.5f, roboticonsSellValue };
-
-	}
 
 	public void setFood(int value) {
 		this.value[0] = value;
