@@ -8,18 +8,19 @@ import static org.junit.Assert.assertTrue;
 
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import static com.jormandr.misctypes.UtilityFunctions.floatEq;
 
 import java.util.Random;
 
 @RunWith(GdxTestRunner.class)
 public class PlotTest {
 
-	private final int ITERATIONS = 5;
+	private final int ITERATIONS = 50;
 	private final int RANDOM_INT_LIMIT = 255;
-	private final float FLOAT_ERROR_TOLERANCE = 0.1f;
 
 	private Random rand = new Random();
 
+	private Plot plot;
 	private int i, j, oreValue, foodValue, energyValue;
 	private TileType tileType;
 	private float energyBuff, energyDebuff, oreBuff, oreDebuff, foodBuff, foodDebuff;
@@ -29,11 +30,6 @@ public class PlotTest {
 	// is optimised, it can be tested against this 'safe' copy
 	private int calculateValue(int value, float buff, float debuff) {
 		return (int) (buff * debuff * value + 0.5f);
-	}
-
-	// Allow margin of error for rounding
-	private boolean floatEq(float x, float y) {
-		return Math.abs(x - y) < FLOAT_ERROR_TOLERANCE;
 	}
 
 	@Test
@@ -54,7 +50,7 @@ public class PlotTest {
 			foodDebuff = rand.nextFloat();
 
 			// Set them
-			Plot plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
+			plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
 			assertTrue(!plot.hasRoboticon());
 			plot.setEnergyBuff(energyBuff);
 			plot.setEnergyDebuff(energyDebuff);
@@ -111,6 +107,9 @@ public class PlotTest {
 			assertTrue(floatEq(plot.getOreDebuff(), oreDebuff));
 			
 			// Test hasRoboticon()
+			// Reset to no roboticon
+			plot.removeRoboticon();
+			assertTrue(!plot.hasRoboticon());
 			// First using mutations manually
 			// Energy
 			plot.setEnergyBuff(2 + rand.nextFloat());

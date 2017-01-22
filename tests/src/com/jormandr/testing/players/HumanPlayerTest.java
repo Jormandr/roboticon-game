@@ -11,7 +11,7 @@ import java.util.Random;
 
 @RunWith(GdxTestRunner.class)
 public class HumanPlayerTest {
-	private final int ITERATIONS = 5;
+	private final int ITERATIONS = 50;
 	private final int RANDOM_INT_LIMIT = 255;
 
 	private Random rand = new Random();

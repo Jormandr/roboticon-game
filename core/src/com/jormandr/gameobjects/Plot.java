@@ -5,6 +5,7 @@ import com.jormandr.gameobjects.TileType;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
+import static com.jormandr.misctypes.UtilityFunctions.floatEq;
 
 /**
  * In this plot class, characteristics specific to plot tiles are defined such
@@ -251,24 +252,13 @@ public class Plot extends MapTile {
 		hasRoboticonCache = false;
 	}
 
-	/**
-	 * Compares floats for equality using a (hardcoded) margin of error
-	 * 
-	 * @param x
-	 * @param y
-	 * @return whether they are within the margin
-	 */
-	private boolean floatEq(float x, float y) {
-		return Math.abs(x - y) < 1.0f;
-	}
-
 	private void updateHasRoboticonCache() {
 		hasRoboticonCache = !(floatEq(ore.getBuff(), 1.0f) && floatEq(food.getBuff(), 1.0f) && floatEq(energy.getBuff(), 1.0f));
 	}
 
 	/**
 	 * returns 1 if a roboticon is placed on this tile. Determination is done by
-	 * checking if each buff is 0.0f < x < 2.0f. To avoid expensive floating
+	 * checking if each buff is 0.9f < x < 0.1f. To avoid expensive floating
 	 * point calculations, the value of this function is calculated upon buff
 	 * mutation and cached
 	 * 
