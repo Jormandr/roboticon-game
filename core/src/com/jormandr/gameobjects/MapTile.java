@@ -1,10 +1,8 @@
 package com.jormandr.gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
-import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 
 /**
@@ -114,8 +112,8 @@ public abstract class MapTile {
 		float h = (float) GameConfig.getTileHeight();
 		return h * (7.0f + getI() + getJ());
 	}
-	
-	public  void draw(SpriteBatch batcher, float xx, float yy, int yOffset) {
+
+	public void draw(SpriteBatch batcher, float xx, float yy, int yOffset) {
 		batcher.draw(AssetLoader.textureMap[getType().ordinal()], xx, yy + yOffset, 124, -68);
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}

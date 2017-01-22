@@ -50,34 +50,34 @@ public class AssetLoader {
 		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
 		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
 		uiTileInfo = new TextureRegion(uiTexture, 126, 61, 148 - 125, 89 - 60);
-		uiTimerBase = new TextureRegion(uiTexture, 279, 81, 316, 88-80);
-		uiTimerJuice = new TextureRegion(uiTexture, 236,91,273-235,98-90);
-		uiTimerFrame = new TextureRegion(uiTexture, 279,72,316-278,79-71);
-		
+		uiTimerBase = new TextureRegion(uiTexture, 279, 81, 316, 88 - 80);
+		uiTimerJuice = new TextureRegion(uiTexture, 236, 91, 273 - 235, 98 - 90);
+		uiTimerFrame = new TextureRegion(uiTexture, 279, 72, 316 - 278, 79 - 71);
+
 		// Menu UI stuff
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
 		uiMenu.flip(false, true);
-		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 -165, 100 - 52);
+		uiPlotScreen = new TextureRegion(uiTexture, 166, 53, 233 - 165, 100 - 52);
 		uiPlotScreen.flip(false, true);
-		uiCloseOff = new TextureRegion(uiTexture, 31, 96, 40 -30, 105-95);
+		uiCloseOff = new TextureRegion(uiTexture, 31, 96, 40 - 30, 105 - 95);
 		uiCloseOff.flip(false, true);
 		uiCloseOn = new TextureRegion(uiTexture, 1, 83, 10, 92 - 82);
 		uiCloseOn.flip(false, true);
-		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 -12, 94 - 82);
+		uiButtonRSmallIn = new TextureRegion(uiTexture, 13, 83, 42 - 12, 94 - 82);
 		uiButtonRSmallIn.flip(false, true);
-		uiButtonRSmallOut = new TextureRegion(uiTexture, 45, 83, 74 -44, 94 - 82);
+		uiButtonRSmallOut = new TextureRegion(uiTexture, 45, 83, 74 - 44, 94 - 82);
 		uiButtonRSmallOut.flip(false, true);
 		uiButtonSSmallIn = new TextureRegion(uiTexture, 1, 96, 13, 107 - 95);
 		uiButtonSSmallIn.flip(false, true);
-		uiButtonSSmallOut = new TextureRegion(uiTexture, 16, 96, 28 -15, 107 - 95);
+		uiButtonSSmallOut = new TextureRegion(uiTexture, 16, 96, 28 - 15, 107 - 95);
 		uiButtonSSmallOut.flip(false, true);
-		uiButtonRBigIn = new TextureRegion(uiTexture, 236, 53, 276 -235, 70 - 52);
+		uiButtonRBigIn = new TextureRegion(uiTexture, 236, 53, 276 - 235, 70 - 52);
 		uiButtonRBigIn.flip(false, true);
-		uiButtonRBigOut = new TextureRegion(uiTexture, 236, 72, 276 -235, 89-71);
+		uiButtonRBigOut = new TextureRegion(uiTexture, 236, 72, 276 - 235, 89 - 71);
 		uiButtonRBigOut.flip(false, true);
 		uiButtonSBigIn = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
 		uiButtonSBigIn.flip(false, true);
-		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316 -298, 70 - 52);
+		uiButtonSBigOut = new TextureRegion(uiTexture, 299, 53, 316 - 298, 70 - 52);
 		uiButtonSBigOut.flip(false, true);
 
 		// background
@@ -88,10 +88,9 @@ public class AssetLoader {
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;
 		textureMap[TileType.BADLANDS.ordinal()] = badlandsRegion;
 		textureMap[TileType.WATER.ordinal()] = waterRegion;
-		
-		
-		//ui button setup 
-		
+
+		// ui button setup
+
 		button_textures[0] = AssetLoader.uiCloseOff;
 		button_textures[1] = AssetLoader.uiCloseOn;
 		button_textures[2] = AssetLoader.uiButtonRSmallIn;

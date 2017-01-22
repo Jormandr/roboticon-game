@@ -2,6 +2,7 @@ package com.jormandr.roboticongame.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.jormandr.config.GameConfig;
 import com.jormandr.roboticongame.RoboticonGame;
 
 public class DesktopLauncher {
@@ -11,10 +12,11 @@ public class DesktopLauncher {
 	 */
 	public static void main(String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "Joramndr";
-		config.width = 1280;
-		config.height = 720;
+		config.title = "Roboticon Colony of York - by Jormandr Games";
+		config.width = GameConfig.getWidth();
+		config.height = GameConfig.getHeight();
 		config.resizable = false;
+		config.forceExit = true;
 		new LwjglApplication(new RoboticonGame(), config);
 
 	}

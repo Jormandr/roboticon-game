@@ -1,18 +1,19 @@
 package com.jormandr.helpers;
 
-
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.MapTile;
 import com.jormandr.gameworld.GameWorld;
+import com.jormandr.misctypes.Pair;
 
 /**
  * CollisionHandler handles collision logic of game objects and assets
  *
  */
 public class CollisionHandler {
-	
-	private static int[] mousePos = new int[2];
+
+	private static Pair<Integer, Integer> mousePos;
 
 	// See note from MapTile about guessing
 
@@ -25,22 +26,16 @@ public class CollisionHandler {
 	 */
 
 	public static MapTile getNearestMapTile() {
-		float[] gridPos = convertToGrid(mousePos);
-
-		// Gdx.app.log("mouse I", Float.toString(gridPos[0]));
-		// Gdx.app.log("mouse J", Float.toString(gridPos[1]));
+		Vector2 gridPos = convertToGrid(mousePos);
 
 		MapTile[][] map = GameWorld.getMap();
 
 		MapTile tile = map[0][0];
-		if ((gridPos[0] <= 0) || (gridPos[0] >= map.length) || (gridPos[1] <= 0) || (gridPos[1] >= map[1].length)) {
-			// Gdx.app.log("grid", "out of array range");
-		} else {
-			tile = map[(int) gridPos[0]][(int) gridPos[1]];
+		if (!((gridPos.x <= 0) || (gridPos.x >= map.length) || (gridPos.y <= 0) || (gridPos.y >= map[1].length))) {
+			tile = map[(int) gridPos.x][(int) gridPos.y];
 		}
 
 		return tile;
-
 	}
 
 	/**
@@ -49,7 +44,7 @@ public class CollisionHandler {
 	 * Checks mouse for update in inputs
 	 */
 	public static void update() {
-		
+
 		mousePos = GameWorld.getMousePos();
 
 	}
@@ -60,17 +55,17 @@ public class CollisionHandler {
 	 * @param mousePos
 	 * @return map grid position
 	 */
-	private static float[] convertToGrid(int[] mousePos) {
+	private static Vector2 convertToGrid(Pair<Integer, Integer> mousePos) {
 		float w = GameConfig.getTileWidth();
 		float h = GameConfig.getTileHeight();
-		float[] gridPos = new float[2];
-		float x = mousePos[0] - 10.0f * w;
-		float y = mousePos[1] - 7.0f * h;
+		Vector2 gridPos = new Vector2();
+		float x = mousePos.x - 10.0f * w;
+		float y = mousePos.y - 7.0f * h;
 		// the reason this is shit is because the rendering of the tiles is
 		// offset to be centred in the screen but the actual position is at 0,0
 		// screen position
-		gridPos[0] = ((x / w) + (y / h)) / 2;
-		gridPos[1] = ((y / h) - (x / w)) / 2;
+		gridPos.x = ((x / w) + (y / h)) / 2;
+		gridPos.y = ((y / h) - (x / w)) / 2;
 
 		return gridPos;
 	}
@@ -86,7 +81,7 @@ public class CollisionHandler {
 
 		float[] tileV = tile.getVerts();
 
-		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos[0], mousePos[1]));
+		return (Intersector.isPointInPolygon(tileV, 0, 8, mousePos.x, mousePos.y));
 	}
 
 }

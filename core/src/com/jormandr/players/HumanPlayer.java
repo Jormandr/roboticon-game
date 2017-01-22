@@ -34,28 +34,13 @@ public class HumanPlayer extends Player {
 		}
 
 	}
-
-	/**
-	 * returns whether mouse is clicked
-	 * 
-	 * @return whether mouse is clicked
-	 */
-
-	/**
-	 * buyPlots logic
-	 * 
-	 */
-	/*
-	 * 
 	
-	 */
 	/**
 	 * buyRoboticons logics
 	 */
 	private void buyRoboticons() {
 		// check if bought roboticons
 	}
-
 
 	/**
 	 * customiseRoboticons logic
