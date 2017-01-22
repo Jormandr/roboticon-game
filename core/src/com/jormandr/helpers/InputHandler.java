@@ -9,12 +9,19 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
+import com.jormandr.ui.UIButtonAuctionEnd;
+import com.jormandr.ui.UIButtonBuyEnergy;
+import com.jormandr.ui.UIButtonBuyFood;
+import com.jormandr.ui.UIButtonBuyOre;
 import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonBuyRobo;
 import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndTurn;
 import com.jormandr.ui.UIButtonMarket;
 import com.jormandr.ui.UIButtonPlaceRobo;
+import com.jormandr.ui.UIButtonSellEnergy;
+import com.jormandr.ui.UIButtonSellFood;
+import com.jormandr.ui.UIButtonSellOre;
 import com.jormandr.ui.UIButtonUpgradeRoboEnergy;
 import com.jormandr.ui.UIButtonUpgradeRoboFood;
 import com.jormandr.ui.UIButtonUpgradeRoboOre;
@@ -30,7 +37,8 @@ public class InputHandler implements InputProcessor {
 	private static MenuUI currentMenu;
 
 	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, upgradeFoodButton, upgradeOreButton,upgradeEnergyButton,
-	marketButton, buyRoboticonButton;
+	marketButton, buyRoboticonButton, buyFoodButton,buyOreButton,buyEnergyButton,sellFoodButton,sellOreButton,sellEnergyButton,
+	endAuctionButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
@@ -48,6 +56,13 @@ public class InputHandler implements InputProcessor {
 		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796,368,ButtonType.RSMALL,myWorld);
 		marketButton = new UIButtonMarket(118*4,24,ButtonType.SSMALL,myWorld);
 		buyRoboticonButton = new UIButtonBuyRobo(94*4,102*4,ButtonType.SBIG,myWorld);
+		buyFoodButton = new UIButtonBuyFood(139*4,67*4,ButtonType.SBIG,myWorld);
+		buyOreButton = new UIButtonBuyOre(156*4,67*4,ButtonType.SBIG,myWorld);
+		buyEnergyButton = new UIButtonBuyEnergy(173*4,67*4,ButtonType.SBIG,myWorld);
+		sellFoodButton = new UIButtonSellFood(139*4,88*4,ButtonType.SBIG,myWorld);
+		sellOreButton = new UIButtonSellOre(156*4,88*4,ButtonType.SBIG,myWorld);
+		sellEnergyButton = new UIButtonSellEnergy(173*4,88*4,ButtonType.SBIG,myWorld);
+		endAuctionButton = new UIButtonAuctionEnd(560, 464, ButtonType.RBIG, myWorld);
 		
 		menuButtons.add(endTurnButton);
 		menuButtons.add(marketButton);
@@ -182,9 +197,13 @@ public class InputHandler implements InputProcessor {
 	}
 	
 	public static void LoadMarketAuctionMenu(){
-		menuButtons.add(endTurnButton);
-		menuButtons.add(marketButton);
-		menuButtons.add(closeButton);
+		menuButtons.add(buyFoodButton);
+		menuButtons.add(buyOreButton);
+		menuButtons.add(buyEnergyButton);
+		menuButtons.add(sellFoodButton);
+		menuButtons.add(sellOreButton);
+		menuButtons.add(sellEnergyButton);
+		menuButtons.add(endAuctionButton);
 	}
 	
 	public static MapTile getTile(){

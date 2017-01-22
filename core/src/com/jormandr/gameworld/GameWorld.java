@@ -10,6 +10,7 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
+import com.jormandr.helpers.InputHandler.MenuUI;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 import com.jormandr.players.Player.PlayerState;
@@ -23,11 +24,11 @@ import com.jormandr.misctypes.Pair;
 public class GameWorld {
 
 	public enum WorldState {
-		RUNNING, MENU, START, END;
+		RUNNING, MENU;
 	}
 
 	public enum GameState {
-		 RANDOMEVENT, WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTIONP1,AUCTIONP2;
+		START, RANDOMEVENT, WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTIONP1,AUCTIONP2, ENDCHECK, END;
 	}
 
 	// TODO should more of this be static?
@@ -98,10 +99,6 @@ public class GameWorld {
 		case MENU:
 			updateMenu();
 			break;
-		case START:
-			break;
-		case END:
-			break;
 		default:
 			updateRunning();
 			break;
@@ -123,12 +120,13 @@ public class GameWorld {
 	private void gameStateMachine() {
 
 		switch (gameState) {
+		case START:
+			break;
 		case RANDOMEVENT:
-			player2.updateScore();
-			market.update();
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
 			}
+			else {setGameState(GameState.WAITINGFORP1);}
 			break;
 		case WAITINGFORP1:
 			// Player 1 is handling this
@@ -160,15 +158,32 @@ public class GameWorld {
 			auction();
 			player1.updateScore();
 			break;
+		case ENDCHECK:
+			player2.updateScore();
+			market.update();
+			if (endCheck()){
+				toMenuEnd();
+				setGameState(GameState.END);
+				break;
+			}
+			setGameState(GameState.RANDOMEVENT);
+			break;
+		case END:
+			break;
 		}
 	}
+
+
 
 	/**
 	 * The logic for random event state
 	 */
 
 	private void randomEvent() {
-		// TODO Auto-generated method stub
+		//random event stuff
+		
+		// at end of random event
+		setGameState(GameState.WAITINGFORP1);
 
 	}
 
@@ -179,7 +194,7 @@ public class GameWorld {
 	private void auction() {
 		//player 1's auction
 		//player 2's auction
-		toMenuMarket();
+		if (currentState != WorldState.MENU){toMenuMarket();}
 	}
 
 	/**
@@ -253,6 +268,7 @@ public class GameWorld {
 	@SuppressWarnings("incomplete-switch")
 	public void toMenuPlot() {
 		currentState = WorldState.MENU;
+		InputHandler.setMenu(MenuUI.PLOT);
 		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
 		InputHandler.clearMenuButtons();
@@ -276,6 +292,7 @@ public class GameWorld {
 	@SuppressWarnings("incomplete-switch")
 	public void toMenuMarket() {
 		currentState = WorldState.MENU;
+		InputHandler.setMenu(MenuUI.MARKET);
 		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
 		InputHandler.clearMenuButtons();
@@ -294,6 +311,18 @@ public class GameWorld {
 				break;
 			}
 		}
+	}
+	
+	private void toMenuEnd() {
+		currentState = WorldState.MENU;
+		InputHandler.clearMenuButtons();
+		//load end buttons
+	}
+	
+	private void toMenuStart(){
+		currentState = WorldState.MENU;
+		InputHandler.clearMenuButtons();
+		//load start menu buttons
 	}
 
 	/**
@@ -372,5 +401,21 @@ public class GameWorld {
 	
 	public static float getTimerPercentage(){
 		return timer/initTimer;
+	}
+	
+	private boolean endCheck(){
+		int arrayX = GameConfig.getMapWidth();
+		int arrayY = GameConfig.getMapHeight();
+		for (int i = 0; i < arrayX; i++) {
+			for (int j = 0; j < arrayY; j++) {
+				MapTile tile = mapArray[i][j];
+				if (tile instanceof Plot) {
+					if (((Plot) tile).getOwned() == null){
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 }

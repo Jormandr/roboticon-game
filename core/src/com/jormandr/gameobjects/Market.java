@@ -20,7 +20,7 @@ public class Market {
 	}
 	
 	public void update(){
-		value[3] = value[1] % 4;
+		value[3] = (int) value[1] / 4;
 		value[1] = 0;
 	}
 
@@ -85,9 +85,14 @@ public class Market {
 	public int getRoboticonSellValue() {
 		return (int) sellValue[3];
 	}
+	
+	public void changeOre(int difference){
+			value[1] +=difference;
+	}
 
 	public void draw(SpriteBatch batcher) {
-
+		
+		AssetLoader.fontX.draw(batcher, "Market", 600, 232);
 		AssetLoader.fontX.draw(batcher, "BUY: RESOURCE: SELL", 380, 265);
 		AssetLoader.fontX.draw(batcher, getFoodBuyValue() + "    :Food:     " + getFoodSellValue(), 380, 280);
 		AssetLoader.fontX.draw(batcher, getOreBuyValue() + "    :Ore:      " + getOreSellValue(), 380, 295);

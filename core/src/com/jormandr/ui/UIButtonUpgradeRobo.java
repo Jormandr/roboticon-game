@@ -39,6 +39,7 @@ public abstract class UIButtonUpgradeRobo extends UIButton {
 		}
 	}
 
+	
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());

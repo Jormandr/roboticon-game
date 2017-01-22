@@ -13,12 +13,11 @@ import com.jormandr.players.Player;
 
 
 
-public class UIButtonBuyRobo extends UIButton{
-	int initX,initY;
-	public UIButtonBuyRobo(float x, float y, ButtonType type, GameWorld world){
+public class UIButtonBuyOre extends UIButton{
+	int initX,initY;	
+	public UIButtonBuyOre(float x, float y, ButtonType type, GameWorld world){
 		super(x,y, type, world);
 
-	
 		initX = (int) x;
 		initY = (int) y;
 	}
@@ -34,9 +33,9 @@ public class UIButtonBuyRobo extends UIButton{
 					0);
 		}
 		
-		if (myMarket.getRoboticons() > 0){
+		if (myMarket.getFood() > 0){
 			AssetLoader.fontX.draw(batcher, "Buy",initX+16,initY+25);
-			AssetLoader.fontX.draw(batcher,"Roboticon",initX+10,initY+35);
+			AssetLoader.fontX.draw(batcher,"Ore",initX+10,initY+35);
 	}
 		else{
 			AssetLoader.fontX.draw(batcher, "Out of",initX+14,initY+25);
@@ -50,19 +49,19 @@ public class UIButtonBuyRobo extends UIButton{
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		Market myMarket = myWorld.getMarket();
-		int cost = -myMarket.getRoboticonSellValue();
+		int cost = -myMarket.getOreSellValue();
 		//run logic for the button being pressed
-		if (myMarket.getRoboticons() > 0){
+		if (myMarket.getOre() > 0){
 		if (player.getChangeMoney(cost) >= 0){
-		player.changeRoboticonsOwned(1);
+		player.changeOre(10);
 		player.changeMoney(cost);
-		myMarket.changeRoboticons(-1);
+		myMarket.changeOre(-1);
 			isPressed = true;
 			return true;
 		}
-		}
+
+	}
 		return false;
 	}
-
 }
 

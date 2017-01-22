@@ -32,6 +32,7 @@ public class UIButtonEndTurn extends UIButton {
 		if (myWorld.isRunning()) {
 			Player player = GameWorld.getPlayer(myWorld.getGameState());
 			isPressed = true;
+			GameWorld.setTimer(30);
 			player.nextState();
 			return true;
 		}

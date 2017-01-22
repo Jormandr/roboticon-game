@@ -319,4 +319,16 @@ public abstract class Player {
 		playerState = PlayerState.values()[(playerState.ordinal() + 1) % PlayerState.values().length];
 	}
 
+	public int getChangeFood(int difference) {
+		return food + difference;
+	}
+	
+	public int getChangeEnergy(int difference) {
+		return energy + difference;
+	}
+	
+	public int getChangeOre(int difference) {
+		return ore + difference;
+	}
+
 }
