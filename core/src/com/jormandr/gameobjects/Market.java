@@ -18,6 +18,11 @@ public class Market {
 		sellValue = new float[]{foodBuyValue*1.5f,oreBuyValue*1.5f,energyBuyValue*1.5f, roboticonsSellValue};
 		
 	}
+	
+	public void update(){
+		value[3] = value[1] % 4;
+		value[1] = 0;
+	}
 
 	public void setFood(int value){
 		this.value[0] = value;

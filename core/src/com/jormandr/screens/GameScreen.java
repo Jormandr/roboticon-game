@@ -42,6 +42,7 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		world.update();
 		renderer.render();
+		
 	}
 
 	/*

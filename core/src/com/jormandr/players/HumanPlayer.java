@@ -18,14 +18,13 @@ public class HumanPlayer extends Player {
 		switch (playerState) {
 		case PLOT:
 			// buy plots
+			GameWorld.setTimer(30);
 			break;
 		case BUY:
-			// buying roboticons and gambling
-			// timed state
+			GameWorld.updateTimer(30);
 			break;
 		case PLACE:
-			// customising and placing roboticons
-			// timed state
+			GameWorld.updateTimer(30);
 			break;
 		case END:
 			// final state (updates gamestate Machine)

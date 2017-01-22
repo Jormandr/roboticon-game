@@ -13,11 +13,11 @@ import com.jormandr.gameobjects.TileType;
  */
 public class AssetLoader {
 
-	public static Texture tilesTexture, roboticonsTexture, uiTexture, backgroundTexture;
+	public static Texture tilesTexture, uiTexture, backgroundTexture;
 	public static TextureRegion grassRegion, badlandsRegion, desertRegion, waterRegion, uiTV, uiBottom, uiTopMid,
 			uiStateLightOn, uiStateLightOff, uiTileInfo, uiMenu, uiPlotScreen, uiCloseOff, uiCloseOn, uiButtonRSmallIn,
 			uiButtonRSmallOut, uiButtonSSmallIn, uiButtonSSmallOut, uiButtonRBigIn, uiButtonRBigOut, uiButtonSBigIn,
-			uiButtonSBigOut, uiTimerBase, uiTimerJuice, uiTimerFrame;
+			uiButtonSBigOut, uiTimerBase, uiTimerJuice, uiTimerFrame,roboticon;
 	public static TextureRegion[] textureMap = new TextureRegion[4];
 	public static BitmapFont fontX = new BitmapFont(Gdx.files.internal("m5x7.fnt"), Gdx.files.internal("m5x7.png"),
 			true);
@@ -50,9 +50,12 @@ public class AssetLoader {
 		uiStateLightOn = new TextureRegion(uiTexture, 126, 53, 133 - 126, 60 - 53);
 		uiStateLightOff = new TextureRegion(uiTexture, 135, 53, 142 - 135, 60 - 53);
 		uiTileInfo = new TextureRegion(uiTexture, 126, 61, 148 - 125, 89 - 60);
-		uiTimerBase = new TextureRegion(uiTexture, 279, 81, 316, 88 - 80);
+		uiTimerBase = new TextureRegion(uiTexture, 279, 81, 316-278, 88 - 80);
+		uiTimerBase.flip(false,true);
 		uiTimerJuice = new TextureRegion(uiTexture, 236, 91, 273 - 235, 98 - 90);
+		uiTimerJuice.flip(false, true);
 		uiTimerFrame = new TextureRegion(uiTexture, 279, 72, 316 - 278, 79 - 71);
+		uiTimerFrame.flip(false, true);
 
 		// Menu UI stuff
 		uiMenu = new TextureRegion(uiTexture, 1, 111, 160, 196 - 110);
@@ -83,6 +86,12 @@ public class AssetLoader {
 		// background
 
 		backgroundTexture = new Texture(Gdx.files.internal("star background.png"));
+		
+		//roboticon
+		
+		roboticon = new TextureRegion(uiTexture,165,106,191-164,129-105);
+		//roboticon.flip(false, true);
+		
 
 		textureMap[TileType.GRASS.ordinal()] = grassRegion;
 		textureMap[TileType.DESERT.ordinal()] = desertRegion;

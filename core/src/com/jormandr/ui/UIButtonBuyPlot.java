@@ -17,8 +17,7 @@ public class UIButtonBuyPlot extends UIButton {
 
 	@Override
 	public void draw(SpriteBatch batcher) {
-		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
+		Plot plot = ((Plot) InputHandler.getTile());
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
 					buttonHeight, 4, 4, 0);
@@ -27,10 +26,10 @@ public class UIButtonBuyPlot extends UIButton {
 					buttonHeight, 4, 4, 0);
 		}
 
-		if (((Plot) InputHandler.getTile()).getOwned() == null) {
+		if (plot.getOwned() == null) {
 			AssetLoader.fontX.draw(batcher, "Buy", 630, 498);
 		} else {
-			AssetLoader.fontX.draw(batcher, "Owned by Player " + player.getPlayerNumber(), 588, 498);
+			AssetLoader.fontX.draw(batcher, "Owned by Player " + plot.getOwned().getPlayerNumber(), 588, 498);
 		}
 	}
 

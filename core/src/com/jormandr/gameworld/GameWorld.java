@@ -27,7 +27,7 @@ public class GameWorld {
 	}
 
 	public enum GameState {
-		WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTION, RANDOMEVENT
+		 RANDOMEVENT, WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTIONP1,AUCTIONP2;
 	}
 
 	// TODO should more of this be static?
@@ -40,6 +40,7 @@ public class GameWorld {
 	private static Player player1;
 	private static Player player2;
 	private static Market market;
+	private static float timer, initTimer = 30.0f;
 	private Random rand = new Random();
 
 	/**
@@ -56,6 +57,7 @@ public class GameWorld {
 		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
 		market = new Market(100,100,100,10,10.0f,10.0f,10.0f,10.0f);
+		timer = initTimer = 30.0f;
 
 		int oreMaxValue = GameConfig.getOreValueRandomLimit();
 		int foodMaxValue = GameConfig.getFoodValueRandomLimit();
@@ -121,6 +123,12 @@ public class GameWorld {
 	private void gameStateMachine() {
 
 		switch (gameState) {
+		case RANDOMEVENT:
+			market.update();
+			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
+				randomEvent();
+			}
+			break;
 		case WAITINGFORP1:
 			// Player 1 is handling this
 			player1.setState(PlayerState.PLOT);
@@ -142,13 +150,11 @@ public class GameWorld {
 		case PRODUCE:
 			produce();
 			break;
-		case AUCTION:
+		case AUCTIONP1:
 			auction();
 			break;
-		case RANDOMEVENT:
-			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
-				randomEvent();
-			}
+		case AUCTIONP2:
+			auction();
 			break;
 		}
 	}
@@ -166,8 +172,9 @@ public class GameWorld {
 	 * 
 	 */
 	private void auction() {
-		// TODO Auto-generated method stub
-
+		//player 1's auction
+		//player 2's auction
+		toMenuMarket();
 	}
 
 	/**
@@ -185,8 +192,10 @@ public class GameWorld {
 				if (currentPlot != null) {
 					currentPlayer.changeEnergy(currentPlot.getEnergyValue());
 					currentPlayer.changeOre(currentPlot.getOreValue());
+					currentPlayer.changeFood(currentPlot.getFoodValue());
 				}
 			}
+		setGameState(GameState.AUCTIONP1);
 		}
 
 	}
@@ -310,8 +319,10 @@ public class GameWorld {
 	public static Player getPlayer(GameState state) {
 		switch (state) {
 		case HANDLINGP1:
+		case AUCTIONP1:
 			return player1;
 		case HANDLINGP2:
+		case AUCTIONP2:
 			return player2;
 		default:
 			return null;
@@ -338,5 +349,23 @@ public class GameWorld {
 		return market;
 	}
 	
+	public static void updateTimer(int seconds){
+		timer -= (1+Gdx.graphics.getDeltaTime());
+		if(timer <= 0){
+			getPlayer(gameState).nextState();
+			timer = seconds*60;	
+		}
+	}
 	
+	public static void setTimer(int seconds){
+		timer = initTimer = (float) seconds*60;
+	}
+	
+	public static int getTimer(){
+		return (int) timer/60;
+	}
+	
+	public static float getTimerPercentage(){
+		return timer/initTimer;
+	}
 }

@@ -101,7 +101,7 @@ public class GameRenderer {
 		// again nothing not transparent but good to have in for later
 		batcher.enableBlending();
 
-		// doesn't work 100% of the time
+
 
 		// drawing background
 		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
@@ -129,9 +129,6 @@ public class GameRenderer {
 							AssetLoader.fontX.draw(batcher, "Energy: " + ((Plot) tile).getEnergyValue(), xx + 76,
 									yy - 50);
 							AssetLoader.fontX.draw(batcher, "Cost: " + ((Plot) tile).getCost(), xx + 76, yy - 35);
-							AssetLoader.fontX.draw(batcher,
-									"Player: " + GameWorld.getPlayer(myWorld.getGameState()).getState(), xx + 76,
-									yy - 20);
 						}
 					}
 
@@ -176,6 +173,7 @@ public class GameRenderer {
 		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getMoney()), ww, 120);
 		AssetLoader.fontX.draw(batcher,
 				"Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getRoboticonsOwned()), ww, 130);
+		
 
 		batcher.disableBlending();
 
@@ -210,6 +208,10 @@ public class GameRenderer {
 			AssetLoader.fontX.draw(batcher, "Ore: " + plot.getOreValue(), 380, 295);
 			AssetLoader.fontX.draw(batcher, "Energy: " + plot.getEnergyValue(), 380, 310);
 			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), 380, 325);
+			
+			if(plot.hasRoboticon()){
+			batcher.draw(AssetLoader.roboticon, 516 +60, 304 + (68 ), 0, 0,191-164,-24, 4, 4,0);
+			}
 		}
 	
 	private void drawMarketUI(){
@@ -217,16 +219,53 @@ public class GameRenderer {
 	}
 
 	private void drawUI() {
+		float j = 38*GameWorld.getTimerPercentage();
 		batcher.draw(AssetLoader.uiBottom, 0, 720, 0, 0, 320, -51, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTopMid, 640 - 160, (82 - 53) * 4, 0, 0, 80, -(81 - 52), 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 0, 57 * 4, 0, 0, 42, -57, 4, 4, 0);
 		batcher.draw(AssetLoader.uiTV, 1280, 57 * 4, 0, 0, -42, -57, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTimerBase,141*4,6*4, 0, 0, 38, 8, 4, 4, 0);
+		batcher.draw(AssetLoader.uiTimerJuice,1280-141*4,6*4, 0, 0, j, 8, -4, 4, 0);
+		batcher.draw(AssetLoader.uiTimerFrame,141*4,6*4, 0, 0, 38, 8, 4, 4, 0);
+		
 		for (int k = 0; k < 8; k++) {
-			if (myWorld.getGameState().ordinal() == k) {
-				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
-			} else {
 				batcher.draw(AssetLoader.uiStateLightOff, 640 - 128 + k * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
 			}
+		
+		switch(myWorld.getGameState()){
+		case HANDLINGP1:
+			switch(myWorld.getPlayer(GameState.HANDLINGP1).getState()){
+			case PLOT:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 0 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			case BUY:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 1 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			case PLACE:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 2 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			}
+			break;
+		case HANDLINGP2:
+			switch(myWorld.getPlayer(GameState.HANDLINGP2).getState()){
+			case PLOT:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 3 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			case BUY:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 4 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			case PLACE:
+				batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 5 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+				break;
+			}
+			break;
+		case PRODUCE:
+			batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 6 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+			break;
+		case AUCTIONP1:
+		case AUCTIONP2:
+			batcher.draw(AssetLoader.uiStateLightOn, 640 - 128 + 7 * 32, 81 + 28, 0, 0, 7, -7, 4, 4, 0);
+			break;
 		}
 
 	}

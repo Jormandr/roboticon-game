@@ -234,6 +234,10 @@ public class Plot extends MapTile {
 
 		batcher.draw(AssetLoader.textureMap[getType().ordinal()], xx, yy + yOffset, 124, -68);
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+		
+		if (hasRoboticon()) {
+			batcher.draw(AssetLoader.roboticon, xx+(yOffset/2), yy+(yOffset*3/4),0,0,191-164,-24,2,2,0);
+		}
 	}
 
 	public void setOwned(Player player) {
