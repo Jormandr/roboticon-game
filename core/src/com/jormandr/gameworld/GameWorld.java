@@ -28,7 +28,7 @@ public class GameWorld {
 	}
 
 	public enum GameState {
-		START, RANDOMEVENT, WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTIONP1,AUCTIONP2, ENDCHECK, END;
+		START, RANDOMEVENT, WAITINGFORP1, HANDLINGP1, WAITINGFORP2, HANDLINGP2, PRODUCE, AUCTIONP1, AUCTIONP2, ENDCHECK, END;
 	}
 
 	// TODO should more of this be static?
@@ -57,7 +57,7 @@ public class GameWorld {
 		// disparity
 		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
-		market = new Market(100,100,100,10,10.0f,10.0f,10.0f,10.0f);
+		market = new Market(100, 100, 100, 10, 10.0f, 10.0f, 10.0f, 10.0f);
 		timer = initTimer = 30.0f;
 
 		int oreMaxValue = GameConfig.getOreValueRandomLimit();
@@ -125,8 +125,9 @@ public class GameWorld {
 		case RANDOMEVENT:
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
+			} else {
+				setGameState(GameState.WAITINGFORP1);
 			}
-			else {setGameState(GameState.WAITINGFORP1);}
 			break;
 		case WAITINGFORP1:
 			// Player 1 is handling this
@@ -161,7 +162,7 @@ public class GameWorld {
 		case ENDCHECK:
 			player2.updateScore();
 			market.update();
-			if (endCheck()){
+			if (endCheck()) {
 				toMenuEnd();
 				setGameState(GameState.END);
 				break;
@@ -173,15 +174,13 @@ public class GameWorld {
 		}
 	}
 
-
-
 	/**
 	 * The logic for random event state
 	 */
 
 	private void randomEvent() {
-		//random event stuff
-		
+		// random event stuff
+
 		// at end of random event
 		setGameState(GameState.WAITINGFORP1);
 
@@ -192,9 +191,11 @@ public class GameWorld {
 	 * 
 	 */
 	private void auction() {
-		//player 1's auction
-		//player 2's auction
-		if (currentState != WorldState.MENU){toMenuMarket();}
+		// player 1's auction
+		// player 2's auction
+		if (currentState != WorldState.MENU) {
+			toMenuMarket();
+		}
 	}
 
 	/**
@@ -215,7 +216,7 @@ public class GameWorld {
 					currentPlayer.changeFood(currentPlot.getFoodValue());
 				}
 			}
-		setGameState(GameState.AUCTIONP1);
+			setGameState(GameState.AUCTIONP1);
 		}
 
 	}
@@ -288,7 +289,7 @@ public class GameWorld {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("incomplete-switch")
 	public void toMenuMarket() {
 		currentState = WorldState.MENU;
@@ -312,17 +313,18 @@ public class GameWorld {
 			}
 		}
 	}
-	
+
 	private void toMenuEnd() {
+		InputHandler.setMenu(MenuUI.END);
 		currentState = WorldState.MENU;
 		InputHandler.clearMenuButtons();
-		//load end buttons
+		InputHandler.LoadEndMenu();
 	}
-	
-	private void toMenuStart(){
+
+	private void toMenuStart() {
 		currentState = WorldState.MENU;
 		InputHandler.clearMenuButtons();
-		//load start menu buttons
+		// load start menu buttons
 	}
 
 	/**
@@ -379,43 +381,55 @@ public class GameWorld {
 		gameState = GameState.values()[(gameState.ordinal() + 1) % GameState.values().length];
 	}
 
-	public Market getMarket(){
+	public Market getMarket() {
 		return market;
 	}
-	
-	public static void updateTimer(int seconds){
-		timer -= (1+Gdx.graphics.getDeltaTime());
-		if(timer <= 0){
+
+	public static void updateTimer(int seconds) {
+		timer -= (1 + Gdx.graphics.getDeltaTime());
+		if (timer <= 0) {
 			getPlayer(gameState).nextState();
-			timer = seconds*60;	
+			timer = seconds * 60;
 		}
 	}
-	
-	public static void setTimer(int seconds){
-		timer = initTimer = (float) seconds*60;
+
+	public static void setTimer(int seconds) {
+		timer = initTimer = (float) seconds * 60;
 	}
-	
-	public static int getTimer(){
-		return (int) timer/60;
+
+	public static int getTimer() {
+		return (int) timer / 60;
 	}
-	
-	public static float getTimerPercentage(){
-		return timer/initTimer;
+
+	public static float getTimerPercentage() {
+		return timer / initTimer;
 	}
-	
-	private boolean endCheck(){
+
+	private boolean endCheck() {
 		int arrayX = GameConfig.getMapWidth();
 		int arrayY = GameConfig.getMapHeight();
 		for (int i = 0; i < arrayX; i++) {
 			for (int j = 0; j < arrayY; j++) {
 				MapTile tile = mapArray[i][j];
 				if (tile instanceof Plot) {
-					if (((Plot) tile).getOwned() == null){
+					if (((Plot) tile).getOwned() == null) {
 						return false;
 					}
 				}
 			}
 		}
+
 		return true;
 	}
+	
+	public Player getWinner(){
+		if (player1.getScore() > player2.getScore()){
+			return player1;
+		}
+		else if (player1.getScore() == player2.getScore()){
+			return null;
+		}
+		return player2;
+	}
+	
 }

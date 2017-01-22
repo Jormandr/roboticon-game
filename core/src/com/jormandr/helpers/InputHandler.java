@@ -16,6 +16,7 @@ import com.jormandr.ui.UIButtonBuyOre;
 import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonBuyRobo;
 import com.jormandr.ui.UIButtonClose;
+import com.jormandr.ui.UIButtonEndGame;
 import com.jormandr.ui.UIButtonEndTurn;
 import com.jormandr.ui.UIButtonMarket;
 import com.jormandr.ui.UIButtonPlaceRobo;
@@ -29,7 +30,7 @@ import com.jormandr.ui.UIButtonUpgradeRoboOre;
 public class InputHandler implements InputProcessor {
 	
 	public enum MenuUI{
-		PLOT,MARKET;
+		PLOT,MARKET,END;
 	}
 
 	private static ArrayList<UIButton> menuButtons;
@@ -38,7 +39,7 @@ public class InputHandler implements InputProcessor {
 
 	private static UIButton closeButton,buyPlotButton,endTurnButton,placeRoboticonButton, upgradeFoodButton, upgradeOreButton,upgradeEnergyButton,
 	marketButton, buyRoboticonButton, buyFoodButton,buyOreButton,buyEnergyButton,sellFoodButton,sellOreButton,sellEnergyButton,
-	endAuctionButton;
+	endAuctionButton, GameOverButton;
 	private static MapTile selectedTile;
 
 	public InputHandler(GameWorld myWorld) {
@@ -63,6 +64,7 @@ public class InputHandler implements InputProcessor {
 		sellOreButton = new UIButtonSellOre(156*4,88*4,ButtonType.SBIG,myWorld);
 		sellEnergyButton = new UIButtonSellEnergy(173*4,88*4,ButtonType.SBIG,myWorld);
 		endAuctionButton = new UIButtonAuctionEnd(560, 464, ButtonType.RBIG, myWorld);
+		GameOverButton = new UIButtonEndGame(560, 464, ButtonType.RBIG, myWorld);
 		
 		menuButtons.add(endTurnButton);
 		menuButtons.add(marketButton);
@@ -157,7 +159,6 @@ public class InputHandler implements InputProcessor {
 	}
 	
 	public static void LoadPlotPlotMenu(){
-		Gdx.app.log("InputHandler: ", "PlotPlotMenu");
 		menuButtons.add(closeButton);
 		menuButtons.add(marketButton);
 		menuButtons.add(buyPlotButton);
@@ -206,6 +207,10 @@ public class InputHandler implements InputProcessor {
 		menuButtons.add(endAuctionButton);
 	}
 	
+	public static void LoadEndMenu(){
+		menuButtons.add(GameOverButton);
+	}
+	
 	public static MapTile getTile(){
 		return selectedTile;
 	}
@@ -219,6 +224,14 @@ public class InputHandler implements InputProcessor {
 	
 	public static boolean menuIsMarket(){
 		if(currentMenu == MenuUI.MARKET){
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public static boolean menuIsEnd(){
+		if(currentMenu == MenuUI.END){
 			return true;
 		}
 		return false;

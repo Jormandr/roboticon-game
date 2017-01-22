@@ -188,8 +188,11 @@ public class GameRenderer {
 		if (InputHandler.menuIsPlot()){
 			drawPlotUI();
 		}
-		else{
+		if (InputHandler.menuIsMarket()){
 			drawMarketUI();
+		}
+		if (InputHandler.menuIsEnd()){
+			drawEndUI();
 		}
 		
 	}
@@ -216,6 +219,14 @@ public class GameRenderer {
 	
 	private void drawMarketUI(){
 		myMarket.draw(batcher);
+	}
+	
+	private void drawEndUI(){
+		int winner = 1337;
+		if (myWorld.getWinner() != null){
+			winner = myWorld.getWinner().getPlayerNumber();
+		}
+		AssetLoader.fontX.draw(batcher, "Player " + winner + " wins!", 600, 232);
 	}
 
 	private void drawUI() {
