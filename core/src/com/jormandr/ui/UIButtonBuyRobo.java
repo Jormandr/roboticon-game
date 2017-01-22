@@ -24,10 +24,10 @@ public class UIButtonBuyRobo extends UIButton{
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		//Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
+			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth, buttonHeight, 4, 4,
 					0);
 		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, button_width, button_height, 4, 4,
+			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, buttonWidth, buttonHeight, 4, 4,
 					0);
 		}
 		
