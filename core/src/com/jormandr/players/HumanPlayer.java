@@ -34,18 +34,4 @@ public class HumanPlayer extends Player {
 
 	}
 	
-	/**
-	 * buyRoboticons logics
-	 */
-	private void buyRoboticons() {
-		// check if bought roboticons
-	}
-
-	/**
-	 * customiseRoboticons logic
-	 */
-	private void customiseRoboticons() {
-		// check if clicked on a plot
-	}
-
 }

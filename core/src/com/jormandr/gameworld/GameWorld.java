@@ -124,6 +124,7 @@ public class GameWorld {
 
 		switch (gameState) {
 		case RANDOMEVENT:
+			player2.updateScore();
 			market.update();
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
@@ -149,12 +150,15 @@ public class GameWorld {
 			break;
 		case PRODUCE:
 			produce();
+			player1.updateScore();
+			player2.updateScore();
 			break;
 		case AUCTIONP1:
 			auction();
 			break;
 		case AUCTIONP2:
 			auction();
+			player1.updateScore();
 			break;
 		}
 	}
@@ -162,6 +166,7 @@ public class GameWorld {
 	/**
 	 * The logic for random event state
 	 */
+
 	private void randomEvent() {
 		// TODO Auto-generated method stub
 

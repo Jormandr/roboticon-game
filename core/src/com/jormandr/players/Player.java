@@ -45,27 +45,6 @@ public abstract class Player {
 	}
 
 	/**
-	 * buyPlots logic
-	 */
-	private void buyPlots() {
-
-	}
-
-	/**
-	 * buyRoboticons logic
-	 */
-	private void buyRoboticons() {
-
-	}
-
-	/**
-	 * customiseRoboticons logic
-	 */
-	private void customiseRoboticons() {
-
-	}
-
-	/**
 	 * returns the player's number
 	 * 
 	 * @return the player's number
@@ -153,11 +132,6 @@ public abstract class Player {
 			}
 		}
 	}
-
-	/*
-	 * don't need all of these separate get, set and change functions, just need
-	 * one that passes the resource to target as well
-	 */
 
 	/**
 	 * returns player's score
@@ -328,13 +302,8 @@ public abstract class Player {
 	/**
 	 * Update of player increments game state machine state
 	 */
-	public void update() {
-		/*
-		 * if ((playerNumber == 1 && gsh.getGameState() ==
-		 * GameState.WAITINGFORP1.ordinal()) || (playerNumber == 2 &&
-		 * gsh.getGameState() == GameState.WAITINGFORP2.ordinal())) { // Deal
-		 * with turn gsh.incrementGameState(); }
-		 */
+	public void updateScore() {
+		score = (int) ((int)(ore+food+energy)*java.lang.Math.log10(plotsOwned.length));		
 	}
 
 	public void setState(PlayerState state) {
