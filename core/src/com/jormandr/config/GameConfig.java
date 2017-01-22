@@ -36,7 +36,7 @@ public class GameConfig {
 	 */
 
 	public static int getMapHeight() {
-		return 2;
+		return 7;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class GameConfig {
 	 */
 
 	public static int getMapWidth() {
-		return 2;
+		return 7;
 	}
 
 	/**
