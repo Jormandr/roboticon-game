@@ -83,10 +83,20 @@ public class Plot extends MapTile {
 	/**
 	 * sets the ore resource buff multiplier
 	 * 
-	 * @param oreBuff
+	 * @param buff
 	 */
 	public void setOreBuff(float buff) {
-		ore.setBuff(buff);;
+		ore.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the ore resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeOreBuff(float buff) {
+		ore.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -102,10 +112,19 @@ public class Plot extends MapTile {
 	/**
 	 * sets the ore resource debuff multiplier
 	 * 
-	 * @param oreDebuff
+	 * @param debuff
 	 */
 	public void setOreDebuff(float debuff) {
 		ore.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the ore resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeOreDebuff(float debuff) {
+		ore.changeDebuff(debuff);
 	}
 
 	/**
@@ -120,10 +139,20 @@ public class Plot extends MapTile {
 	/**
 	 * sets the food resource buff multiplier
 	 * 
-	 * @param foodBuff
+	 * @param buff
 	 */
 	public void setFoodBuff(float buff) {
 		food.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the food resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeFoodBuff(float buff) {
+		food.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -139,10 +168,19 @@ public class Plot extends MapTile {
 	/**
 	 * sets the food resource debuff multiplier
 	 * 
-	 * @param foodDebuff
+	 * @param debuff
 	 */
 	public void setFoodDebuff(float debuff) {
 		food.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the food resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeFoodDebuff(float debuff) {
+		food.changeDebuff(debuff);
 	}
 
 	/**
@@ -157,10 +195,20 @@ public class Plot extends MapTile {
 	/**
 	 * sets the energy resource buff multiplier
 	 * 
-	 * @param energyBuff
+	 * @param buff
 	 */
 	public void setEnergyBuff(float buff) {
 		energy.setBuff(buff);
+		updateHasRoboticonCache();
+	}
+	
+	/**
+	 * add to the energy resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeEnergyBuff(float buff) {
+		energy.changeBuff(buff);
 		updateHasRoboticonCache();
 	}
 
@@ -176,10 +224,19 @@ public class Plot extends MapTile {
 	/**
 	 * sets the energy resource debuff multiplier
 	 * 
-	 * @param energyDebuff
+	 * @param debuff
 	 */
 	public void setEnergyDebuff(float debuff) {
 		energy.setDebuff(debuff);
+	}
+	
+	/**
+	 * add to the energy resource buff multiplier
+	 * 
+	 * @param buff
+	 */
+	public void changeEnergyDebuff(float debuff) {
+		energy.changeDebuff(debuff);
 	}
 
 	/**
@@ -199,7 +256,7 @@ public class Plot extends MapTile {
 	 * 
 	 * @param x
 	 * @param y
-	 * @return whether they are withing the margin
+	 * @return whether they are within the margin
 	 */
 	private boolean floatEq(float x, float y) {
 		return Math.abs(x - y) < 1.0f;
