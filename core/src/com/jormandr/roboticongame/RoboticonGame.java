@@ -1,3 +1,10 @@
+/**
+ * Roboticon Colony of York
+ * By Jormandr Games
+ * 
+ * Executable JARs and assessment milestones can be found at https://github.com/Jormandr/roboticon-game/releases
+ */
+
 package com.jormandr.roboticongame;
 
 import com.badlogic.gdx.Game;
