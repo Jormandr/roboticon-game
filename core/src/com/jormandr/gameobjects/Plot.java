@@ -133,7 +133,7 @@ public class Plot extends MapTile {
 	 * @return the food resource buff multiplier
 	 */
 	public float getFoodBuff() {
-		return food.getDebuff();
+		return food.getBuff();
 	}
 
 	/**
@@ -162,7 +162,7 @@ public class Plot extends MapTile {
 	 * @return the food resource debuff multiplier
 	 */
 	public float getFoodDebuff() {
-		return food.getBuff();
+		return food.getDebuff();
 	}
 
 	/**
