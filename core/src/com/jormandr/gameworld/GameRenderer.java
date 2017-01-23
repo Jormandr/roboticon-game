@@ -6,7 +6,6 @@ import com.jormandr.gameobjects.Market;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld.GameState;
 import com.jormandr.gameworld.GameWorld.WorldState;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;

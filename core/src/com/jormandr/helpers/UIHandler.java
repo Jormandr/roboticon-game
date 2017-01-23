@@ -22,6 +22,10 @@ import com.jormandr.ui.upgrade.UIButtonUpgradeRoboEnergy;
 import com.jormandr.ui.upgrade.UIButtonUpgradeRoboFood;
 import com.jormandr.ui.upgrade.UIButtonUpgradeRoboOre;
 
+/**
+ * This loads all the buttons, and manages which ones are running in GameWorld
+ *
+ */
 public class UIHandler {
 	
 	private static GameWorld myWorld;
@@ -36,35 +40,51 @@ public class UIHandler {
 	public UIHandler(){
 		
 		menuButtons = new ArrayList<UIButton>();
-		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
-
-		buyPlotButton = new UIButtonBuyPlot(560, 464, myWorld);
-		endTurnButton = new UIButtonEndPhase(189 * 4, 24, myWorld);
-
-		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, myWorld);
-
-		upgradeFoodButton = new UIButtonUpgradeRoboFood(796, 256, ButtonType.RSMALL, myWorld);
-		upgradeOreButton = new UIButtonUpgradeRoboOre(796, 312, ButtonType.RSMALL, myWorld);
-		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796, 368, ButtonType.RSMALL, myWorld);
-
-		marketButton = new UIButtonMarket(118 * 4, 24, myWorld);
-
-		buyRoboticonButton = new UIButtonBuyRobo(94 * 4, 102 * 4, myWorld);
-
-		buyFoodButton = new UIButtonBuy(139 * 4, 67 * 4, myWorld, ResourceType.FOOD);
-		buyOreButton = new UIButtonBuy(156 * 4, 67 * 4, myWorld, ResourceType.ORE);
-		buyEnergyButton = new UIButtonBuy(173 * 4, 67 * 4, myWorld, ResourceType.ENERGY);
-
-		sellFoodButton = new UIButtonSell(139 * 4, 88 * 4, myWorld, ResourceType.FOOD);
-		sellOreButton = new UIButtonSell(156 * 4, 88 * 4, myWorld, ResourceType.ORE);
-		sellEnergyButton = new UIButtonSell(173 * 4, 88 * 4, myWorld, ResourceType.ENERGY);
-
-		endAuctionButton = new UIButtonAuctionEnd(560, 464, myWorld);
-
-		GameOverButton = new UIButtonEndGame(560, 464, myWorld);
+		
+		loadGameButtons();
+		loadPlotButtons();
+		loadMarketButtons();
 		
 		menuButtons.add(endTurnButton);
 		menuButtons.add(marketButton);
+	}
+	
+	private void loadUpgradeButtons(){
+		upgradeFoodButton = new UIButtonUpgradeRoboFood(796, 256, ButtonType.RSMALL, myWorld);
+		upgradeOreButton = new UIButtonUpgradeRoboOre(796, 312, ButtonType.RSMALL, myWorld);
+		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796, 368, ButtonType.RSMALL, myWorld);
+	}
+	
+	private void loadSellButtons(){
+		sellFoodButton = new UIButtonSell(139 * 4, 88 * 4, myWorld, ResourceType.FOOD);
+		sellOreButton = new UIButtonSell(156 * 4, 88 * 4, myWorld, ResourceType.ORE);
+		sellEnergyButton = new UIButtonSell(173 * 4, 88 * 4, myWorld, ResourceType.ENERGY);
+	}
+	
+	private void loadBuyButtons(){
+		buyFoodButton = new UIButtonBuy(139 * 4, 67 * 4, myWorld, ResourceType.FOOD);
+		buyOreButton = new UIButtonBuy(156 * 4, 67 * 4, myWorld, ResourceType.ORE);
+		buyEnergyButton = new UIButtonBuy(173 * 4, 67 * 4, myWorld, ResourceType.ENERGY);
+	}
+	
+	private void loadMarketButtons(){
+		buyRoboticonButton = new UIButtonBuyRobo(94 * 4, 102 * 4, myWorld);
+		endAuctionButton = new UIButtonAuctionEnd(560, 464, myWorld);
+		loadSellButtons();
+		loadBuyButtons();	
+	}
+	
+	private void loadPlotButtons(){
+		buyPlotButton = new UIButtonBuyPlot(560, 464, myWorld);
+		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, myWorld);
+		loadUpgradeButtons();
+	}
+	
+	private void loadGameButtons(){
+		endTurnButton = new UIButtonEndPhase(189 * 4, 24, myWorld);
+		marketButton = new UIButtonMarket(118 * 4, 24, myWorld);
+		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
+		GameOverButton = new UIButtonEndGame(560, 464, myWorld);
 	}
 	
 	public static ArrayList<UIButton> getMenuButtons() {
