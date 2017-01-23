@@ -42,7 +42,7 @@ public abstract class MapTile {
 		 * setting up a polygon of coordinate points for intersection checks
 		 * with player inputs such as mouse
 		 * 
-		 * in an anticlockwise fashion, builds up a diamond shape, tried drawing
+		 * builds up a diamond shape, tried drawing
 		 * some ascii art but it's pretty difficult :p
 		 * 
 		 */
@@ -57,10 +57,18 @@ public abstract class MapTile {
 		verts[7] = coords.y;
 	}
 
+	/**
+	 * returns tile map width offset
+	 * @return tw
+	 */
 	public static float getTW() {
 		return tw;
 	}
 
+	/**
+	 * returns tile map height offset
+	 * @return tw
+	 */
 	public static float getTH() {
 		return th;
 	}

@@ -30,7 +30,9 @@ public class CollisionHandler {
 
 		MapTile[][] map = GameWorld.getMap();
 
-		MapTile tile = map[0][0];
+		MapTile tile = map[0][0]; //default case returns map tile at 0,0
+									// this means tileMouseOver will return false
+		
 		if (!((gridPos.x <= 0) || (gridPos.x >= map.length) || (gridPos.y <= 0) || (gridPos.y >= map[1].length))) {
 			tile = map[(int) gridPos.x][(int) gridPos.y];
 		}
@@ -44,8 +46,8 @@ public class CollisionHandler {
 	 * Checks mouse for update in inputs
 	 */
 	public static void update() {
-
-		mousePos = GameWorld.getMousePos();
+		//continuously update mouse position
+		mousePos = GameWorld.getMousePos(); 
 
 	}
 
@@ -59,7 +61,10 @@ public class CollisionHandler {
 		float w = GameConfig.getHalfTileWidth();
 		float h = GameConfig.getHalfTileHeight();
 		Vector2 gridPos = new Vector2();
-		float x = mousePos.x - MapTile.getTW() * w;
+		// matrix rotation equation see:
+		// http://clintbellanger.net/articles/isometric_math/
+		
+		float x = mousePos.x - MapTile.getTW() * w;		
 		float y = mousePos.y - MapTile.getTH() * h;
 
 		gridPos.x = ((x / w) + (y / h)) / 2;
@@ -75,7 +80,8 @@ public class CollisionHandler {
 	 */
 	public static boolean tileMouseOver() {
 
-		MapTile tile = getNearestMapTile();
+		MapTile tile = getNearestMapTile(); // gets nearest map tile, if not on grid will return first map tile
+											// this is cheaper than doing a linear search through all map tiles
 
 		float[] tileV = tile.getVerts();
 

@@ -299,9 +299,7 @@ public abstract class Player {
 		roboticonsOwned += difference;
 	}
 
-	/**
-	 * Update of player increments game state machine state
-	 */
+
 	public void updateScore() {
 		score = (int) ((int) (ore + food + energy) * java.lang.Math.log10(plotsOwned.length));
 	}

@@ -300,5 +300,9 @@ public class Plot extends MapTile {
 	public Player getOwned() {
 		return owned;
 	}
+	
+	public void setCost(){
+		cost = (int) (cost*getOreBuff()*getFoodBuff()*getEnergyBuff());
+	}
 
 }

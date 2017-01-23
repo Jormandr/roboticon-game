@@ -43,13 +43,13 @@ public class ResourceTriple {
 	}
 
 	/**
-	 * Add to the buff, a floating point multiplier of value, intended to be
+	 * Multiply to the buff, a floating point multiplier of value, intended to be
 	 * >=1.0f
 	 * 
 	 * @param buff
 	 */
 	public void changeBuff(float buff) {
-		this.buff += buff;
+		this.buff *= buff;
 		updateValueCache();
 	}
 

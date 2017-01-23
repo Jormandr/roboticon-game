@@ -50,8 +50,9 @@ public class UIButtonUpgradeRoboFood extends UIButton {
 			Gdx.app.log("InputHandler: ", "Button Clicked");
 			if (player.getChangeMoney(-plot.getCost()) >= 0) {
 
-				plot.setFoodBuff(2.0f); // set some buff here
+				plot.changeFoodBuff(2.0f); // set some buff here
 				player.changeMoney(-(plot.getCost()));
+				plot.setCost();
 				isPressed = true;
 				return true;
 			}

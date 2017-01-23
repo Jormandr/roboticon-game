@@ -54,8 +54,9 @@ public class UIButtonUpgradeRoboOre extends UIButton {
 			Gdx.app.log("InputHandler: ", "Button Clicked");
 			if (player.getChangeMoney(-plot.getCost()) >= 0) {
 
-				plot.setOreBuff(2.0f); // set some buff here
+				plot.changeOreBuff(2.0f); // set some buff here
 				player.changeMoney(-(plot.getCost()));
+				plot.setCost();
 				isPressed = true;
 				return true;
 			}

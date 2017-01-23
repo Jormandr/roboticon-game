@@ -40,7 +40,7 @@ public class UIButtonPlaceRobo extends UIButtonTextRBig {
 		if (plot.hasRoboticon() == false && plot.getOwned() == player) {
 			if (player.getRoboticonsOwned() >= 1) {
 				Gdx.app.log("InputHandler: ", "Button Clicked");
-				plot.setEnergyBuff(2.0f); // set some buff here
+				plot.setEnergyBuff(1.2f); // set some buff here
 				player.changeRoboticonsOwned(-1);
 				isPressed = true;
 				return true;
