@@ -1,6 +1,5 @@
 package com.jormandr.gameobjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.gameworld.GameWorld;
@@ -18,11 +17,11 @@ public class Plot extends MapTile {
 	 * Potential idea: Group these into vectors or something - would look nicer
 	 * but this may add overhead
 	 */
-	
+
 	private ResourceTriple ore, food, energy;
 	private int cost = 10;
 	private Player owned = null;
-	
+
 	// OK, so a Roboticon isn't actually a "thing", it's basically a triple of
 	// buffs
 	// To add one you assign its triple to the plot's buffs
@@ -91,7 +90,7 @@ public class Plot extends MapTile {
 		ore.setBuff(buff);
 		updateHasRoboticonCache();
 	}
-	
+
 	/**
 	 * add to the ore resource buff multiplier
 	 * 
@@ -119,7 +118,7 @@ public class Plot extends MapTile {
 	public void setOreDebuff(float debuff) {
 		ore.setDebuff(debuff);
 	}
-	
+
 	/**
 	 * add to the ore resource buff multiplier
 	 * 
@@ -147,7 +146,7 @@ public class Plot extends MapTile {
 		food.setBuff(buff);
 		updateHasRoboticonCache();
 	}
-	
+
 	/**
 	 * add to the food resource buff multiplier
 	 * 
@@ -175,7 +174,7 @@ public class Plot extends MapTile {
 	public void setFoodDebuff(float debuff) {
 		food.setDebuff(debuff);
 	}
-	
+
 	/**
 	 * add to the food resource buff multiplier
 	 * 
@@ -203,7 +202,7 @@ public class Plot extends MapTile {
 		energy.setBuff(buff);
 		updateHasRoboticonCache();
 	}
-	
+
 	/**
 	 * add to the energy resource buff multiplier
 	 * 
@@ -231,7 +230,7 @@ public class Plot extends MapTile {
 	public void setEnergyDebuff(float debuff) {
 		energy.setDebuff(debuff);
 	}
-	
+
 	/**
 	 * add to the energy resource buff multiplier
 	 * 
@@ -254,7 +253,8 @@ public class Plot extends MapTile {
 	}
 
 	private void updateHasRoboticonCache() {
-		hasRoboticonCache = !(floatEq(ore.getBuff(), 1.0f) && floatEq(food.getBuff(), 1.0f) && floatEq(energy.getBuff(), 1.0f));
+		hasRoboticonCache = !(floatEq(ore.getBuff(), 1.0f) && floatEq(food.getBuff(), 1.0f)
+				&& floatEq(energy.getBuff(), 1.0f));
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class Plot extends MapTile {
 	}
 
 	@Override
-	public void draw(SpriteBatch batcher, int yOffset){
+	public void draw(SpriteBatch batcher, int yOffset) {
 
 		if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP1)) {
 			batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
@@ -280,12 +280,12 @@ public class Plot extends MapTile {
 			batcher.setColor(0.5f, 0.5f, 1.0f, 1.0f);
 		}
 
-		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y+yOffset,ww,0, 62, 34,2,2,0);
+		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y + yOffset, ww, 0, 62, 34, 2, 2, 0);
 
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-		
+
 		if (hasRoboticon()) {
-			batcher.draw(AssetLoader.roboticon, coords.x, coords.y+yOffset,ww/2,0,191-164,24,2,2,0);
+			batcher.draw(AssetLoader.roboticon, coords.x, coords.y + yOffset, ww / 2, 0, 191 - 164, 24, 2, 2, 0);
 		}
 	}
 

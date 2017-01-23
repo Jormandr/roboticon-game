@@ -303,7 +303,7 @@ public abstract class Player {
 	 * Update of player increments game state machine state
 	 */
 	public void updateScore() {
-		score = (int) ((int)(ore+food+energy)*java.lang.Math.log10(plotsOwned.length));		
+		score = (int) ((int) (ore + food + energy) * java.lang.Math.log10(plotsOwned.length));
 	}
 
 	public void setState(PlayerState state) {
@@ -322,11 +322,11 @@ public abstract class Player {
 	public int getChangeFood(int difference) {
 		return food + difference;
 	}
-	
+
 	public int getChangeEnergy(int difference) {
 		return energy + difference;
 	}
-	
+
 	public int getChangeOre(int difference) {
 		return ore + difference;
 	}

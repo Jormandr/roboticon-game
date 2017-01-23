@@ -10,11 +10,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
-import com.jormandr.misctypes.Pair;
 
 /**
  * This is the class that deals with all drawing of textures and any other
@@ -61,7 +59,6 @@ public class GameRenderer {
 	 * where all assets (and shapes) are rendered
 	 */
 	public void render() {
-		
 
 		// Begin SpriteBatch
 		batcher.begin();
@@ -70,38 +67,36 @@ public class GameRenderer {
 		// drawing background, does not require transparency
 		drawBackground();
 		batcher.enableBlending();
-		
+
 		drawMainUI();
 
 		// drawing the map grid
-		drawMap(); //draw map after main user interface to allow for mouse-over text related to map;
-		
+		drawMap(); // draw map after main user interface to allow for mouse-over
+					// text related to map;
+
 		// drawing the UI
 		drawFrontUI();
-		
 
 		batcher.disableBlending();
 
 		// End SpriteBatch
 		batcher.end();
-		
-		 
-		 
+
 	}
 
 	/**
 	 * All user interface assets that needs to be drawn to screen
 	 */
 	private void drawFrontUI() {
-		
-		//draw menu UI
+
+		// draw menu UI
 		if (myWorld.isMenu()) {
 			drawMenuUI();
 		}
-		
-		//draw buttons if they exist, market and end phase always around
+
+		// draw buttons if they exist, market and end phase always around
 		for (int i = 0; i < InputHandler.getMenuButtons().size(); i += 1) {
-			 Gdx.app.log("Drawing: ", "button");
+			Gdx.app.log("Drawing: ", "button");
 			InputHandler.getMenuButtons().get(i).draw(batcher);
 		}
 	}
@@ -122,7 +117,7 @@ public class GameRenderer {
 		if (InputHandler.menuIsEnd()) {
 			drawEndUI();
 		}
-		
+
 	}
 
 	/**
@@ -135,7 +130,7 @@ public class GameRenderer {
 		Plot plot = (Plot) tile;
 
 		batcher.draw(AssetLoader.uiPlotScreen, 504, 260, 0, 0, 233 - 165, 100 - 52, 4, 4, 0);
-		batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], 129*4, 76*4, 0, 0, 124, 68, 2, 2, 0);
+		batcher.draw(AssetLoader.textureMap[tile.getType().ordinal()], 129 * 4, 76 * 4, 0, 0, 124, 68, 2, 2, 0);
 		AssetLoader.fontX.draw(batcher, tile.getType().toString(), 380, 265);
 		AssetLoader.fontX.draw(batcher, "Food: " + plot.getFoodValue(), 380, 280);
 		AssetLoader.fontX.draw(batcher, "Ore: " + plot.getOreValue(), 380, 295);
@@ -143,7 +138,7 @@ public class GameRenderer {
 		AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), 380, 325);
 
 		if (plot.hasRoboticon()) {
-			batcher.draw(AssetLoader.roboticon, 129*4+60, 76*4 , 0, 0, 191 - 164, 24, 4, 4, 0);
+			batcher.draw(AssetLoader.roboticon, 129 * 4 + 60, 76 * 4, 0, 0, 191 - 164, 24, 4, 4, 0);
 		}
 	}
 
@@ -151,7 +146,7 @@ public class GameRenderer {
 	 * All market user interface assets that need to be drawn to screen
 	 */
 	private void drawMarketUI() {
-		//market has draw method
+		// market has draw method
 		myMarket.draw(batcher);
 	}
 
@@ -179,13 +174,13 @@ public class GameRenderer {
 		batcher.draw(AssetLoader.uiTimerJuice, 1280 - 141 * 4, 6 * 4, 0, 0, j, 8, -4, 4, 0);
 		batcher.draw(AssetLoader.uiTimerFrame, 141 * 4, 6 * 4, 0, 0, 38, 8, 4, 4, 0);
 
-		//draw state lights
+		// draw state lights
 		drawStateLightUI();
-		//draw player info & scores
+		// draw player info & scores
 		drawScoreUI();
 	}
 
-	//not particularly elegant but have to check for each state
+	// not particularly elegant but have to check for each state
 	/**
 	 * draws lights to indicate game phase
 	 */
@@ -251,6 +246,7 @@ public class GameRenderer {
 	private void drawBackground() {
 		batcher.draw(AssetLoader.backgroundTexture, 0, 0);
 	}
+
 	/**
 	 * draws the grid of map tiles
 	 */
@@ -266,21 +262,22 @@ public class GameRenderer {
 				MapTile tile = worldMap[i][j];
 				float xx = tile.convertToX();
 				float yy = tile.convertToY();
-	 
 
-				if (CollisionHandler.tileMouseOver() == true && CollisionHandler.getNearestMapTile() == tile ) {
-					//tiles have their own draw method
-					tile.draw(batcher, -6); //mouse-over raising it up slightly
-					if (myWorld.getWorldState() == WorldState.RUNNING) { 
-						
-						//when we can see the grid of tiles draw info about the mouse-over'd tile
-						
+				if (CollisionHandler.tileMouseOver() == true && CollisionHandler.getNearestMapTile() == tile) {
+					// tiles have their own draw method
+					tile.draw(batcher, -6); // mouse-over raising it up slightly
+					if (myWorld.getWorldState() == WorldState.RUNNING) {
+
+						// when we can see the grid of tiles draw info about the
+						// mouse-over'd tile
+
 						batcher.draw(AssetLoader.uiTileInfo, xx + 64, yy, 0, 0, 20, -28, 4, 4, 0);
 
 						AssetLoader.fontX.draw(batcher, tile.getType().toString(), xx + 76, yy - 100);
 
-						//making sure it's a plot in case it's a landmark etc. (landmark MapTiles not yet implemented)
-						
+						// making sure it's a plot in case it's a landmark etc.
+						// (landmark MapTiles not yet implemented)
+
 						if (tile instanceof Plot) {
 							AssetLoader.fontX.draw(batcher, "Food: " + ((Plot) tile).getFoodValue(), xx + 76, yy - 80);
 							AssetLoader.fontX.draw(batcher, "Ore: " + ((Plot) tile).getOreValue(), xx + 76, yy - 65);
@@ -290,13 +287,13 @@ public class GameRenderer {
 						}
 					}
 
-				} 					else {
+				} else {
 					tile.draw(batcher, 0);
 				}
-				}
-
 			}
+
 		}
+	}
 
 	/**
 	 * draws the players' info and scores

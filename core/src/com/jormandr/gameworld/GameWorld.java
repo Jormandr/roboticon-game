@@ -75,8 +75,9 @@ public class GameWorld {
 	}
 
 	/**
-	 * Update is run every frame, updates of both GameWorld state machines 
-	 * put here so they run continuously.
+	 * Update is run every frame, updates of both GameWorld state machines put
+	 * here so they run continuously.
+	 * 
 	 * @param delta
 	 */
 	public void update() {
@@ -109,7 +110,7 @@ public class GameWorld {
 	}
 
 	private void updateMenu() {
-		//blank for now
+		// blank for now
 	}
 
 	/**
@@ -265,7 +266,6 @@ public class GameWorld {
 		return currentState == WorldState.RUNNING;
 	}
 
-	@SuppressWarnings("incomplete-switch")
 	public void toMenuPlot() {
 		currentState = WorldState.MENU;
 		InputHandler.setMenu(MenuUI.PLOT);
@@ -289,7 +289,6 @@ public class GameWorld {
 		}
 	}
 
-	@SuppressWarnings("incomplete-switch")
 	public void toMenuMarket() {
 		currentState = WorldState.MENU;
 		InputHandler.setMenu(MenuUI.MARKET);
@@ -320,6 +319,7 @@ public class GameWorld {
 		InputHandler.LoadEndMenu();
 	}
 
+	@SuppressWarnings("unused")
 	private void toMenuStart() {
 		currentState = WorldState.MENU;
 		InputHandler.clearMenuButtons();
@@ -420,15 +420,14 @@ public class GameWorld {
 
 		return true;
 	}
-	
-	public Player getWinner(){
-		if (player1.getScore() > player2.getScore()){
+
+	public Player getWinner() {
+		if (player1.getScore() > player2.getScore()) {
 			return player1;
-		}
-		else if (player1.getScore() == player2.getScore()){
+		} else if (player1.getScore() == player2.getScore()) {
 			return null;
 		}
 		return player2;
 	}
-	
+
 }

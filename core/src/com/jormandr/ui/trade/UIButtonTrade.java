@@ -55,7 +55,7 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 		}
 		return cost;
 	}
-	
+
 	protected int getResourceValue() {
 		Market myMarket = myWorld.getMarket();
 		int cost;
@@ -75,7 +75,7 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 		}
 		return cost;
 	}
-	
+
 	protected void changeResourceValue(int value) {
 		Market myMarket = myWorld.getMarket();
 
@@ -84,17 +84,16 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 			myMarket.changeFood(value);
 			break;
 		case ORE:
-			 myMarket.changeOre(value);
+			myMarket.changeOre(value);
 			break;
 		case ENERGY:
-			 myMarket.changeEnergy(value);
+			myMarket.changeEnergy(value);
 			break;
 		default:
 			break;
 		}
 
 	}
-
 
 	protected void changeResource(int amount) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
@@ -112,7 +111,5 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 			break;
 		}
 	}
-
-
 
 }

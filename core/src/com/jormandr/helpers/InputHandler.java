@@ -42,13 +42,13 @@ public class InputHandler implements InputProcessor {
 	public InputHandler(GameWorld myWorld) {
 
 		currentMenu = MenuUI.PLOT;
-		this.myWorld = myWorld;
+		InputHandler.myWorld = myWorld;
 
 		menuButtons = new ArrayList<UIButton>();
 		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
 
 		buyPlotButton = new UIButtonBuyPlot(560, 464, myWorld);
-		endTurnButton = new UIButtonEndPhase(189 * 4, 24,myWorld);
+		endTurnButton = new UIButtonEndPhase(189 * 4, 24, myWorld);
 
 		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, myWorld);
 
@@ -56,11 +56,10 @@ public class InputHandler implements InputProcessor {
 		upgradeOreButton = new UIButtonUpgradeRoboOre(796, 312, ButtonType.RSMALL, myWorld);
 		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796, 368, ButtonType.RSMALL, myWorld);
 
-		marketButton = new UIButtonMarket(118 * 4, 24,myWorld);
+		marketButton = new UIButtonMarket(118 * 4, 24, myWorld);
 
 		buyRoboticonButton = new UIButtonBuyRobo(94 * 4, 102 * 4, myWorld);
-		
-		
+
 		buyFoodButton = new UIButtonBuy(139 * 4, 67 * 4, myWorld, ResourceType.FOOD);
 		buyOreButton = new UIButtonBuy(156 * 4, 67 * 4, myWorld, ResourceType.ORE);
 		buyEnergyButton = new UIButtonBuy(173 * 4, 67 * 4, myWorld, ResourceType.ENERGY);

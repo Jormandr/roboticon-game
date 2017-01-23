@@ -7,7 +7,6 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
-import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.text.UIButtonTextRBig;
 
 public class UIButtonPlaceRobo extends UIButtonTextRBig {
@@ -21,7 +20,7 @@ public class UIButtonPlaceRobo extends UIButtonTextRBig {
 	protected void drawText(SpriteBatch batcher) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		Plot plot = ((Plot) InputHandler.getTile());
-		
+
 		if (plot.getOwned() != player) {
 			AssetLoader.fontX.draw(batcher, "You do not", 590, 493);
 			AssetLoader.fontX.draw(batcher, "own this tile", 590, 502);

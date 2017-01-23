@@ -12,7 +12,6 @@ public class UIButtonMarket extends UIButtonTextSSmall {
 
 	}
 
-
 	@Override
 	public boolean isTouchDown() {
 		if (myWorld.isRunning()) {

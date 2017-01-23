@@ -14,7 +14,7 @@ public class UIButtonEndGame extends UIButtonTextRBig {
 	@Override
 	public boolean isTouchDown() {
 		Gdx.app.exit();
-		 return true;
+		return true;
 	}
 
 }

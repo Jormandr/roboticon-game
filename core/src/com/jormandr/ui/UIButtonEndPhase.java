@@ -4,13 +4,12 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.players.Player;
 import com.jormandr.ui.text.UIButtonTextSSmall;
 
-public class UIButtonEndPhase extends UIButtonTextSSmall{
+public class UIButtonEndPhase extends UIButtonTextSSmall {
 
-	public UIButtonEndPhase(float x, float y,GameWorld world) {
+	public UIButtonEndPhase(float x, float y, GameWorld world) {
 		super(x, y, world, "End", "Phase");
 
 	}
-
 
 	@Override
 	public boolean isTouchDown() {

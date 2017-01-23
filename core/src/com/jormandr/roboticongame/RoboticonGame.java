@@ -21,9 +21,6 @@ import com.jormandr.screens.GameScreen;
  */
 public class RoboticonGame extends Game {
 
-	
-	
-	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -46,5 +43,4 @@ public class RoboticonGame extends Game {
 		AssetLoader.dispose();
 	}
 
-	
 }

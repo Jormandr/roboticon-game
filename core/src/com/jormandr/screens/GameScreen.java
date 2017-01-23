@@ -37,7 +37,7 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		world.update();
 		renderer.render();
-		
+
 	}
 
 	@Override
@@ -45,30 +45,25 @@ public class GameScreen implements Screen {
 		Gdx.app.log("GameScreen", "resizing");
 	}
 
-
 	@Override
 	public void show() {
 		Gdx.app.log("GameScreen", "show called");
 	}
-
 
 	@Override
 	public void hide() {
 		Gdx.app.log("GameScreen", "hide called");
 	}
 
-
 	@Override
 	public void pause() {
 		Gdx.app.log("GameScreen", "pause called");
 	}
 
-
 	@Override
 	public void resume() {
 		Gdx.app.log("GameScreen", "resume called");
 	}
-
 
 	@Override
 	public void dispose() {

@@ -1,17 +1,15 @@
 package com.jormandr.ui;
 
-
 import com.jormandr.gameobjects.Market;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.players.Player;
 import com.jormandr.ui.text.UIButtonTextSBig;
 
+public class UIButtonBuyRobo extends UIButtonTextSBig {
+	int initX, initY;
 
-
-public class UIButtonBuyRobo extends UIButtonTextSBig{
-	int initX,initY;
-	public UIButtonBuyRobo(float x, float y, GameWorld world){
-		super(x,y, world, "Buy", "Roboticon");
+	public UIButtonBuyRobo(float x, float y, GameWorld world) {
+		super(x, y, world, "Buy", "Roboticon");
 
 	}
 	
@@ -32,21 +30,21 @@ public class UIButtonBuyRobo extends UIButtonTextSBig{
 		}
 	}
 	*/
-	
+
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		Market myMarket = myWorld.getMarket();
 		int cost = -myMarket.getRoboticonSellValue();
-		//run logic for the button being pressed
-		if (myMarket.getRoboticons() > 0){
-		if (player.getChangeMoney(cost) >= 0){
-		player.changeRoboticonsOwned(1);
-		player.changeMoney(cost);
-		myMarket.changeRoboticons(-1);
-			isPressed = true;
-			return true;
-		}
+		// run logic for the button being pressed
+		if (myMarket.getRoboticons() > 0) {
+			if (player.getChangeMoney(cost) >= 0) {
+				player.changeRoboticonsOwned(1);
+				player.changeMoney(cost);
+				myMarket.changeRoboticons(-1);
+				isPressed = true;
+				return true;
+			}
 		}
 		return false;
 	}

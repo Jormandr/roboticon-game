@@ -1,6 +1,5 @@
 package com.jormandr.helpers;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
@@ -62,15 +61,15 @@ public class CollisionHandler {
 		Vector2 gridPos = new Vector2();
 		float x = mousePos.x - MapTile.getTW() * w;
 		float y = mousePos.y - MapTile.getTH() * h;
-		
-		gridPos.x = ((x / w) + (y / h) )  / 2;
-		gridPos.y = ((y / h) - (x / w) ) / 2;
+
+		gridPos.x = ((x / w) + (y / h)) / 2;
+		gridPos.y = ((y / h) - (x / w)) / 2;
 
 		return gridPos;
 	}
 
 	/**
-	 * returns whether the mouse is over a map tile	
+	 * returns whether the mouse is over a map tile
 	 * 
 	 * @return whether the mouse is over a map tile
 	 */

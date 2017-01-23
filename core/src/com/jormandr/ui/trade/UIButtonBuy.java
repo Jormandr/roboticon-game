@@ -1,14 +1,10 @@
 package com.jormandr.ui.trade;
 
-import javax.annotation.Resource;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.jormandr.gameobjects.Market;
 import com.jormandr.gameobjects.Market.ResourceType;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
-import com.jormandr.ui.text.UIButtonTextSBig;
 
 public class UIButtonBuy extends UIButtonTrade {
 
@@ -20,7 +16,6 @@ public class UIButtonBuy extends UIButtonTrade {
 		resource = sauce;
 
 	}
-
 
 	@Override
 	protected void drawText(SpriteBatch batcher) {
@@ -43,19 +38,18 @@ public class UIButtonBuy extends UIButtonTrade {
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		Market myMarket = myWorld.getMarket();
 		int cost = -getResource();
-		//run logic for the button being pressed
-		if (getResourceValue() > 0){
-		if (player.getChangeMoney(cost) >= 0){
-		changeResource(10);
-		player.changeMoney(cost);
-		changeResourceValue(-10); 
-			isPressed = true;
-			return true;
-		}
+		// run logic for the button being pressed
+		if (getResourceValue() > 0) {
+			if (player.getChangeMoney(cost) >= 0) {
+				changeResource(10);
+				player.changeMoney(cost);
+				changeResourceValue(-10);
+				isPressed = true;
+				return true;
+			}
 
-	}
+		}
 		return false;
 	}
 
