@@ -1,4 +1,4 @@
-package com.jormandr.ui;
+package com.jormandr.ui.text.rbig;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,27 +7,21 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
+import com.jormandr.ui.ButtonType;
+import com.jormandr.ui.text.UIButtonTextRBig;
 
-public class UIButtonPlaceRobo extends UIButton {
+public class UIButtonPlaceRobo extends UIButtonTextRBig {
 
-	public UIButtonPlaceRobo(float x, float y, ButtonType type, GameWorld world) {
-		super(x, y, type, world);
+	public UIButtonPlaceRobo(float x, float y, GameWorld world) {
+		super(x, y, world, "", "");
 
 	}
 
 	@Override
-	public void draw(SpriteBatch batcher) {
+	protected void drawText(SpriteBatch batcher) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		Plot plot = ((Plot) InputHandler.getTile());
-
-		if (isPressed) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
-					buttonHeight, 4, 4, 0);
-		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, buttonWidth,
-					buttonHeight, 4, 4, 0);
-		}
-
+		
 		if (plot.getOwned() != player) {
 			AssetLoader.fontX.draw(batcher, "You do not", 590, 493);
 			AssetLoader.fontX.draw(batcher, "own this tile", 590, 502);

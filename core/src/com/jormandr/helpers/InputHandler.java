@@ -9,23 +9,23 @@ import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
-import com.jormandr.ui.UIButtonAuctionEnd;
 import com.jormandr.ui.UIButtonBuyEnergy;
 import com.jormandr.ui.UIButtonBuyFood;
 import com.jormandr.ui.UIButtonBuyOre;
-import com.jormandr.ui.UIButtonBuyPlot;
 import com.jormandr.ui.UIButtonBuyRobo;
 import com.jormandr.ui.UIButtonClose;
-import com.jormandr.ui.UIButtonEndGame;
 import com.jormandr.ui.UIButtonEndPhase;
 import com.jormandr.ui.UIButtonMarket;
-import com.jormandr.ui.UIButtonPlaceRobo;
 import com.jormandr.ui.UIButtonSellEnergy;
 import com.jormandr.ui.UIButtonSellFood;
 import com.jormandr.ui.UIButtonSellOre;
 import com.jormandr.ui.UIButtonUpgradeRoboEnergy;
 import com.jormandr.ui.UIButtonUpgradeRoboFood;
 import com.jormandr.ui.UIButtonUpgradeRoboOre;
+import com.jormandr.ui.text.rbig.UIButtonAuctionEnd;
+import com.jormandr.ui.text.rbig.UIButtonBuyPlot;
+import com.jormandr.ui.text.rbig.UIButtonEndGame;
+import com.jormandr.ui.text.rbig.UIButtonPlaceRobo;
 
 public class InputHandler implements InputProcessor {
 	
@@ -49,9 +49,9 @@ public class InputHandler implements InputProcessor {
 
 		menuButtons = new ArrayList<UIButton>();
 		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
-		buyPlotButton = new UIButtonBuyPlot(560, 464, ButtonType.RBIG, myWorld);
+		buyPlotButton = new UIButtonBuyPlot(560, 464, myWorld);
 		endTurnButton = new UIButtonEndPhase(189*4,24,ButtonType.SSMALL,myWorld);
-		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, ButtonType.RBIG, myWorld);
+		placeRoboticonButton = new UIButtonPlaceRobo(560, 464, myWorld);
 		upgradeFoodButton = new UIButtonUpgradeRoboFood(796,256,ButtonType.RSMALL,myWorld);
 		upgradeOreButton = new UIButtonUpgradeRoboOre(796,312,ButtonType.RSMALL,myWorld);
 		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796,368,ButtonType.RSMALL,myWorld);
@@ -63,8 +63,8 @@ public class InputHandler implements InputProcessor {
 		sellFoodButton = new UIButtonSellFood(139*4,88*4,ButtonType.SBIG,myWorld);
 		sellOreButton = new UIButtonSellOre(156*4,88*4,ButtonType.SBIG,myWorld);
 		sellEnergyButton = new UIButtonSellEnergy(173*4,88*4,ButtonType.SBIG,myWorld);
-		endAuctionButton = new UIButtonAuctionEnd(560, 464, ButtonType.RBIG, myWorld);
-		GameOverButton = new UIButtonEndGame(560, 464, ButtonType.RBIG, myWorld);
+		endAuctionButton = new UIButtonAuctionEnd(560, 464,myWorld);
+		GameOverButton = new UIButtonEndGame(560, 464, myWorld);
 		
 		menuButtons.add(endTurnButton);
 		menuButtons.add(marketButton);

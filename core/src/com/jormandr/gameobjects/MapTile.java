@@ -20,12 +20,11 @@ public abstract class MapTile {
 	// Don't do magic numbers kids
 	// I WILL FIX IT ARGHGHRGHRG
 	
-	private Vector2 position, coords;
+	protected Vector2 position, coords;
 	protected TileType type;
 	protected float[] verts = new float[8];
 	protected float ww,hh;
-	protected static float tw;
-	protected static float th;
+	protected static float tw, th;
 
 	/**
 	 * @param i
@@ -136,12 +135,10 @@ public abstract class MapTile {
 	 * draw method to be used in GameRenderer
 	 * 
 	 * @param batcher
-	 * @param xx
-	 * @param yy
 	 * @param yOffset
 	 */
 	public void draw(SpriteBatch batcher, int yOffset) {
-		batcher.draw(AssetLoader.textureMap[getType().ordinal()], verts[0], verts[1],-ww,-hh, 62, 34,1,1,1);
+		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y,-ww,-hh, 62, 34,1,1,0);
 	}
 
 }

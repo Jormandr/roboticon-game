@@ -32,6 +32,8 @@ public class AssetLoader {
 	 */
 	public static void load() {
 		
+		//most assets are scaled by a factor of 4 (sometimes 2) when drawn to give that "retro" pixel art style look
+		
 		loadTiles();
 		loadUI();
 		loadMisc();

@@ -303,23 +303,23 @@ public class GameRenderer {
 	 */
 	private void drawScoreUI() {
 		// drawing player1 score
-		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getScore()), 50, 80);
-		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getFood()), 50, 90);
-		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getOre()), 50, 100);
-		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getEnergy()), 50, 110);
-		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getMoney()), 50, 120);
+		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getScore()), 100, 108);
+		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getFood()), 100, 118);
+		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getOre()), 100, 128);
+		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getEnergy()), 100, 138);
+		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getMoney()), 100, 148);
 		AssetLoader.fontX.draw(batcher,
-				"Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getRoboticonsOwned()), 50, 130);
+				"Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP1).getRoboticonsOwned()), 100, 158);
 
 		// draw player2 score
-		int ww = GameConfig.getWidth() - 100;
+		int ww = GameConfig.getWidth() - 150;
 
-		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getScore()), ww, 80);
-		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getFood()), ww, 90);
-		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getOre()), ww, 100);
-		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getEnergy()), ww, 110);
-		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getMoney()), ww, 120);
+		AssetLoader.fontX.draw(batcher, "Score: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getScore()), ww, 108);
+		AssetLoader.fontX.draw(batcher, "Food: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getFood()), ww, 118);
+		AssetLoader.fontX.draw(batcher, "Ore: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getOre()), ww, 128);
+		AssetLoader.fontX.draw(batcher, "Energy: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getEnergy()), ww, 138);
+		AssetLoader.fontX.draw(batcher, "Money: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getMoney()), ww, 148);
 		AssetLoader.fontX.draw(batcher,
-				"Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getRoboticonsOwned()), ww, 130);
+				"Roboticons: " + (GameWorld.getPlayer(GameState.HANDLINGP2).getRoboticonsOwned()), ww, 158);
 	}
 }

@@ -280,12 +280,12 @@ public class Plot extends MapTile {
 			batcher.setColor(0.5f, 0.5f, 1.0f, 1.0f);
 		}
 
-		batcher.draw(AssetLoader.textureMap[getType().ordinal()], convertToX(), convertToY()+yOffset,ww,0, 62, 34,2,2,0);
+		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y+yOffset,ww,0, 62, 34,2,2,0);
 
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		
 		if (hasRoboticon()) {
-			batcher.draw(AssetLoader.roboticon, convertToX(), convertToY()+yOffset,ww/2,0,191-164,24,2,2,0);
+			batcher.draw(AssetLoader.roboticon, coords.x, coords.y+yOffset,ww/2,0,191-164,24,2,2,0);
 		}
 	}
 
