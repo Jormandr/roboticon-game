@@ -85,7 +85,7 @@ public class GameRenderer {
 	}
 
 	/**
-	 * All user interface assets that needs to be drawn to screen
+	 * Front user interface assets that needs to be drawn to screen
 	 */
 	private void drawFrontUI() {
 
@@ -96,7 +96,6 @@ public class GameRenderer {
 
 		// draw buttons if they exist, market and end phase always around
 		for (int i = 0; i < InputHandler.getMenuButtons().size(); i += 1) {
-			Gdx.app.log("Drawing: ", "button");
 			InputHandler.getMenuButtons().get(i).draw(batcher);
 		}
 	}
@@ -251,6 +250,8 @@ public class GameRenderer {
 	 * draws the grid of map tiles
 	 */
 	private void drawMap() {
+		
+		//checks through all map tiles to draw them in sequence
 
 		MapTile[][] worldMap = GameWorld.getMap();
 		int arrayX = GameConfig.getMapWidth();
@@ -265,7 +266,8 @@ public class GameRenderer {
 
 				if (CollisionHandler.tileMouseOver() == true && CollisionHandler.getNearestMapTile() == tile) {
 					// tiles have their own draw method
-					tile.draw(batcher, -6); // mouse-over raising it up slightly
+					tile.draw(batcher, -6); // mouse-over raising it up slightly by the offsetY value
+					
 					if (myWorld.getWorldState() == WorldState.RUNNING) {
 
 						// when we can see the grid of tiles draw info about the

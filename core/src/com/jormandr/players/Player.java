@@ -18,7 +18,31 @@ public abstract class Player {
 	private final int mapSize = GameConfig.getMapHeight() * GameConfig.getMapWidth();
 	private Plot[] plotsOwned = new Plot[mapSize];
 	private int playerNumber;
+	
+	
+	/**
+	 * Constructor for player sets up resources and helpers
+	 * 
+	 * @param score
+	 * @param ore
+	 * @param food
+	 * @param energy
+	 * @param money
+	 * @param roboticonsOwned
+	 * @param playerNumber
+	 */
+	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber) {
+		this.score = score;
+		this.ore = ore;
+		this.food = food;
+		this.energy = energy;
+		this.money = money;
+		this.roboticonsOwned = roboticonsOwned;
+		this.playerNumber = playerNumber;
+		this.playerState = PlayerState.END;
 
+	}
+	
 	/**
 	 * Player state machine controls what player can do when it is their turn
 	 */
@@ -62,28 +86,6 @@ public abstract class Player {
 		this.playerNumber = playerNumber;
 	}
 
-	/**
-	 * Constructor for player sets up resources and helpers
-	 * 
-	 * @param score
-	 * @param ore
-	 * @param food
-	 * @param energy
-	 * @param money
-	 * @param roboticonsOwned
-	 * @param playerNumber
-	 */
-	public Player(int score, int ore, int food, int energy, int money, int roboticonsOwned, int playerNumber) {
-		this.score = score;
-		this.ore = ore;
-		this.food = food;
-		this.energy = energy;
-		this.money = money;
-		this.roboticonsOwned = roboticonsOwned;
-		this.playerNumber = playerNumber;
-		this.playerState = PlayerState.END;
-
-	}
 
 	/**
 	 * returns owned plots
@@ -268,6 +270,11 @@ public abstract class Player {
 		money += difference;
 	}
 
+	/**
+	 * adds difference to money and returns value 
+	 * @param difference
+	 * @return the value of money would be if you added change to it
+	 */
 	public int getChangeMoney(int difference) {
 		return money + difference;
 	}
@@ -300,31 +307,59 @@ public abstract class Player {
 	}
 
 
+	/**
+	 * calculates score of player
+	 * <p> logarithmically reduces value of plots to encourage buying of roboticons
+	 */
 	public void updateScore() {
-		score = (int) ((int) (ore + food + energy) * java.lang.Math.log10(plotsOwned.length));
+		score = (int) ((ore + food + energy) * java.lang.Math.log10(plotsOwned.length));
 	}
 
+	/**
+	 * sets the player state machine to "state"
+	 * @param state
+	 */
 	public void setState(PlayerState state) {
 		playerState = state;
 
 	}
 
+	/**
+	 * returns the current player state (from player state machine)
+	 * @return
+	 */
 	public PlayerState getState() {
 		return playerState;
 	}
 
+	/**
+	 * goes to next state in player state machine (this method loops to beginning)
+	 */
 	public void nextState() {
 		playerState = PlayerState.values()[(playerState.ordinal() + 1) % PlayerState.values().length];
 	}
 
+	/**
+	 * adds difference to food and returns value 
+	 * @param difference
+	 * @return the value of food would be if you added change to it
+	 */
 	public int getChangeFood(int difference) {
 		return food + difference;
 	}
-
+	/**
+	 * adds difference to energy and returns value 
+	 * @param difference
+	 * @return the value of energy would be if you added change to it
+	 */
 	public int getChangeEnergy(int difference) {
 		return energy + difference;
 	}
-
+	/**
+	 * adds difference to ore and returns value 
+	 * @param difference
+	 * @return the value of ore would be if you added change to it
+	 */
 	public int getChangeOre(int difference) {
 		return ore + difference;
 	}

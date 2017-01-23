@@ -13,10 +13,6 @@ import com.jormandr.helpers.AssetLoader;
  */
 public abstract class MapTile {
 
-	// It is now later, and I can't remember how we derived those constants
-	// though, hence any expression involving h or w is probably wrong \_(シ)_/
-	// Don't do magic numbers kids
-	// I WILL FIX IT ARGHGHRGHRG
 
 	protected Vector2 position, coords;
 	protected TileType type;
@@ -44,6 +40,10 @@ public abstract class MapTile {
 		 * 
 		 * builds up a diamond shape, tried drawing
 		 * some ascii art but it's pretty difficult :p
+		 * 
+		 * 
+		 * the first point pair (verts[0],verts[1]) is the top corner of the diamond
+		 * the origin is the centre of the diamond, the points are calculated relative to this origin
 		 * 
 		 */
 		coords = new Vector2(convertToX(), convertToY());
@@ -142,6 +142,8 @@ public abstract class MapTile {
 	 * @param yOffset
 	 */
 	public void draw(SpriteBatch batcher, int yOffset) {
+		//offset from origin left by half tile width , and up by half tile height as sprite origin is in top right corner
+		// whereas tile origin is centre of tile
 		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y, -ww, -hh, 62, 34, 1, 1, 0);
 	}
 

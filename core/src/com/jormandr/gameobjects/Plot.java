@@ -35,10 +35,10 @@ public class Plot extends MapTile {
 	private boolean hasRoboticonCache = false;
 
 	public Plot(float i, float j, int oreValue, int foodValue, int energyValue, TileType type) {
-		/**
-		 * in here, figure out what type tile I am, what resource values I have,
-		 * where I am located
-		 */
+		
+		// in here, figure out what type tile I am, what resource values I have,
+		// where I am located
+		 
 		super(i, j, type);
 		ore = new ResourceTriple(oreValue);
 		food = new ResourceTriple(foodValue);
@@ -252,6 +252,10 @@ public class Plot extends MapTile {
 		hasRoboticonCache = false;
 	}
 
+	/**
+	 * calculates new hasRoboticon value
+	 * <p> see ResourceTriple for further details on caching
+	 */
 	private void updateHasRoboticonCache() {
 		hasRoboticonCache = !(floatEq(ore.getBuff(), 1.0f) && floatEq(food.getBuff(), 1.0f)
 				&& floatEq(energy.getBuff(), 1.0f));
@@ -270,18 +274,26 @@ public class Plot extends MapTile {
 		return hasRoboticonCache;
 	}
 
+
+
 	@Override
 	public void draw(SpriteBatch batcher, int yOffset) {
 
+		//set colour depending on ownership of tile
+		
 		if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP1)) {
 			batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
 
 		} else if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP2)) {
 			batcher.setColor(0.5f, 0.5f, 1.0f, 1.0f);
 		}
-
+		
+		
+		//yOffset is used when tile is mouse'd over to raise it slightly
+		
 		batcher.draw(AssetLoader.textureMap[getType().ordinal()], coords.x, coords.y + yOffset, ww, 0, 62, 34, 2, 2, 0);
 
+		//reset colour back to white for other drawing methods
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 		if (hasRoboticon()) {
@@ -293,14 +305,25 @@ public class Plot extends MapTile {
 		owned = player;
 	}
 
+	/**
+	 * returns cost of plots and upgrades
+	 * @return cost
+	 */
 	public int getCost() {
 		return cost;
 	}
 
+	/**
+	 * returns who owns this tile
+	 * @return owned
+	 */
 	public Player getOwned() {
 		return owned;
 	}
 	
+	/**
+	 * sets cost of plot and upgrades
+	 */
 	public void setCost(){
 		cost = (int) (cost*getOreBuff()*getFoodBuff()*getEnergyBuff());
 	}
