@@ -70,12 +70,15 @@ public class GameRenderer {
 		// drawing background, does not require transparency
 		drawBackground();
 		batcher.enableBlending();
+		
+		drawMainUI();
 
 		// drawing the map grid
-		drawMap();
-
+		drawMap(); //draw map after main user interface to allow for mouse-over text related to map;
+		
 		// drawing the UI
-		drawUI();
+		drawFrontUI();
+		
 
 		batcher.disableBlending();
 
@@ -89,9 +92,7 @@ public class GameRenderer {
 	/**
 	 * All user interface assets that needs to be drawn to screen
 	 */
-	private void drawUI() {
-		//draw main UI, stuff that's always on screen
-		drawMainUI();
+	private void drawFrontUI() {
 		
 		//draw menu UI
 		if (myWorld.isMenu()) {
@@ -121,6 +122,7 @@ public class GameRenderer {
 		if (InputHandler.menuIsEnd()) {
 			drawEndUI();
 		}
+		
 	}
 
 	/**
