@@ -9,9 +9,18 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
 import com.jormandr.ui.text.UIButtonTextRBig;
-
+/**
+* Button which allows players to buy a plot of land
+ *
+ */
 public class UIButtonBuyPlot extends UIButtonTextRBig {
-
+	/**
+	 * Initialises the UIButtonBuyPlot button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param world
+	 */
 	public UIButtonBuyPlot(float x, float y, GameWorld world) {
 		super(x, y, world, "", "");
 
@@ -31,11 +40,9 @@ public class UIButtonBuyPlot extends UIButtonTextRBig {
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		// run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
 		if (plot.getOwned() == null) {
-			if (player.getChangeMoney(-plot.getCost()) >= 0) {
-				Gdx.app.log("InputHandler: ", "Button Clicked");
+			if (player.getChangeMoney(-plot.getCost()) >= 0) { //make sure player has the money to purchase
 				player.addPlot(plot);
 				plot.setOwned(player);
 				player.changeMoney(-(plot.getCost()));

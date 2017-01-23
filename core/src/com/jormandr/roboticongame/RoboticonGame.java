@@ -16,7 +16,7 @@ import com.jormandr.screens.GameScreen;
  * <p>
  * From here, the screen is chosen,
  *
- * choice of screen determines further logic
+ * choice of screen determines the actual game logic and rendering
  *
  */
 public class RoboticonGame extends Game {

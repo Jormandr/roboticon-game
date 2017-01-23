@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 
+/**
+ * Abstract class for all user interface buttons
+ *
+ */
 public abstract class UIButton {
 
 	protected Vector2 coords;
@@ -20,6 +24,14 @@ public abstract class UIButton {
 
 	protected boolean isPressed = false;
 
+	/**
+	 * Initialises user interface button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param world
+	 */
 	public UIButton(float x, float y, ButtonType type, GameWorld world) {
 
 		myWorld = world;
@@ -47,10 +59,22 @@ public abstract class UIButton {
 
 	}
 
+	/**
+	 * returns whether the button is intersecting with the mouse
+	 * 
+	 * @param screenX
+	 * @param screenY
+	 * @return whether the button is intersecting with mouse
+	 */
 	public boolean isMouseOver(int screenX, int screenY) {
 		return (Intersector.isPointInPolygon(verts, 0, 8, screenX, screenY));
 	}
 
+	/**
+	 * draw method to be called in GameRenderer
+	 * 
+	 * @param batcher
+	 */
 	public void draw(SpriteBatch batcher) {
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
@@ -61,14 +85,24 @@ public abstract class UIButton {
 		}
 	}
 
+	/**
+	 * what logic to do in game on touchDown
+	 * 
+	 * @return boolean for InputProcessor logic
+	 */
 	public boolean isTouchDown() {
 		// run logic for the button being pressed
 		isPressed = true;
 		return true;
 	}
 
+	/**
+	 * what logic to do in game on touchUp
+	 * 
+	 * @return boolean for InputProcessor logic
+	 */
 	public boolean isTouchUp() {
-		// run logic for the button unpressed
+		// run logic for the button un-pressed
 		isPressed = false;
 		return true;
 	}

@@ -1,26 +1,35 @@
 package com.jormandr.ui;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.Market;
 import com.jormandr.gameworld.GameWorld;
+import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
 import com.jormandr.ui.text.UIButtonTextSBig;
 
+/**
+ * Button which allows players to buy roboticons
+ *
+ */
 public class UIButtonBuyRobo extends UIButtonTextSBig {
-	int initX, initY;
 
+	/**
+	 * initialises the UIButtonBuyRobo button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param world
+	 */
 	public UIButtonBuyRobo(float x, float y, GameWorld world) {
-		super(x, y, world, "Buy", "Roboticon");
+		super(x, y, world, "", "");
 
 	}
 	
 
-	/*
-	 * THis doesn't work right now, not 100% necessary but nice polish to show when out of stock 
+
 	@Override
 	protected void drawText(SpriteBatch batcher){
-		//not drawing correctly
-		Market myMarket = myWorld.getMarket();
-		if (myMarket.getRoboticons() > 0){
+		if (Market.getRoboticons() > 0){
 			AssetLoader.fontX.draw(batcher, "Buy",initX+16,initY+25);
 			AssetLoader.fontX.draw(batcher,"Roboticon",initX+10,initY+35);
 	}
@@ -29,18 +38,17 @@ public class UIButtonBuyRobo extends UIButtonTextSBig {
 			AssetLoader.fontX.draw(batcher,"Stock",initX+16,initY+35);
 		}
 	}
-	*/
+
 
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		int cost = -Market.getRoboticonSellValue();
-		// run logic for the button being pressed
 		if (Market.getRoboticons() > 0) {
-			if (player.getChangeMoney(cost) >= 0) {
-				player.changeRoboticonsOwned(1);
+			if (player.getChangeMoney(cost) >= 0) { //makes sure player has the money to purchase
+				player.changeRoboticonsOwned(1); //add roboticon to player inventory
 				player.changeMoney(cost);
-				Market.changeRoboticons(-1);
+				Market.changeRoboticons(-1); //remove robotion from market inventory
 				isPressed = true;
 				return true;
 			}

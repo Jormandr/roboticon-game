@@ -180,7 +180,7 @@ public class Market {
 	 * @param difference
 	 */
 	public static void changeEnergy(int difference) {
-		value[1] += difference;
+		value[2] += difference;
 	}
 	
 	/**

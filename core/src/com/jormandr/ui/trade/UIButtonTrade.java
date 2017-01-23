@@ -6,8 +6,14 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.players.Player;
 import com.jormandr.ui.text.UIButtonTextSBig;
 
+/**
+ * Abstract class for trading between a player and the market
+ *
+ */
 public abstract class UIButtonTrade extends UIButtonTextSBig {
-
+	
+	// abstract class holds the methods to required to do trading
+	protected final int QUANTITY = 10;
 	ResourceType resource;
 
 	public UIButtonTrade(float x, float y, GameWorld world, ResourceType sauce) {
@@ -17,6 +23,13 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 
 	}
 
+
+	/**
+	 * returns the possible change in resource in the player's inventory
+	 * 
+	 * @param amount
+	 * @return the possible change in resource in the player's inventory
+	 */
 	protected int getChangeResource(int amount) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		int value;
@@ -36,6 +49,11 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 		return value;
 	}
 
+	/**
+	 * returns value at which the market will sell the resource at
+	 * 
+	 * @return resourceSellValue
+	 */
 	protected int getResource() {
 		int cost;
 		switch (resource) {
@@ -55,6 +73,12 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 		return cost;
 	}
 
+	/**
+	 * returns the amount of resource in the market inventory
+	 * 
+	 * @param amount
+	 * @return the amount of resource in the market inventory
+	 */
 	protected int getResourceValue() {
 		int cost;
 		switch (resource) {
@@ -74,6 +98,11 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 		return cost;
 	}
 
+	/**
+	 * changes the amount of resource in the market inventory by the value
+	 * 
+	 * @param value
+	 */
 	protected void changeResourceValue(int value) {
 		switch (resource) {
 		case FOOD:
@@ -91,6 +120,11 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 
 	}
 
+	/**
+	 * changes the amount of resource in the player inventory by the amount
+	 * 
+	 * @param amount
+	 */
 	protected void changeResource(int amount) {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		switch (resource) {

@@ -6,11 +6,23 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 
+/**
+ * Abstract parent class for all buttons that draw text on themselves
+ *
+ */
 public abstract class UIButtonText extends UIButton {
 	protected int initX;
 	protected int initY;
 	String stringOne, stringTwo;
 
+	/**
+	 * Initialises the UIButtonText button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param world
+	 */
 	public UIButtonText(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 		initX = (int) x;
@@ -18,6 +30,16 @@ public abstract class UIButtonText extends UIButton {
 
 	}
 
+	/**
+	 * Initialises the UIButtonText button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param world
+	 * @param type
+	 * @param lineOne
+	 * @param lineTwo
+	 */
 	public UIButtonText(float x, float y, GameWorld world, ButtonType type, String lineOne, String lineTwo) {
 		super(x, y, type, world);
 		initX = (int) x;
@@ -28,7 +50,6 @@ public abstract class UIButtonText extends UIButton {
 
 	@Override
 	public void draw(SpriteBatch batcher) {
-		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
 					buttonHeight, 4, 4, 0);
@@ -40,9 +61,16 @@ public abstract class UIButtonText extends UIButton {
 		drawText(batcher);
 	}
 
+	/**
+	 * method which draws text on button
+	 * <p>
+	 * should always be called in the draw method of the button
+	 * 
+	 * @param batcher
+	 */
 	protected void drawText(SpriteBatch batcher) {
 		AssetLoader.fontX.draw(batcher, stringOne, initX, initY);
-		AssetLoader.fontX.draw(batcher, stringTwo, initX, initY + 10);
+		AssetLoader.fontX.draw(batcher, stringTwo, initX, initY + 10); //add 10 in y to go down a line
 	}
 
 }

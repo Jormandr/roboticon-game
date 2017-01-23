@@ -5,8 +5,20 @@ import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.misctypes.Pair;
 
+/**
+ *Button which allows players to close menus
+ *
+ */
 public class UIButtonClose extends UIButton {
 
+	/**
+	 * initialises the UIButtonClose button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param world
+	 */
 	public UIButtonClose(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 
@@ -27,8 +39,7 @@ public class UIButtonClose extends UIButton {
 
 	@Override
 	public boolean isTouchDown() {
-		// run logic for the button being pressed
-		myWorld.toRunning();
+		myWorld.toRunning(); //closes the menu
 		isPressed = true;
 		return true;
 	}

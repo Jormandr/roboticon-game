@@ -5,11 +5,23 @@ import com.jormandr.gameobjects.Market.ResourceType;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
-
+/**
+* Button which allows players to buy resources from the market
+ *
+ */
 public class UIButtonBuy extends UIButtonTrade {
+
 
 	ResourceType resource;
 
+	/**
+	 * Initialises the UIButtonBuy button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param world
+	 * @param sauce
+	 */
 	public UIButtonBuy(float x, float y, GameWorld world, ResourceType sauce) {
 		super(x, y, world, sauce);
 
@@ -39,12 +51,11 @@ public class UIButtonBuy extends UIButtonTrade {
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		int cost = -getResource();
-		// run logic for the button being pressed
 		if (getResourceValue() > 0) {
 			if (player.getChangeMoney(cost) >= 0) {
-				changeResource(10);
-				player.changeMoney(cost);
-				changeResourceValue(-10);
+				changeResource(QUANTITY); //add resource to player
+				player.changeMoney(cost); //remove money from player
+				changeResourceValue(-QUANTITY); // remove resource from market
 				isPressed = true;
 				return true;
 			}

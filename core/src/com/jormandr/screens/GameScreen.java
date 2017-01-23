@@ -29,8 +29,6 @@ public class GameScreen implements Screen {
 		renderer = new GameRenderer(world);
 		Gdx.input.setInputProcessor(new InputHandler(world));
 
-		Gdx.graphics.getDeltaTime();
-
 	}
 
 	@Override

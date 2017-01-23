@@ -1,6 +1,6 @@
 package com.jormandr.ui.upgrade;
 
-import com.badlogic.gdx.Gdx;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
@@ -11,10 +11,22 @@ import com.jormandr.players.Player;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 
+/**
+ * Button which allows a player to upgrade roboticons' ore output
+ *
+ */
 public class UIButtonUpgradeRoboOre extends UIButton {
 
 	int initX, initY;
 
+	/**
+	 * Initialises the UIBUttonUpgradeRoboOre button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param world
+	 */
 	public UIButtonUpgradeRoboOre(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 
@@ -48,13 +60,11 @@ public class UIButtonUpgradeRoboOre extends UIButton {
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		// run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
-		if (plot.hasRoboticon() == true && plot.getOwned() == player) {
-			Gdx.app.log("InputHandler: ", "Button Clicked");
-			if (player.getChangeMoney(-plot.getCost()) >= 0) {
+		if (plot.hasRoboticon() == true && plot.getOwned() == player) { 
+			if (player.getChangeMoney(-plot.getCost()) >= 0) { //if player has the money for transaction
 
-				plot.changeOreBuff(2.0f); // set some buff here
+				plot.changeOreBuff(2.0f); // multiply ore buff
 				player.changeMoney(-(plot.getCost()));
 				plot.setCost();
 				isPressed = true;

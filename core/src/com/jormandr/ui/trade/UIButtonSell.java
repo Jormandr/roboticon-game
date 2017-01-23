@@ -6,11 +6,22 @@ import com.jormandr.gameobjects.Market.ResourceType;
 import com.jormandr.gameworld.GameWorld;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
-
+/**
+* Button which allows players to sell resources to the market
+ *
+ */
 public class UIButtonSell extends UIButtonTrade {
 
 	ResourceType resource;
 
+	/**
+	 * Initialises the UIButtonSell button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param world
+	 * @param sauce
+	 */
 	public UIButtonSell(float x, float y, GameWorld world, ResourceType sauce) {
 		super(x, y, world, sauce);
 
@@ -32,6 +43,8 @@ public class UIButtonSell extends UIButtonTrade {
 
 	}
 
+	//over-riding the parent class to swap out sell value with buy value 
+	
 	@Override
 	protected int getResource() {
 		int cost;
@@ -56,11 +69,10 @@ public class UIButtonSell extends UIButtonTrade {
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
 		int cost = getResource();
-		// run logic for the button being pressed
-		if (getChangeResource(-10) >= 0) {
-			changeResource(-10);
-			player.changeMoney(cost);
-			changeResourceValue(10);
+		if (getChangeResource(-QUANTITY) >= 0) {
+			changeResource(-QUANTITY); //remove resource from player
+			player.changeMoney(cost); //add money to player
+			changeResourceValue(QUANTITY); //add resource to market
 			isPressed = true;
 			return true;
 		}

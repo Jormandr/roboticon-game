@@ -1,6 +1,5 @@
 package com.jormandr.ui.upgrade;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
@@ -11,8 +10,19 @@ import com.jormandr.players.Player;
 import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 
+/**
+ * Button which allows a player to upgrade roboticons' food output
+ *
+ */
 public class UIButtonUpgradeRoboFood extends UIButton {
-
+	/**
+	 * Initialises the UIButtonUpgradeRoboFood button
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param world
+	 */
 	public UIButtonUpgradeRoboFood(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
 	}
@@ -21,7 +31,6 @@ public class UIButtonUpgradeRoboFood extends UIButton {
 	public void draw(SpriteBatch batcher) {
 		Plot plot = ((Plot) InputHandler.getTile());
 		Pair<Integer, Integer> mousePos = GameWorld.getMousePos();
-		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
 					buttonHeight, 4, 4, 0);
@@ -44,13 +53,11 @@ public class UIButtonUpgradeRoboFood extends UIButton {
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		// run logic for the button being pressed
 		Plot plot = ((Plot) InputHandler.getTile());
 		if (plot.hasRoboticon() == true && plot.getOwned() == player) {
-			Gdx.app.log("InputHandler: ", "Button Clicked");
-			if (player.getChangeMoney(-plot.getCost()) >= 0) {
+			if (player.getChangeMoney(-plot.getCost()) >= 0) {//if player has the money for transaction
 
-				plot.changeFoodBuff(2.0f); // set some buff here
+				plot.changeFoodBuff(2.0f); // multiply food buff
 				player.changeMoney(-(plot.getCost()));
 				plot.setCost();
 				isPressed = true;

@@ -21,9 +21,11 @@ public class HumanPlayer extends Player {
 			GameWorld.setTimer(30);
 			break;
 		case BUY:
+			//buy roboticons
 			GameWorld.updateTimer(30);
 			break;
 		case PLACE:
+			//place and customise roboticons
 			GameWorld.updateTimer(30);
 			break;
 		case END:

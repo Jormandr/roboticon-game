@@ -53,12 +53,9 @@ public abstract class Player {
 			break;
 		case BUY:
 			// buying roboticons and gambling
-			// timed state
-
 			break;
 		case PLACE:
 			// customising and placing roboticons
-			// timed state
 			break;
 		case END:
 			// final state (updates gamestate Machine)
@@ -111,7 +108,6 @@ public abstract class Player {
 	 * @param newPlot
 	 */
 	public void addPlot(Plot newPlot) {
-		// TODO add exception if there is no space
 		for (int i = 0; i < mapSize; i++) {
 			if (plotsOwned[i] == null) {
 				plotsOwned[i] = newPlot;
@@ -126,7 +122,6 @@ public abstract class Player {
 	 * @param targetPlot
 	 */
 	public void removePlot(Plot targetPlot) {
-		// TODO add exception
 		for (int i = 0; i < mapSize; i++) {
 			if (plotsOwned[i] == targetPlot) {
 				plotsOwned[i] = null;
