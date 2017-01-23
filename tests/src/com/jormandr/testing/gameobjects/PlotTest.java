@@ -6,8 +6,12 @@ import de.tomgrill.gdxtesting.GdxTestRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.jormandr.config.GameConfig;
 import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameobjects.TileType;
+import com.jormandr.players.HumanPlayer;
+import com.jormandr.players.Player;
+
 import static com.jormandr.misctypes.UtilityFunctions.floatEq;
 
 import java.util.Random;
@@ -22,9 +26,18 @@ public class PlotTest {
 
 	private Plot plot;
 	private int i, j, oreValue, foodValue, energyValue;
+	private float x, y;
 	private TileType tileType;
 	private float energyBuff, energyDebuff, oreBuff, oreDebuff, foodBuff, foodDebuff;
 	private float energyBuffDelta, energyDebuffDelta, oreBuffDelta, oreDebuffDelta, foodBuffDelta, foodDebuffDelta;
+	private float[] verts;
+	
+	private final float originOffsetX = 2.0f;
+	private final float originOffsetY = 4.0f;
+	private final float ww = (float) GameConfig.getHalfTileWidth();
+	private final float hh = (float) GameConfig.getHalfTileHeight();;
+	private final float tw = GameConfig.getWidth() / (ww * originOffsetX);
+	private final float th = GameConfig.getHeight() / (hh * originOffsetY);
 
 	// The justification for having this here is in case the original function
 	// is optimised, it can be tested against this 'safe' copy
@@ -48,6 +61,8 @@ public class PlotTest {
 			oreDebuff = rand.nextFloat();
 			foodBuff = rand.nextFloat();
 			foodDebuff = rand.nextFloat();
+			x = (tw + i - j) * ww;
+			y = (th + i + j) * hh;
 
 			// Set them
 			plot = new Plot(i, j, oreValue, foodValue, energyValue, tileType);
@@ -72,6 +87,19 @@ public class PlotTest {
 			assertTrue(floatEq(plot.getFoodDebuff(), foodDebuff));
 			assertTrue(floatEq(plot.getOreBuff(), oreBuff));
 			assertTrue(floatEq(plot.getOreDebuff(), oreDebuff));
+			assertTrue(floatEq(plot.convertToX(), x));
+			assertTrue(floatEq(plot.convertToY(), y));
+			
+			// Test vertices
+			verts = plot.getVerts();
+			assertTrue(floatEq(verts[0], x));
+			assertTrue(floatEq(verts[1], y - hh * 2));
+			assertTrue(floatEq(verts[2], x - ww * 2));
+			assertTrue(floatEq(verts[3], y));
+			assertTrue(floatEq(verts[4], x));
+			assertTrue(floatEq(verts[5], y + hh * 2));
+			assertTrue(floatEq(verts[6], x + ww * 2));
+			assertTrue(floatEq(verts[7], y));
 			
 			// Test buff modifiers
 			// Generate deltas
@@ -139,6 +167,16 @@ public class PlotTest {
 
 			// TODO think of some invariants to test convertToX/Y() by
 		}
+		
+		// Don't really need repetition for this
+		
+		assertTrue(plot.getOwned() == null);
+		
+		Player p1 = new HumanPlayer(0,0,0,0,0,0,1);
+		Player p2 = new HumanPlayer(0,0,0,0,0,0,2); // Created to test if multiple instances cause confusion
+		
+		plot.setOwned(p1);
+		assertTrue(plot.getOwned() == p1);
 	}
 
 }

@@ -79,11 +79,16 @@ public class HumanPlayerTest {
 			moneyD = rand.nextInt(RANDOM_INT_LIMIT - money);
 			roboticonsOwnedD = rand.nextInt(RANDOM_INT_LIMIT - roboticonsOwnedD);
 
+			// Test preview functions
+			assertEquals(player.getChangeEnergy(energyD), energy + energyD);
+			assertEquals(player.getChangeFood(foodD), food + foodD);
+			assertEquals(player.getChangeMoney(moneyD), money + moneyD);
+			assertEquals(player.getChangeOre(oreD), ore + oreD);
+
 			// Set them
 			player.changeScore(scoreD);
 			player.changeOre(oreD);
 			player.changeFood(foodD);
-			;
 			player.changeEnergy(energyD);
 			player.changeMoney(moneyD);
 			player.changeRoboticonsOwned(roboticonsOwnedD);
