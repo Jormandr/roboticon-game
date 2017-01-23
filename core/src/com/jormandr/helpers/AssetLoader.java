@@ -99,6 +99,8 @@ public class AssetLoader {
 	private static void loadUI() {
 
 		// Main Game UI stuff
+		
+		//some assets not flipped in y-axis (didn't have time to fix this)
 		uiTexture = new Texture(Gdx.files.internal("uiPage.png"));
 		uiTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		uiBottom = new TextureRegion(uiTexture, 0, 0, 320, 51);

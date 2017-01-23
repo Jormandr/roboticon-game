@@ -52,7 +52,6 @@ public abstract class UIButton {
 	}
 
 	public void draw(SpriteBatch batcher) {
-		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
 		if (isPressed) {
 			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
 					buttonHeight, 4, 4, 0);

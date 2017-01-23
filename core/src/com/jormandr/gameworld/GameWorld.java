@@ -90,6 +90,10 @@ public class GameWorld {
 
 	}
 
+	/**
+	 * This worldStateMachine allows you to know what main state you are in
+	 * e.g. menu or main game logic
+	 */
 	private void worldStateMachine() {
 
 		switch (currentState) {
@@ -105,10 +109,16 @@ public class GameWorld {
 		}
 	}
 
+	/**
+	 * the block code to continuously  to run whilst in the WorldState.RUNNING state
+	 */
 	private void updateRunning() {
 		CollisionHandler.update();
 	}
 
+	/**
+	 * the block code to continuously  to run whilst in the WorldState.MENU state
+	 */
 	private void updateMenu() {
 		// blank for now
 	}
@@ -116,6 +126,7 @@ public class GameWorld {
 	/**
 	 * The state machine which shows the cycle of each round
 	 * <p>
+	 * user manual can help to break this down
 	 */
 	private void gameStateMachine() {
 
@@ -123,6 +134,7 @@ public class GameWorld {
 		case START:
 			break;
 		case RANDOMEVENT:
+			//this is the random event state where the random event can occur
 			if (rand.nextInt(GameConfig.getRandomEventChance()) == 1) {
 				randomEvent();
 			} else {
@@ -130,7 +142,7 @@ public class GameWorld {
 			}
 			break;
 		case WAITINGFORP1:
-			// Player 1 is handling this
+			// This sets up player 1 state machine to play out their turn
 			player1.setState(PlayerState.PLOT);
 			setGameState(GameState.HANDLINGP1);
 			break;
@@ -139,7 +151,7 @@ public class GameWorld {
 			player1.playerStateMachine();
 			break;
 		case WAITINGFORP2:
-			// Player 2 is handling this
+			// This sets up player 2 state machine to play out their turn
 			player2.setState(PlayerState.PLOT);
 			setGameState(GameState.HANDLINGP2);
 			break;
@@ -148,18 +160,27 @@ public class GameWorld {
 			player2.playerStateMachine();
 			break;
 		case PRODUCE:
+			//this is when production is run, currently no graphics
 			produce();
 			player1.updateScore();
 			player2.updateScore();
 			break;
 		case AUCTIONP1:
+			player2.updateScore();
+			//this is when player 1 can access the auction panel
+			
+			// because this auction() code block is run, when you need to implement trades between the players,
+			//switch between AUCTIONP1 and AUCTIONP2 to send bids/trade deals to the other player.
+			
 			auction();
 			break;
 		case AUCTIONP2:
+			//this is when player 2 can access the auction panel
 			auction();
 			player1.updateScore();
 			break;
 		case ENDCHECK:
+			//checks to see if win condition has been met
 			player2.updateScore();
 			market.update();
 			if (endCheck()) {
@@ -167,9 +188,11 @@ public class GameWorld {
 				setGameState(GameState.END);
 				break;
 			}
+			//loop back to random event if not
 			setGameState(GameState.RANDOMEVENT);
 			break;
 		case END:
+			//end of game dealt with in this state
 			break;
 		}
 	}
@@ -179,7 +202,7 @@ public class GameWorld {
 	 */
 
 	private void randomEvent() {
-		// random event stuff
+		// random event stuff yet to be implemented here
 
 		// at end of random event
 		setGameState(GameState.WAITINGFORP1);
@@ -266,6 +289,10 @@ public class GameWorld {
 		return currentState == WorldState.RUNNING;
 	}
 
+	/**
+	 * in the method, state machines (both GameWorld and Player) handled
+	 * to reach correct phase of plot menu, correct buttons loaded from InputHandler
+	 */
 	public void toMenuPlot() {
 		currentState = WorldState.MENU;
 		InputHandler.setMenu(MenuUI.PLOT);
@@ -289,6 +316,10 @@ public class GameWorld {
 		}
 	}
 
+	/**
+	 * in the method, state machines (both GameWorld and Player) handled
+	 * to reach correct phase of market menu, correct buttons loaded from InputHandler
+	 */
 	public void toMenuMarket() {
 		currentState = WorldState.MENU;
 		InputHandler.setMenu(MenuUI.MARKET);
@@ -312,6 +343,10 @@ public class GameWorld {
 		}
 	}
 
+	/**
+	 * in the method, state machines (both GameWorld and Player) handled
+	 * to reach end menu, correct buttons loaded from InputHandler
+	 */
 	private void toMenuEnd() {
 		InputHandler.setMenu(MenuUI.END);
 		currentState = WorldState.MENU;
@@ -319,11 +354,15 @@ public class GameWorld {
 		InputHandler.LoadEndMenu();
 	}
 
+	/**
+	 * in the method, state machines (both GameWorld and Player) handled
+	 * to reach end menu, correct buttons loaded from InputHandler
+	 */
 	@SuppressWarnings("unused")
 	private void toMenuStart() {
 		currentState = WorldState.MENU;
 		InputHandler.clearMenuButtons();
-		// load start menu buttons
+		// currently start menu not implemented so never used to get to a non-existent menu
 	}
 
 	/**
@@ -380,30 +419,56 @@ public class GameWorld {
 		gameState = GameState.values()[(gameState.ordinal() + 1) % GameState.values().length];
 	}
 
+	/**
+	 * returns market game object
+	 * @return market
+	 */
 	public Market getMarket() {
 		return market;
 	}
 
+	/**
+	 * updates the timer each frame 
+	 * @param seconds
+	 */
 	public static void updateTimer(int seconds) {
-		timer -= (1 + Gdx.graphics.getDeltaTime());
+		timer -= (Gdx.graphics.getDeltaTime());
 		if (timer <= 0) {
 			getPlayer(gameState).nextState();
-			timer = seconds * 60;
+			timer = seconds;
 		}
 	}
 
+	/**
+	 * sets the start amount of time you want to count down from
+	 * @param seconds
+	 */
 	public static void setTimer(int seconds) {
-		timer = initTimer = (float) seconds * 60;
+		timer = initTimer = (float) seconds ;
 	}
 
+	/**
+	 * returns the current time on the timer
+	 * @return timer
+	 */
 	public static int getTimer() {
-		return (int) timer / 60;
+		return (int) timer ;
 	}
 
+	/**
+	 * returns the proportion of time remaining in timer
+	 * @return timer/initTimer
+	 */
 	public static float getTimerPercentage() {
 		return timer / initTimer;
 	}
 
+	/**
+	 * returns whether end game condition is set
+	 * <p>
+	 * checks whether all tiles are owned
+	 * @return  whether all tiles are owned
+	 */
 	private boolean endCheck() {
 		int arrayX = GameConfig.getMapWidth();
 		int arrayY = GameConfig.getMapHeight();
@@ -421,6 +486,10 @@ public class GameWorld {
 		return true;
 	}
 
+	/**
+	 * calculates which player has the higher score 
+	 * @return player who has highest score
+	 */
 	public Player getWinner() {
 		if (player1.getScore() > player2.getScore()) {
 			return player1;

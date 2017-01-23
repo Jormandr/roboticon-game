@@ -43,6 +43,9 @@ public class InputHandler implements InputProcessor {
 
 		currentMenu = MenuUI.PLOT;
 		InputHandler.myWorld = myWorld;
+		
+		
+		
 
 		menuButtons = new ArrayList<UIButton>();
 		closeButton = new UIButtonClose(904, 224, ButtonType.CLOSE, myWorld);
@@ -81,7 +84,8 @@ public class InputHandler implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
-			Gdx.app.log("InputHandler: ", "Left Click");
+			//log for testing report
+			//Gdx.app.log("InputHandler: ", "Left Click");
 			if (myWorld.isRunning()) {
 				if (CollisionHandler.tileMouseOver()) {
 					selectedTile = CollisionHandler.getNearestMapTile();
@@ -94,7 +98,8 @@ public class InputHandler implements InputProcessor {
 
 			for (int i = 0; i < menuButtons.size(); i += 1) {
 				if (menuButtons.get(i).isMouseOver(screenX, screenY)) {
-					Gdx.app.log("InputHandler: ", "Button Clicked");
+					//log for testing report
+					//Gdx.app.log("InputHandler: ", "Button Clicked");
 					menuButtons.get(i).isTouchDown();
 					return true;
 				}
@@ -107,7 +112,8 @@ public class InputHandler implements InputProcessor {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
-			Gdx.app.log("InputHandler: ", "Left Up");
+			//log for testing report
+			//Gdx.app.log("InputHandler: ", "Left Up");
 			for (int i = 0; i < menuButtons.size(); i += 1) {
 				menuButtons.get(i).isTouchUp();
 			}
