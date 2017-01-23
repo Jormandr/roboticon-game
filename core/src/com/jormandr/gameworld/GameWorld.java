@@ -11,6 +11,7 @@ import com.jormandr.gameobjects.TileType;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.helpers.InputHandler.MenuUI;
+import com.jormandr.helpers.UIHandler;
 import com.jormandr.players.HumanPlayer;
 import com.jormandr.players.Player;
 import com.jormandr.players.Player.PlayerState;
@@ -298,19 +299,19 @@ public class GameWorld {
 		InputHandler.setMenu(MenuUI.PLOT);
 		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
-		InputHandler.clearMenuButtons();
+		UIHandler.clearMenuButtons();
 		Player currentPlayer = getPlayer(gameState);
 		if (currentPlayer != null) {
 			switch (currentPlayer.getState()) {
 			case PLOT:
-				InputHandler.LoadPlotPlotMenu();
+				UIHandler.LoadPlotPlotMenu();
 				break;
 			case BUY:
 			case END:
-				InputHandler.LoadPlotBuyMenu();
+				UIHandler.LoadPlotBuyMenu();
 				break;
 			case PLACE:
-				InputHandler.LoadPlotPlaceMenu();
+				UIHandler.LoadPlotPlaceMenu();
 				break;
 			}
 		}
@@ -325,19 +326,19 @@ public class GameWorld {
 		InputHandler.setMenu(MenuUI.MARKET);
 		// run a method that creates all the menu buttons
 		// so 4 possible menu's that we can go to, or is it 5?
-		InputHandler.clearMenuButtons();
+		UIHandler.clearMenuButtons();
 		Player currentPlayer = getPlayer(gameState);
 		if (currentPlayer != null) {
 			switch (currentPlayer.getState()) {
 			case PLOT:
 			case PLACE:
-				InputHandler.LoadMarketVoidMenu();
+				UIHandler.LoadMarketVoidMenu();
 				break;
 			case BUY:
-				InputHandler.LoadMarketRoboMenu();
+				UIHandler.LoadMarketRoboMenu();
 				break;
 			case END:
-				InputHandler.LoadMarketAuctionMenu();
+				UIHandler.LoadMarketAuctionMenu();
 				break;
 			}
 		}
@@ -350,8 +351,8 @@ public class GameWorld {
 	private void toMenuEnd() {
 		InputHandler.setMenu(MenuUI.END);
 		currentState = WorldState.MENU;
-		InputHandler.clearMenuButtons();
-		InputHandler.LoadEndMenu();
+		UIHandler.clearMenuButtons();
+		UIHandler.LoadEndMenu();
 	}
 
 	/**
@@ -361,7 +362,7 @@ public class GameWorld {
 	@SuppressWarnings("unused")
 	private void toMenuStart() {
 		currentState = WorldState.MENU;
-		InputHandler.clearMenuButtons();
+		UIHandler.clearMenuButtons();
 		// currently start menu not implemented so never used to get to a non-existent menu
 	}
 
@@ -369,8 +370,8 @@ public class GameWorld {
 	 * Sets the game running
 	 */
 	public void toRunning() {
-		InputHandler.clearMenuButtons();
-		InputHandler.LoadGameMenu();
+		UIHandler.clearMenuButtons();
+		UIHandler.LoadGameMenu();
 		currentState = WorldState.RUNNING;
 	}
 
