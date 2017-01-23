@@ -33,11 +33,6 @@ public class GameScreen implements Screen {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#render(float)
-	 */
 	@Override
 	public void render(float delta) {
 		world.update();
@@ -45,61 +40,36 @@ public class GameScreen implements Screen {
 		
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#resize(int, int)
-	 */
 	@Override
 	public void resize(int width, int height) {
 		Gdx.app.log("GameScreen", "resizing");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#show()
-	 */
+
 	@Override
 	public void show() {
 		Gdx.app.log("GameScreen", "show called");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#hide()
-	 */
+
 	@Override
 	public void hide() {
 		Gdx.app.log("GameScreen", "hide called");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#pause()
-	 */
+
 	@Override
 	public void pause() {
 		Gdx.app.log("GameScreen", "pause called");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#resume()
-	 */
+
 	@Override
 	public void resume() {
 		Gdx.app.log("GameScreen", "resume called");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.badlogic.gdx.Screen#dispose()
-	 */
+
 	@Override
 	public void dispose() {
 		Gdx.app.log("GameScreen", "dispose called");

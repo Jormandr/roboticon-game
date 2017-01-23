@@ -1,5 +1,6 @@
 package com.jormandr.helpers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.jormandr.config.GameConfig;
@@ -56,22 +57,20 @@ public class CollisionHandler {
 	 * @return map grid position
 	 */
 	private static Vector2 convertToGrid(Pair<Integer, Integer> mousePos) {
-		float w = GameConfig.getTileWidth();
-		float h = GameConfig.getTileHeight();
+		float w = GameConfig.getHalfTileWidth();
+		float h = GameConfig.getHalfTileHeight();
 		Vector2 gridPos = new Vector2();
-		float x = mousePos.x - 10.0f * w;
-		float y = mousePos.y - 7.0f * h;
-		// the reason this is shit is because the rendering of the tiles is
-		// offset to be centred in the screen but the actual position is at 0,0
-		// screen position
-		gridPos.x = ((x / w) + (y / h)) / 2;
-		gridPos.y = ((y / h) - (x / w)) / 2;
+		float x = mousePos.x - MapTile.getTW() * w;
+		float y = mousePos.y - MapTile.getTH() * h;
+		
+		gridPos.x = ((x / w) + (y / h) )  / 2;
+		gridPos.y = ((y / h) - (x / w) ) / 2;
 
 		return gridPos;
 	}
 
 	/**
-	 * returns whether the mouse is over a map tile
+	 * returns whether the mouse is over a map tile	
 	 * 
 	 * @return whether the mouse is over a map tile
 	 */

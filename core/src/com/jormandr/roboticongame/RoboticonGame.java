@@ -8,7 +8,6 @@
 package com.jormandr.roboticongame;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.screens.GameScreen;
 

@@ -17,8 +17,8 @@ public class GameConfigTest {
 		assertTrue(GameConfig.getEnergyValueRandomLimit() >= 0);
 		assertTrue(GameConfig.getOreValueRandomLimit() >= 0);
 		assertTrue(GameConfig.getFoodValueRandomLimit() >= 0);
-		assertTrue(GameConfig.getTileHeight() > 0.0f);
-		assertTrue(GameConfig.getTileWidth() > 0.0f);
+		assertTrue(GameConfig.getHalfTileHeight() > 0.0f);
+		assertTrue(GameConfig.getHalfTileWidth() > 0.0f);
 	}
 
 }

@@ -73,21 +73,27 @@ public class AssetLoader {
 
 	}
 	
+	/**
+	 * loads tile textures and sprites
+	 */
 	private static void loadTiles(){
 		
 	tilesTexture = new Texture(Gdx.files.internal("tilesPage.png"));
 	tilesTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 	grassRegion = new TextureRegion(tilesTexture, 63, 0, 62, 34);
-	grassRegion.flip(false, false);
+	grassRegion.flip(false, true);
 	badlandsRegion = new TextureRegion(tilesTexture, 0, 34, 62, 34);
-	badlandsRegion.flip(false, false);
+	badlandsRegion.flip(false, true);
 	desertRegion = new TextureRegion(tilesTexture, 0, 0, 62, 34);
-	desertRegion.flip(false, false);
+	desertRegion.flip(false, true);
 	waterRegion = new TextureRegion(tilesTexture, 63, 34, 62, 34);
-	waterRegion.flip(false, false);
+	waterRegion.flip(false, true);
 	}
 
 	
+	/**
+	 * loads UI textures and sprites
+	 */
 	private static void loadUI(){
 
 	// Main Game UI stuff
@@ -133,6 +139,9 @@ public class AssetLoader {
 	uiButtonSBigOut.flip(false, true);
 	}
 	
+	/**
+	 * loads in miscellaneous textures and sprites
+	 */
 	private static void loadMisc(){
 	// background
 
@@ -141,7 +150,7 @@ public class AssetLoader {
 	//roboticon
 	
 	roboticon = new TextureRegion(uiTexture,165,106,191-164,129-105);
-	//roboticon.flip(false, true);
+	roboticon.flip(false, true);
 	}
 	/**
 	 * Ends access to assets' files

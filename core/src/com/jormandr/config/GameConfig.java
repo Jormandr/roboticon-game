@@ -91,7 +91,7 @@ public class GameConfig {
 	 * 
 	 * @return width of one tile
 	 */
-	public static float getTileWidth() {
+	public static float getHalfTileWidth() {
 		return 64;
 	}
 
@@ -100,7 +100,7 @@ public class GameConfig {
 	 * 
 	 * @return height of one tile
 	 */
-	public static float getTileHeight() {
+	public static float getHalfTileHeight() {
 		return 32;
 	}
 

@@ -1,5 +1,6 @@
 package com.jormandr.gameobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.TileType;
 import com.jormandr.gameworld.GameWorld;
@@ -270,7 +271,7 @@ public class Plot extends MapTile {
 	}
 
 	@Override
-	public void draw(SpriteBatch batcher, float xx, float yy, int yOffset) {
+	public void draw(SpriteBatch batcher, int yOffset){
 
 		if (owned == GameWorld.getPlayer(GameWorld.GameState.HANDLINGP1)) {
 			batcher.setColor(1.0f, 0.5f, 0.5f, 1.0f);
@@ -279,11 +280,12 @@ public class Plot extends MapTile {
 			batcher.setColor(0.5f, 0.5f, 1.0f, 1.0f);
 		}
 
-		batcher.draw(AssetLoader.textureMap[getType().ordinal()], xx, yy + yOffset, 124, -68);
+		batcher.draw(AssetLoader.textureMap[getType().ordinal()], convertToX(), convertToY()+yOffset,ww,0, 62, 34,2,2,0);
+
 		batcher.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		
 		if (hasRoboticon()) {
-			batcher.draw(AssetLoader.roboticon, xx+(yOffset/2), yy+(yOffset*3/4),0,0,191-164,-24,2,2,0);
+			batcher.draw(AssetLoader.roboticon, convertToX(), convertToY()+yOffset,ww/2,0,191-164,24,2,2,0);
 		}
 	}
 

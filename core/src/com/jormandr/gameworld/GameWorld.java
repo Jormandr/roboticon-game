@@ -75,9 +75,8 @@ public class GameWorld {
 	}
 
 	/**
-	 * Update is run every frame, updates of all game objects put in here so
-	 * their update logic is also checked every frame
-	 * 
+	 * Update is run every frame, updates of both GameWorld state machines 
+	 * put here so they run continuously.
 	 * @param delta
 	 */
 	public void update() {
@@ -110,7 +109,7 @@ public class GameWorld {
 	}
 
 	private void updateMenu() {
-
+		//blank for now
 	}
 
 	/**
