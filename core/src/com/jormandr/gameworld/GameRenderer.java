@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.CollisionHandler;
 import com.jormandr.helpers.InputHandler;
-import com.jormandr.helpers.UIHandler;
 
 /**
  * This is the class that deals with all drawing of textures and any other
@@ -24,7 +23,6 @@ public class GameRenderer {
 	// TODO get rid of magic numbers from the whole file
 
 	private GameWorld myWorld; // are either of these objects necessary?
-	private Market myMarket;
 	private OrthographicCamera cam;
 	private ShapeRenderer shapeRenderer;
 	private SpriteBatch batcher;
@@ -95,8 +93,8 @@ public class GameRenderer {
 		}
 
 		// draw buttons if they exist, market and end phase always around
-		for (int i = 0; i < UIHandler.getMenuButtons().size(); i += 1) {
-			UIHandler.getMenuButtons().get(i).draw(batcher);
+		for (int i = 0; i < InputHandler.getMenuButtons().size(); i += 1) {
+			InputHandler.getMenuButtons().get(i).draw(batcher);
 		}
 	}
 
@@ -146,7 +144,7 @@ public class GameRenderer {
 	 */
 	private void drawMarketUI() {
 		// market has draw method
-		myMarket.draw(batcher);
+		Market.draw(batcher);
 	}
 
 	/**
