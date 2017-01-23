@@ -109,7 +109,7 @@ public abstract class MapTile {
 	public float convertToX() {
 		// matrix rotation equation see:
 		// http://clintbellanger.net/articles/isometric_math/
-		return (tw + position.x - getJ()) * ww; // add an offset translation
+		return (tw + position.x - position.y) * ww; // add an offset translation
 												// value of tw to centre grid in
 												// screen
 	}
@@ -123,7 +123,7 @@ public abstract class MapTile {
 		// matrix rotation equation see:
 		// http://clintbellanger.net/articles/isometric_math/
 
-		return (th + getI() + getJ()) * hh; // add an offset translation value
+		return (th + position.x + position.y) * hh; // add an offset translation value
 											// of th to centre grid in screen
 	}
 
