@@ -179,6 +179,7 @@ public class GameWorld {
 			break;
 		case ENDCHECK:
 			//checks to see if win condition has been met
+			player1.updateScore();
 			player2.updateScore();
 			Market.update();
 			if (endCheck()) {

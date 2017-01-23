@@ -14,15 +14,13 @@ import com.jormandr.ui.UIButtonBuyRobo;
 import com.jormandr.ui.UIButtonClose;
 import com.jormandr.ui.UIButtonEndPhase;
 import com.jormandr.ui.UIButtonMarket;
+import com.jormandr.ui.UIButtonUpgradeRobo;
 import com.jormandr.ui.text.rbig.UIButtonAuctionEnd;
 import com.jormandr.ui.text.rbig.UIButtonBuyPlot;
 import com.jormandr.ui.text.rbig.UIButtonEndGame;
 import com.jormandr.ui.text.rbig.UIButtonPlaceRobo;
 import com.jormandr.ui.trade.UIButtonBuy;
 import com.jormandr.ui.trade.UIButtonSell;
-import com.jormandr.ui.upgrade.UIButtonUpgradeRoboEnergy;
-import com.jormandr.ui.upgrade.UIButtonUpgradeRoboFood;
-import com.jormandr.ui.upgrade.UIButtonUpgradeRoboOre;
 
 /**
  * InputHandler implements InputProcessor, and also loads and controls user
@@ -202,9 +200,9 @@ public class InputHandler implements InputProcessor {
 	 * Initialisation of upgrade buttons
 	 */
 	private void loadUpgradeButtons() {
-		upgradeFoodButton = new UIButtonUpgradeRoboFood(796, 256, ButtonType.RSMALL, myWorld);
-		upgradeOreButton = new UIButtonUpgradeRoboOre(796, 312, ButtonType.RSMALL, myWorld);
-		upgradeEnergyButton = new UIButtonUpgradeRoboEnergy(796, 368, ButtonType.RSMALL, myWorld);
+		upgradeFoodButton = new UIButtonUpgradeRobo(796, 256, myWorld, ResourceType.FOOD);
+		upgradeOreButton = new UIButtonUpgradeRobo(796, 312, myWorld, ResourceType.ORE);
+		upgradeEnergyButton = new UIButtonUpgradeRobo(796, 368, myWorld, ResourceType.ENERGY);
 	}
 
 	/**
