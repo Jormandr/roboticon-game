@@ -110,11 +110,11 @@ public class PlotTest {
 			oreBuffDelta = rand.nextFloat();
 			oreDebuffDelta = rand.nextFloat();
 			// Apply here
-			energyBuff += energyBuffDelta;
+			energyBuff *= energyBuffDelta;
 			energyDebuff += energyDebuffDelta;
-			foodBuff += foodBuffDelta;
+			foodBuff *= foodBuffDelta;
 			foodDebuff += foodDebuffDelta;
-			oreBuff += oreBuffDelta;
+			oreBuff *= oreBuffDelta;
 			oreDebuff += oreDebuffDelta;
 			// Apply to plot
 			plot.changeEnergyBuff(energyBuffDelta);

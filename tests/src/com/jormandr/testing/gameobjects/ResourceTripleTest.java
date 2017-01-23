@@ -43,7 +43,7 @@ public class ResourceTripleTest {
 			buffDelta = rand.nextFloat();
 			debuffDelta = rand.nextFloat();
 
-			buff += buffDelta;
+			buff *= buffDelta;
 			debuff += debuffDelta;
 
 			triple.changeBuff(buffDelta);
