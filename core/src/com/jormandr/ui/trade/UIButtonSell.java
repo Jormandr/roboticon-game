@@ -34,17 +34,16 @@ public class UIButtonSell extends UIButtonTrade {
 
 	@Override
 	protected int getResource() {
-		Market myMarket = myWorld.getMarket();
 		int cost;
 		switch (resource) {
 		case FOOD:
-			cost = myMarket.getFoodBuyValue();
+			cost = Market.getFoodBuyValue();
 			break;
 		case ORE:
-			cost = myMarket.getOreBuyValue();
+			cost = Market.getOreBuyValue();
 			break;
 		case ENERGY:
-			cost = myMarket.getEnergyBuyValue();
+			cost = Market.getEnergyBuyValue();
 			break;
 		default:
 			cost = 0;

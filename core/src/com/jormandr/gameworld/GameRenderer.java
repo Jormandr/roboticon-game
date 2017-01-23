@@ -53,7 +53,7 @@ public class GameRenderer {
 	 * initialises game objects
 	 */
 	private void initGameObjects() {
-		myMarket = myWorld.getMarket();
+		// Nothing to do here atm
 	}
 
 	/**

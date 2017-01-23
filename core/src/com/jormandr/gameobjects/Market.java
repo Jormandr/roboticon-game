@@ -8,6 +8,15 @@ import com.jormandr.helpers.AssetLoader;
  *
  */
 public class Market {
+	
+	public final static int INIT_FOOD = 100;
+	public final static int INIT_ORE = 100;
+	public final static int INIT_ENERGY = 100;
+	public final static int INIT_ROBOS = 10;
+	public final static float INIT_FOODBV = 10.0f;
+	public final static float INIT_OREBV = 10.0f;
+	public final static float INIT_ENERGYBV = 10.0f;
+	public final static float INIT_ROBOSV = 10.0f;
 
 	/**
 	 * Enumerator for the different resource types
@@ -16,37 +25,15 @@ public class Market {
 	public enum ResourceType {
 		FOOD, ORE, ENERGY;
 	}
-
-	private int[] value = new int[4];
-	private float[] buyValue = new float[3];
-	private float[] sellValue = new float[3];
-
-	/**
-	 * Initialises the market buy and sell values
-	 * how much of each resource and roboticons it has.
-	 * 
-	 * @param food
-	 * @param ore
-	 * @param energy
-	 * @param roboticons
-	 * @param foodBuyValue
-	 * @param oreBuyValue
-	 * @param energyBuyValue
-	 * @param roboticonsSellValue
-	 */
-	public Market(int food, int ore, int energy, int roboticons, float foodBuyValue, float oreBuyValue,
-			float energyBuyValue, float roboticonsSellValue) {
-
-		value = new int[] { food, ore, energy, roboticons };
-		buyValue = new float[] { foodBuyValue, oreBuyValue, energyBuyValue };
-		sellValue = new float[] { foodBuyValue * 1.5f, oreBuyValue * 1.5f, energyBuyValue * 1.5f, roboticonsSellValue };
-
-	}
+	
+	private static int[] value = new int[] {INIT_FOOD, INIT_ORE, INIT_ENERGY, INIT_ROBOS};
+	private static float[] buyValue = new float[] {INIT_FOODBV, INIT_OREBV, INIT_ENERGYBV};
+	private static float[] sellValue = new float[] {INIT_FOODBV * 1.5f, INIT_OREBV * 1.5f, INIT_ENERGYBV * 1.5f, INIT_ROBOSV};
 
 	/**
 	 *  Updates the market's stock for all resources and roboticons
 	 */
-	public void update() {
+	public static void update() {
 		value[3] = (int) value[1] / 4; //converting ore to roboticons
 		value[1] = 0;
 		value[0] = 100;
@@ -57,39 +44,39 @@ public class Market {
 	 * sets value[0] aka amount of food in inventory
 	 * @param value
 	 */
-	public void setFood(int value) {
-		this.value[0] = value;
+	public static void setFood(int value) {
+		Market.value[0] = value;
 	}
 
 	/**
 	 * sets value[1] aka amount of ore in inventory
 	 * @param value
 	 */
-	public void setOre(int value) {
-		this.value[1] = value;
+	public static void setOre(int value) {
+		Market.value[1] = value;
 	}
 
 	/**
 	 * sets value[2] aka amount of energy in inventory
 	 * @param value
 	 */
-	public void setEnergy(int value) {
-		this.value[2] = value;
+	public static void setEnergy(int value) {
+		Market.value[2] = value;
 	}
 
 	/**
 	 * sets value[3] aka number of roboticons in inventory
 	 * @param value
 	 */
-	public void setRoboticons(int value) {
-		this.value[3] = value;
+	public static void setRoboticons(int value) {
+		Market.value[3] = value;
 	}
 
 	/**
 	 * returns amount of food in inventory
 	 * @return value[0]
 	 */
-	public int getFood() {
+	public static int getFood() {
 		return value[0];
 	}
 
@@ -97,7 +84,7 @@ public class Market {
 	 * returns amount of ore in inventory
 	 * @return value[1]
 	 */
-	public int getOre() {
+	public static int getOre() {
 		return value[1];
 	}
 
@@ -105,7 +92,7 @@ public class Market {
 	 * returns amount of energy in inventory
 	 * @return value[2]
 	 */
-	public int getEnergy() {
+	public static int getEnergy() {
 		return value[2];
 	}
 
@@ -113,7 +100,7 @@ public class Market {
 	 * returns number of roboticons in inventory
 	 * @return value[3]
 	 */
-	public int getRoboticons() {
+	public static int getRoboticons() {
 		return value[3];
 	}
 
@@ -121,7 +108,7 @@ public class Market {
 	 * returns price market buys food at
 	 * @return buyValue[0]
 	 */
-	public int getFoodBuyValue() {
+	public static int getFoodBuyValue() {
 		return (int) buyValue[0];
 	}
 
@@ -129,7 +116,7 @@ public class Market {
 	 * returns price market buys ore at
 	 * @return buyValue[1]
 	 */
-	public int getOreBuyValue() {
+	public static int getOreBuyValue() {
 		return (int) buyValue[1];
 	}
 
@@ -137,7 +124,7 @@ public class Market {
 	 * returns price market buys energy at
 	 * @return buyValue[2]
 	 */
-	public int getEnergyBuyValue() {
+	public static int getEnergyBuyValue() {
 		return (int) buyValue[2];
 	}
 
@@ -145,7 +132,7 @@ public class Market {
 	 * returns price market sells food at
 	 * @return sellValue[0]
 	 */
-	public int getFoodSellValue() {
+	public static int getFoodSellValue() {
 		return (int) sellValue[0];
 	}
 
@@ -153,14 +140,14 @@ public class Market {
 	 * returns price market sells ore at
 	 * @return sellValue[1]
 	 */
-	public int getOreSellValue() {
+	public static int getOreSellValue() {
 		return (int) sellValue[1];
 	}
 
 	/**returns price market sells energy at
 	 * @return sellValue[2]
 	 */
-	public int getEnergySellValue() {
+	public static int getEnergySellValue() {
 		return (int) sellValue[2];
 	}
 
@@ -168,7 +155,7 @@ public class Market {
 	 * returns price market sells roboticons at
 	 * @return sellValue[3]
 	 */
-	public int getRoboticonSellValue() {
+	public static int getRoboticonSellValue() {
 		return (int) sellValue[3];
 	}
 	
@@ -176,7 +163,7 @@ public class Market {
 	 * adds the difference to the food inventory
 	 * @param difference
 	 */
-	public void changeFood(int difference) {
+	public static void changeFood(int difference) {
 		value[0] += difference;
 	}
 
@@ -184,7 +171,7 @@ public class Market {
 	 * adds the difference to the ore inventory
 	 * @param difference
 	 */
-	public void changeOre(int difference) {
+	public static void changeOre(int difference) {
 		value[1] += difference;
 	}
 	
@@ -192,7 +179,7 @@ public class Market {
 	 * adds the difference to the energy inventory
 	 * @param difference
 	 */
-	public void changeEnergy(int difference) {
+	public static void changeEnergy(int difference) {
 		value[1] += difference;
 	}
 	
@@ -200,7 +187,7 @@ public class Market {
 	 * adds the difference to the number of roboticons in inventory
 	 * @param difference
 	 */
-	public void changeRoboticons(int difference) {
+	public static void changeRoboticons(int difference) {
 		value[3] += difference;
 
 	}
@@ -209,7 +196,7 @@ public class Market {
 	 * draw method to be called in GameRenderer
 	 * @param batcher
 	 */
-	public void draw(SpriteBatch batcher) {
+	public static void draw(SpriteBatch batcher) {
 
 		AssetLoader.fontX.draw(batcher, "Market", 600, 232);
 		AssetLoader.fontX.draw(batcher, "BUY: RESOURCE: SELL: STOCK", 380, 265);

@@ -14,54 +14,75 @@ public class MarketTest {
 
 	private Random rand = new Random();
 
-	private Market market;
 	private int food, ore, energy, roboticons, roboticonsDelta;
 	private float foodBuyValue, oreBuyValue, energyBuyValue, roboticonsSellValue;
 
 	@Test
 	public void mainMarketTest() {
+		// Test initial settings
+		
+		food = Market.INIT_FOOD;
+		ore = Market.INIT_ORE;
+		energy = Market.INIT_ENERGY;
+		roboticons = Market.INIT_ROBOS;
+		foodBuyValue = Market.INIT_FOODBV;
+		oreBuyValue = Market.INIT_OREBV;
+		energyBuyValue = Market.INIT_ENERGYBV;
+		roboticonsSellValue = Market.INIT_ROBOSV;
+		
+		assertTrue(Market.getFood() == food);
+		assertTrue(Market.getOre() == ore);
+		assertTrue(Market.getEnergy() == energy);
+		assertTrue(Market.getRoboticons() == roboticons);
+		assertTrue(Market.getFoodBuyValue() == (int) foodBuyValue);
+		assertTrue(Market.getFoodSellValue() == (int) (foodBuyValue * 1.5f));
+		assertTrue(Market.getEnergyBuyValue() == (int) energyBuyValue);
+		assertTrue(Market.getEnergySellValue() == (int) (energyBuyValue * 1.5f));
+		assertTrue(Market.getOreBuyValue() == (int) oreBuyValue);
+		assertTrue(Market.getOreSellValue() == (int) (oreBuyValue * 1.5f));
+		assertTrue(Market.getRoboticonSellValue() == (int) (roboticonsSellValue));
+		
 		for (int counter = 0; counter < ITERATIONS; counter++) {
 			food = rand.nextInt(RANDOM_INT_LIMIT);
 			ore = rand.nextInt(RANDOM_INT_LIMIT);
 			energy = rand.nextInt(RANDOM_INT_LIMIT);
 			roboticons = rand.nextInt(RANDOM_INT_LIMIT);
-			foodBuyValue = rand.nextFloat();
-			oreBuyValue = rand.nextFloat();
-			energyBuyValue = rand.nextFloat();
-			roboticonsSellValue = rand.nextFloat();
+			
+			Market.setFood(food);
+			Market.setOre(ore);
+			Market.setEnergy(energy);
+			Market.setRoboticons(roboticons);
 
-			market = new Market(food, ore, energy, roboticons, foodBuyValue, oreBuyValue, energyBuyValue,
-					roboticonsSellValue);
-
-			assertTrue(market.getFood() == food);
-			assertTrue(market.getOre() == ore);
-			assertTrue(market.getEnergy() == energy);
-			assertTrue(market.getRoboticons() == roboticons);
-			assertTrue(market.getFoodBuyValue() == (int) foodBuyValue);
-			assertTrue(market.getFoodSellValue() == (int) (foodBuyValue * 1.5f));
-			assertTrue(market.getEnergyBuyValue() == (int) energyBuyValue);
-			assertTrue(market.getEnergySellValue() == (int) (energyBuyValue * 1.5f));
-			assertTrue(market.getOreBuyValue() == (int) oreBuyValue);
-			assertTrue(market.getOreSellValue() == (int) (oreBuyValue * 1.5f));
+			assertTrue(Market.getFood() == food);
+			assertTrue(Market.getOre() == ore);
+			assertTrue(Market.getEnergy() == energy);
+			assertTrue(Market.getRoboticons() == roboticons);
+			assertTrue(Market.getFoodBuyValue() == (int) foodBuyValue);
+			assertTrue(Market.getFoodSellValue() == (int) (foodBuyValue * 1.5f));
+			assertTrue(Market.getEnergyBuyValue() == (int) energyBuyValue);
+			assertTrue(Market.getEnergySellValue() == (int) (energyBuyValue * 1.5f));
+			assertTrue(Market.getOreBuyValue() == (int) oreBuyValue);
+			assertTrue(Market.getOreSellValue() == (int) (oreBuyValue * 1.5f));
+			assertTrue(Market.getRoboticonSellValue() == (int) (roboticonsSellValue));
 
 			food = rand.nextInt(RANDOM_INT_LIMIT);
 			ore = rand.nextInt(RANDOM_INT_LIMIT);
 			energy = rand.nextInt(RANDOM_INT_LIMIT);
 			roboticons = rand.nextInt(RANDOM_INT_LIMIT);
 
-			market.setFood(food);
-			market.setOre(ore);
-			market.setEnergy(energy);
-			market.setRoboticons(roboticons);
+			Market.setFood(food);
+			Market.setOre(ore);
+			Market.setEnergy(energy);
+			Market.setRoboticons(roboticons);
 
-			assertTrue(market.getFood() == food);
-			assertTrue(market.getOre() == ore);
-			assertTrue(market.getEnergy() == energy);
-			assertTrue(market.getRoboticons() == roboticons);
+			assertTrue(Market.getFood() == food);
+			assertTrue(Market.getOre() == ore);
+			assertTrue(Market.getEnergy() == energy);
+			assertTrue(Market.getRoboticons() == roboticons);
 
 			roboticonsDelta = rand.nextInt(RANDOM_INT_LIMIT);
-			market.changeRoboticons(roboticonsDelta);
-			assertTrue(market.getRoboticons() == roboticons + roboticonsDelta);
+			Market.changeRoboticons(roboticonsDelta);
+			assertTrue(Market.getRoboticons() == roboticons + roboticonsDelta);
 		}
 
 	}

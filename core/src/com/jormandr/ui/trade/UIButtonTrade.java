@@ -37,17 +37,16 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 	}
 
 	protected int getResource() {
-		Market myMarket = myWorld.getMarket();
 		int cost;
 		switch (resource) {
 		case FOOD:
-			cost = myMarket.getFoodSellValue();
+			cost = Market.getFoodSellValue();
 			break;
 		case ORE:
-			cost = myMarket.getOreSellValue();
+			cost = Market.getOreSellValue();
 			break;
 		case ENERGY:
-			cost = myMarket.getEnergySellValue();
+			cost = Market.getEnergySellValue();
 			break;
 		default:
 			cost = 0;
@@ -57,17 +56,16 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 	}
 
 	protected int getResourceValue() {
-		Market myMarket = myWorld.getMarket();
 		int cost;
 		switch (resource) {
 		case FOOD:
-			cost = myMarket.getFood();
+			cost = Market.getFood();
 			break;
 		case ORE:
-			cost = myMarket.getOre();
+			cost = Market.getOre();
 			break;
 		case ENERGY:
-			cost = myMarket.getEnergy();
+			cost = Market.getEnergy();
 			break;
 		default:
 			cost = 0;
@@ -77,17 +75,15 @@ public abstract class UIButtonTrade extends UIButtonTextSBig {
 	}
 
 	protected void changeResourceValue(int value) {
-		Market myMarket = myWorld.getMarket();
-
 		switch (resource) {
 		case FOOD:
-			myMarket.changeFood(value);
+			Market.changeFood(value);
 			break;
 		case ORE:
-			myMarket.changeOre(value);
+			Market.changeOre(value);
 			break;
 		case ENERGY:
-			myMarket.changeEnergy(value);
+			Market.changeEnergy(value);
 			break;
 		default:
 			break;

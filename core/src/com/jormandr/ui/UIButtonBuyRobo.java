@@ -34,14 +34,13 @@ public class UIButtonBuyRobo extends UIButtonTextSBig {
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());
-		Market myMarket = myWorld.getMarket();
-		int cost = -myMarket.getRoboticonSellValue();
+		int cost = -Market.getRoboticonSellValue();
 		// run logic for the button being pressed
-		if (myMarket.getRoboticons() > 0) {
+		if (Market.getRoboticons() > 0) {
 			if (player.getChangeMoney(cost) >= 0) {
 				player.changeRoboticonsOwned(1);
 				player.changeMoney(cost);
-				myMarket.changeRoboticons(-1);
+				Market.changeRoboticons(-1);
 				isPressed = true;
 				return true;
 			}

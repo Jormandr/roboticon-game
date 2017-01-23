@@ -41,7 +41,6 @@ public class GameWorld {
 	private static Pair<Integer, Integer> mousePos = new Pair<Integer, Integer>(0, 0);
 	private static Player player1;
 	private static Player player2;
-	private static Market market;
 	private static float timer, initTimer = 30.0f;
 	private Random rand = new Random();
 
@@ -58,7 +57,6 @@ public class GameWorld {
 		// disparity
 		player1 = new HumanPlayer(0, 0, 0, 0, 100, 2, 1);
 		player2 = new HumanPlayer(0, 0, 0, 0, 10, 0, 2);
-		market = new Market(100, 100, 100, 10, 10.0f, 10.0f, 10.0f, 10.0f);
 		timer = initTimer = 30.0f;
 
 		int oreMaxValue = GameConfig.getOreValueRandomLimit();
@@ -183,7 +181,7 @@ public class GameWorld {
 		case ENDCHECK:
 			//checks to see if win condition has been met
 			player2.updateScore();
-			market.update();
+			Market.update();
 			if (endCheck()) {
 				toMenuEnd();
 				setGameState(GameState.END);
@@ -418,14 +416,6 @@ public class GameWorld {
 	 */
 	public static void nextGameState() {
 		gameState = GameState.values()[(gameState.ordinal() + 1) % GameState.values().length];
-	}
-
-	/**
-	 * returns market game object
-	 * @return market
-	 */
-	public Market getMarket() {
-		return market;
 	}
 
 	/**
