@@ -21,8 +21,12 @@ public abstract class MapTile {
 	protected Vector2 position, coords;
 	protected TileType type;
 	protected float[] verts = new float[8];
-	protected float ww, hh;
-	protected static float tw, th;
+	private final static float originOffsetX = 2.0f;
+	private final static float originOffsetY = 4.0f;
+	protected static float ww =  (float) GameConfig.getHalfTileWidth();
+	protected static float hh = (float) GameConfig.getHalfTileHeight();;
+	protected static float tw = GameConfig.getWidth() / (ww * originOffsetX);
+	protected static float th = GameConfig.getHeight() / (hh * originOffsetY);
 
 	/**
 	 * @param i
@@ -33,20 +37,6 @@ public abstract class MapTile {
 		position = new Vector2(i, j);
 
 		this.type = type;
-
-		float originOffsetX = 2.0f; // halfway across the screen in x axis
-		float originOffsetY = 4.0f; // quarter way across the screen in y axis
-
-		ww = (float) GameConfig.getHalfTileWidth();
-		hh = (float) GameConfig.getHalfTileHeight();
-
-		tw = GameConfig.getWidth() / (ww * originOffsetX); // how much to add to
-															// move to centre of
-															// screen
-
-		th = GameConfig.getHeight() / (hh * originOffsetY); // how much to add
-															// to move to centre
-															// of screen
 
 		/*
 		 * setting up a polygon of coordinate points for intersection checks
