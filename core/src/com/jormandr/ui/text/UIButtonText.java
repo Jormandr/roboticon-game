@@ -71,6 +71,8 @@ public abstract class UIButtonText extends UIButton {
 	protected void drawText(SpriteBatch batcher) {
 		AssetLoader.fontX.draw(batcher, stringOne, initX, initY);
 		AssetLoader.fontX.draw(batcher, stringTwo, initX, initY + 10); //add 10 in y to go down a line
+		
+		//dynamically add extra offset for text to future child abstract classes so it can be passed onto their children
 	}
 
 }
