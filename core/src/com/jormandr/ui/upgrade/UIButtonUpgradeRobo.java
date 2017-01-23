@@ -1,4 +1,4 @@
-package com.jormandr.ui;
+package com.jormandr.ui.upgrade;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,16 +8,13 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.misctypes.Pair;
 import com.jormandr.players.Player;
+import com.jormandr.ui.ButtonType;
+import com.jormandr.ui.UIButton;
 
-public class UIButtonUpgradeRoboEnergy extends UIButton {
+public abstract class UIButtonUpgradeRobo extends UIButton {
 
-	int initX, initY;
-
-	public UIButtonUpgradeRoboEnergy(float x, float y, ButtonType type, GameWorld world) {
+	public UIButtonUpgradeRobo(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y, type, world);
-
-		initX = (int) x;
-		initY = (int) y;
 	}
 
 	@Override
@@ -34,16 +31,17 @@ public class UIButtonUpgradeRoboEnergy extends UIButton {
 		}
 
 		if (isMouseOver(mousePos.x, mousePos.y)) {
-			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), initX + 34, initY + 18);
+			AssetLoader.fontX.draw(batcher, "Cost: " + plot.getCost(), 830, 274);
 		} else if (((Plot) InputHandler.getTile()).hasRoboticon() == true) {
-			AssetLoader.fontX.draw(batcher, "Upgrade energy ", initX + 16, initY + 14);
-			AssetLoader.fontX.draw(batcher, "production", initX + 16, initY + 23);
+			AssetLoader.fontX.draw(batcher, "Upgrade XXX ", 820, 270);
+			AssetLoader.fontX.draw(batcher, "production", 820, 279);
 		} else {
-			AssetLoader.fontX.draw(batcher, "Place Roboticon", initX + 16, initY + 14);
-			AssetLoader.fontX.draw(batcher, "to Upgrade Energy", initX + 16, initY + 23);
+			AssetLoader.fontX.draw(batcher, "Place Roboticon", 820, 270);
+			AssetLoader.fontX.draw(batcher, "to Upgrade XXX", 820, 279);
 		}
 	}
 
+	
 	@Override
 	public boolean isTouchDown() {
 		Player player = GameWorld.getPlayer(myWorld.getGameState());

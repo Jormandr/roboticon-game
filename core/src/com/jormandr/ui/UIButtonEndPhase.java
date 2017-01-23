@@ -1,31 +1,16 @@
 package com.jormandr.ui;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameworld.GameWorld;
-import com.jormandr.helpers.AssetLoader;
 import com.jormandr.players.Player;
+import com.jormandr.ui.text.UIButtonTextSSmall;
 
-public class UIButtonEndPhase extends UIButton {
+public class UIButtonEndPhase extends UIButtonTextSSmall{
 
-	public UIButtonEndPhase(float x, float y, ButtonType type, GameWorld world) {
-		super(x, y, type, world);
+	public UIButtonEndPhase(float x, float y,GameWorld world) {
+		super(x, y, world, "End", "Phase");
 
 	}
 
-	@Override
-	public void draw(SpriteBatch batcher) {
-		// Gdx.app.log("Drawing: ", String.valueOf(isPressed));
-		if (isPressed) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth,
-					buttonHeight, 4, 4, 0);
-		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, buttonWidth,
-					buttonHeight, 4, 4, 0);
-		}
-
-		AssetLoader.fontX.draw(batcher, "End", 766, 40);
-		AssetLoader.fontX.draw(batcher, "Phase", 766, 50);
-	}
 
 	@Override
 	public boolean isTouchDown() {

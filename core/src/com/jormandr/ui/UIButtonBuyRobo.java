@@ -1,39 +1,27 @@
 package com.jormandr.ui;
 
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.gameobjects.Market;
-import com.jormandr.gameobjects.Plot;
 import com.jormandr.gameworld.GameWorld;
-import com.jormandr.gameworld.GameWorld.GameState;
-import com.jormandr.helpers.AssetLoader;
-import com.jormandr.helpers.InputHandler;
 import com.jormandr.players.Player;
+import com.jormandr.ui.text.UIButtonTextSBig;
 
 
 
-public class UIButtonBuyRobo extends UIButton{
+public class UIButtonBuyRobo extends UIButtonTextSBig{
 	int initX,initY;
-	public UIButtonBuyRobo(float x, float y, ButtonType type, GameWorld world){
-		super(x,y, type, world);
+	public UIButtonBuyRobo(float x, float y, GameWorld world){
+		super(x,y, world, "Buy", "Roboticon");
 
-	
-		initX = (int) x;
-		initY = (int) y;
 	}
 	
+
+	/*
+	 * THis doesn't work right now, not 100% necessary but nice polish to show when out of stock 
 	@Override
-	public void draw(SpriteBatch batcher) {
+	protected void drawText(SpriteBatch batcher){
+		//not drawing correctly
 		Market myMarket = myWorld.getMarket();
-		if (isPressed) {
-			batcher.draw(AssetLoader.button_textures[type2buttonIn], coords.x, coords.y, 0, 0, buttonWidth, buttonHeight, 4, 4,
-					0);
-		} else {
-			batcher.draw(AssetLoader.button_textures[type2buttonOut], coords.x, coords.y, 0, 0, buttonWidth, buttonHeight, 4, 4,
-					0);
-		}
-		
 		if (myMarket.getRoboticons() > 0){
 			AssetLoader.fontX.draw(batcher, "Buy",initX+16,initY+25);
 			AssetLoader.fontX.draw(batcher,"Roboticon",initX+10,initY+35);
@@ -43,8 +31,7 @@ public class UIButtonBuyRobo extends UIButton{
 			AssetLoader.fontX.draw(batcher,"Stock",initX+16,initY+35);
 		}
 	}
-
-	
+	*/
 	
 	@Override
 	public boolean isTouchDown() {

@@ -4,6 +4,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jormandr.helpers.AssetLoader;
 
 public class Market {
+	
+	
+	public enum ResourceType{
+		FOOD, ORE, ENERGY;
+	}
 
 	private int[] value = new int[4];
 	private float[] buyValue = new float [3];
@@ -22,6 +27,8 @@ public class Market {
 	public void update(){
 		value[3] = (int) value[1] / 4;
 		value[1] = 0;
+		value[0] = 100;
+		value[2] = 100;
 	}
 
 
@@ -94,9 +101,9 @@ public class Market {
 		
 		AssetLoader.fontX.draw(batcher, "Market", 600, 232);
 		AssetLoader.fontX.draw(batcher, "BUY: RESOURCE: SELL", 380, 265);
-		AssetLoader.fontX.draw(batcher, getFoodBuyValue() + "    :Food:     " + getFoodSellValue(), 380, 280);
-		AssetLoader.fontX.draw(batcher, getOreBuyValue() + "    :Ore:      " + getOreSellValue(), 380, 295);
-		AssetLoader.fontX.draw(batcher, getEnergyBuyValue() + "    :Energy:   " + getEnergySellValue(), 380, 310);
+		AssetLoader.fontX.draw(batcher, getFoodBuyValue() + "    :Food:     " + getFoodSellValue() +"   "+ getFood(), 380, 280);
+		AssetLoader.fontX.draw(batcher, getOreBuyValue() + "    :Ore:      " + getOreSellValue()+"   "+ getOre(), 380, 295);
+		AssetLoader.fontX.draw(batcher, getEnergyBuyValue() + "    :Energy:   " + getEnergySellValue()+"   "+ getEnergy(), 380, 310);
 		AssetLoader.fontX.draw(batcher, "Roboticons in stock: " + getRoboticons(), 380, 340);
 		AssetLoader.fontX.draw(batcher, "Cost: " + getRoboticonSellValue(), 380, 350);
 	}
@@ -104,6 +111,14 @@ public class Market {
 	public void changeRoboticons(int difference) {
 		value[3] += difference;
 
+	}
+
+	public void changeFood(int difference) {
+		value[0] += difference;
+	}
+	
+	public void changeEnergy(int difference) {
+		value[1] += difference;
 	}
 
 }

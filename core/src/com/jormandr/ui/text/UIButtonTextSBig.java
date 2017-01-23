@@ -15,8 +15,8 @@ public abstract class UIButtonTextSBig  extends UIButtonText{
 	
 	@Override
 	protected void drawText(SpriteBatch batcher){
-		AssetLoader.fontX.draw(batcher, stringOne,initX+32,initY+32);
-		AssetLoader.fontX.draw(batcher,stringTwo,initX+32,initY+10+32);
+		AssetLoader.fontX.draw(batcher, stringOne,initX+14,initY+25);
+		AssetLoader.fontX.draw(batcher,stringTwo,initX+16,initY+10+25);
 	}
 	
 	

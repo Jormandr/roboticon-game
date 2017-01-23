@@ -7,7 +7,8 @@ import com.jormandr.ui.ButtonType;
 import com.jormandr.ui.UIButton;
 
 public abstract class UIButtonText extends UIButton{
-	int initX, initY;
+	protected int initX;
+	protected int initY;
 	String stringOne, stringTwo;
 	public UIButtonText(float x, float y, ButtonType type, GameWorld world) {
 		super(x, y,type , world);

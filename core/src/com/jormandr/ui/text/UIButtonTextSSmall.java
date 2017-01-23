@@ -15,8 +15,8 @@ public abstract class UIButtonTextSSmall  extends UIButtonText{
 	
 	@Override
 	protected void drawText(SpriteBatch batcher){
-		AssetLoader.fontX.draw(batcher, stringOne,initX+32,initY+32);
-		AssetLoader.fontX.draw(batcher,stringTwo,initX+32,initY+10+32);
+		AssetLoader.fontX.draw(batcher, stringOne,initX+8,initY+16);
+		AssetLoader.fontX.draw(batcher,stringTwo,initX+10,initY+10+16);
 	}
 	
 	

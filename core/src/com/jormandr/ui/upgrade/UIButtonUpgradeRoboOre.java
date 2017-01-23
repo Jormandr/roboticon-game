@@ -1,4 +1,4 @@
-package com.jormandr.ui;
+package com.jormandr.ui.upgrade;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,6 +8,8 @@ import com.jormandr.helpers.AssetLoader;
 import com.jormandr.helpers.InputHandler;
 import com.jormandr.misctypes.Pair;
 import com.jormandr.players.Player;
+import com.jormandr.ui.ButtonType;
+import com.jormandr.ui.UIButton;
 
 public class UIButtonUpgradeRoboOre extends UIButton {
 
