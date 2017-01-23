@@ -55,9 +55,10 @@ public class UIButtonUpgradeRoboEnergy extends UIButton {
 			Gdx.app.log("InputHandler: ", "Button Clicked");
 			if (player.getChangeMoney(-plot.getCost()) >= 0) {
 
-				plot.setEnergyBuff(2.0f); // set some buff here
+				plot.changeEnergyBuff(2.0f); // set some buff here
 				player.changeMoney(-(plot.getCost()));
 				isPressed = true;
+				plot.setCost();
 				return true;
 			}
 		}
